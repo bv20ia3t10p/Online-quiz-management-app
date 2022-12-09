@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* .student-modal-selectClasS {
+  z-index: 2;
+} */
+
+.row-isSelected {
+  background-color: aqua;
+}
+.exam-question {
+  position: fixed;
+  z-index: -2;
+  opacity: 0;
+}
+.exam-question.show-question {
+  z-index: 1;
+  opacity: 1;
+}
