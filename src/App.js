@@ -10,7 +10,7 @@ import StudentPage from "./Student/StudentPage";
 import StuExamPage from "./Student/stuExam/StuExamPage";
 import StudentHome from "./Student/StudentHome";
 import "./input.css";
-import StuInfo from "./Student/StuInfo";
+import StuInfo from "./Student/StuInfo/StuInfo";
 
 const app = () => {
   return (
