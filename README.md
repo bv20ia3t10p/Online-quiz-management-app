@@ -5,6 +5,7 @@
 + Move to projects directory (e.g cd D:/Online-quiz-managment-app) then run the following commands: 
 + npm install
 + npm install react-router-dom
++ npm install react-icons
 + npm start
 # Database 
 - The project communicates with MYSQL database through a local server hosted by xampp
