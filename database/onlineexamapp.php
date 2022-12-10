@@ -71,7 +71,7 @@ if (isset($_GET['fetchExam'])) {
         order by rand() limit 1) e 
     inner join exam_content ec on e.id_exam = ec.ID_exam
     inner join questions q on q.id = ec.ID_question
-    order by rand()';
+    order by rand(' . $_GET['seed'] . ')';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -89,6 +89,11 @@ if (isset($_GET['insertAnswer'])) {
         ',' . $_GET['sel'] . ',' . $_GET['idq'] . ');';
     $result = mysqli_query($con, $sql);
     echo $sql;
+}
+if (isset($_GET['updFieldStu'])) {
+    $sql = 'update students set ' . $_GET['updFieldStu'] . ' =' . $_GET['newVal'] . ' where id = ' . $_GET['sid'];
+    $result = mysqli_query($con, $sql);
+    echo $result;
 }
 
 // if (!$id) echo '[';
