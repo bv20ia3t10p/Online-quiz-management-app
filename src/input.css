@@ -5,7 +5,6 @@
 /* .student-modal-selectClasS {
   z-index: 2;
 } */
-
 .row-isSelected {
   background-color: aqua;
 }
@@ -17,4 +16,56 @@
 .exam-question.show-question {
   z-index: 1;
   opacity: 1;
+}
+
+.student-sidebar-func-container {
+  margin-top: 11px;
+  height: 40px;
+}
+
+@layer base {
+  .stu-sidebar-info .col-start-3 {
+    @apply font-mono;
+  }
+  .stu-sidebar-info .col-start-2 {
+    @apply font-mono;
+  }
+  .stu-sidebar-info .col-start-3:nth-child(odd) {
+    @apply font-mono;
+    @apply text-red-800;
+  }
+  .stu-sidebar-info .col-start-2:nth-child(odd) {
+    @apply text-red-900;
+  }
+  .stu-sidebar-info .col-start-1 {
+    @apply border-b-[1px];
+    @apply font-bold;
+    @apply text-red-500;
+    @apply text-xl;
+  }
+  .stu-sidebar-info .col-start-3:last-of-type {
+    @apply border-b-0;
+  }
+  .student-sidebar-func-container {
+    @apply rounded-md;
+    @apply bg-red-600;
+    @apply m-1;
+    @apply text-amber-200;
+    @apply cursor-pointer;
+  }
+  .student-function-select {
+    @apply border-t-[2px];
+    @apply border-t-amber-400;
+  }
+  .student-sidebar-func-container button {
+    @apply pl-3;
+  }
+}
+html {
+  height: 100%;
+  overflow: hidden;
+}
+body {
+  height: 100%;
+  position: absolute;
 }

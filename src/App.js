@@ -11,33 +11,37 @@ import StuExamPage from "./Student/stuExam/StuExamPage";
 import StudentHome from "./Student/StudentHome";
 import "./input.css";
 import StuInfo from "./Student/StuInfo/StuInfo";
+import Navbar from "./Navbar";
 
 const app = () => {
   return (
     <Context>
       <Router>
-        <Switch>
-          <Route path="Student">
-            <Route path="about/:sid" element={<StuInfo />} />
-            <Route
-              path="Home"
-              element={
-                <StudentPage>
-                  <StudentHome />
-                </StudentPage>
-              }
-            />
-            <Route
-              path="Exam"
-              element={
-                <StudentPage>
-                  <StuExamPage />
-                </StudentPage>
-              }
-            />
-          </Route>
-          <Route exact path="/" element={<Login />}></Route>
-        </Switch>
+        <Navbar />{" "}
+        <div className="grid grid-cols-12 grid-rows-6">
+          <Switch>
+            <Route path="Student">
+              <Route path="about/:sid" element={<StuInfo />} />
+              <Route
+                path="Home"
+                element={
+                  <StudentPage>
+                    <StudentHome />
+                  </StudentPage>
+                }
+              />
+              <Route
+                path="Exam"
+                element={
+                  <StudentPage>
+                    <StuExamPage />
+                  </StudentPage>
+                }
+              />
+            </Route>
+            <Route exact path="/" element={<Login />}></Route>
+          </Switch>
+        </div>
       </Router>
     </Context>
   );
