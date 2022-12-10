@@ -8,3 +8,5 @@
 - To establish connection with database navigate to 'src/setup/Context.js' and change the value for 'phpHandler' property in 'initialState' variable
 # Database creation
 - Navigate to 'database' for database creation, data inserts and php file
+# PHP
+- Uses default values for database config, should be changed to match current's host if not running by default settings
