@@ -4,6 +4,8 @@ import { useStudentContext } from "../studentContext";
 import { getStoredExam } from "./fetchExam";
 import StudentHome from "../StudentHome";
 import { handleSubmit } from "./handleSubmit";
+import StuExamPreview from "./StuExamPreview";
+import { Link } from "react-router-dom";
 
 const StuExamPage = () => {
   const { currentClass, ID, isTakingExam, setIsTakingExam } =
@@ -54,7 +56,7 @@ const StuExamPage = () => {
     else if (n < 0) return examContent.length - 1;
     else return n;
   };
-  if (!isLoading)
+  if (!isLoading && isTakingExam)
     return (
       <>
         <StudentHome></StudentHome>
@@ -140,7 +142,18 @@ const StuExamPage = () => {
         })}
       </>
     );
-  else return <h1>Loading</h1>;
+  else if (!isTakingExam && !isLoading) {
+    return <StuExamPreview answers={answers} />;
+  } else
+    return (
+      <>
+        <h1>Loading</h1>
+        <h2>
+          If this takes too long, click here to return to{" "}
+          <Link to={"/Student/Home"}>home</Link>
+        </h2>
+      </>
+    );
 };
 
 export default StuExamPage;

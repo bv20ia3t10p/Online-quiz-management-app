@@ -11,9 +11,9 @@ export const handleSubmit = async (
     const url =
       phpHandler +
       `?insertAnswer=${idStudent}&idExam=${idExam}&idClass=${idClass}&sel=${selection}&idq=${idQuestion}`;
-    fetch(url);
-    const insertData = () => {};
-    const timy = setTimeout(insertData(), 300);
+    const timy = setTimeout(() => {
+      fetch(url);
+    }, 100);
     clearTimeout(timy);
     return url;
   });
