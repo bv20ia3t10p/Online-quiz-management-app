@@ -49,7 +49,11 @@ const StudentHome = () => {
           </div>
         </div>
       </aside>
-      {isSelectingClass && <StudentSelectClassModal></StudentSelectClassModal>}
+      <main>
+        {isSelectingClass && (
+          <StudentSelectClassModal></StudentSelectClassModal>
+        )}
+      </main>
     </>
   );
 };

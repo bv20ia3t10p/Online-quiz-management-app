@@ -10,6 +10,7 @@ import StudentPage from "./Student/StudentPage";
 import StuExamPage from "./Student/stuExam/StuExamPage";
 import StudentHome from "./Student/StudentHome";
 import "./input.css";
+import StuInfo from "./Student/StuInfo";
 
 const app = () => {
   return (
@@ -17,6 +18,7 @@ const app = () => {
       <Router>
         <Switch>
           <Route path="Student">
+            <Route path="about/:sid" element={<StuInfo />} />
             <Route
               path="Home"
               element={
