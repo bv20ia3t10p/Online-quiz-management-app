@@ -10,3 +10,6 @@
 - Navigate to 'database' for database creation, data inserts and php file
 # PHP
 - Uses default values for database config, should be changed to match current's host if not running by default settings
+# Designated test users (ID/pw):
+- Student: 20521/123
+
