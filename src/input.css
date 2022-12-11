@@ -11,6 +11,10 @@
   body {
     @apply inset-0;
     @apply transition-opacity;
+    @apply bg-gradient-to-br;
+  }
+  .stu-sidebar {
+    @apply shadow-lg;
   }
   .stu-sidebar-info .col-start-3 {
     @apply font-mono;
@@ -34,6 +38,12 @@
   .stu-sidebar-info .col-start-3:last-of-type {
     @apply border-b-0;
   }
+  nav {
+    @apply bg-gradient-to-b;
+    @apply from-amber-300;
+    @apply via-amber-300;
+    @apply to-orange-300;
+  }
   .student-sidebar-func-container {
     @apply rounded-md;
     @apply bg-red-600;
@@ -47,6 +57,11 @@
   }
   .student-sidebar-func-container button {
     @apply pl-3;
+    @apply font-extrabold;
+    @apply text-amber-50;
+  }
+  .student-sidebar-func-container h3 {
+    @apply text-left;
   }
   .student-modal-selectClass {
     @apply transform;
@@ -131,7 +146,7 @@
     @apply col-span-2;
     @apply bg-gradient-to-tr;
     @apply from-[#FCBF49];
-    @apply to-[#D62828];
+    @apply to-[#ff7595];
     @apply w-[75vw];
     @apply h-[42vh];
     @apply rounded-3xl;
@@ -162,8 +177,8 @@
   }
   .answer:hover {
     @apply bg-gradient-to-br;
-    @apply from-indigo-500;
-    @apply to-pink-500;
+    @apply from-[#FCBF49];
+    @apply to-[#ff7595];
     @apply transition-all;
     @apply ease-in-out;
     @apply duration-500;

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useGlobalContext } from "../setup/Context";
 import { useStudentContext } from "./studentContext";
 import StudentSelectClassModal from "./StudentSelectClassModal";
@@ -39,8 +39,8 @@ const StudentHome = () => {
       <aside
         className={`${
           isSelectingClass
-            ? "ease-out duration-300 opacity-25 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
-            : "ease-in duration-300 opacity-100 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
+            ? "stu-sidebar ease-out duration-300 opacity-25 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
+            : "stu-sidebar ease-in duration-300 opacity-100 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
         }`}
       >
         <div className="stu-sidebar-info w-fit pr-1 grid grid-cols-[10% 30% 60%] grid-rows-[repeat(6,auto-fill)] gap-x-1 w-40 items-center">
@@ -105,25 +105,27 @@ const StudentHome = () => {
           </div>
           <div
             onClick={() => navigateToExam()}
-            className="student-sidebar-func-container grid grid-cols-[10%,1fr] text-center items-center"
+            className="student-sidebar-func-container grid grid-cols-[20%,1fr] text-center items-center"
           >
             <button>
               <AiOutlinePlayCircle />
             </button>
             <h3>Take Exam</h3>
           </div>
+          <Link to={`/Student/About/${uid}`}>
+            <div
+              onClick={() => setIsSelectingClass(true)}
+              className="student-sidebar-func-container grid grid-cols-[20%,1fr] text-center items-center"
+            >
+              <button>
+                <AiOutlineMonitor />
+              </button>
+              <h3>Information page</h3>
+            </div>
+          </Link>
           <div
             onClick={() => setIsSelectingClass(true)}
-            className="student-sidebar-func-container grid grid-cols-[10%,1fr] text-center items-center"
-          >
-            <button>
-              <AiOutlineMonitor />
-            </button>
-            <h3>Information page</h3>
-          </div>
-          <div
-            onClick={() => setIsSelectingClass(true)}
-            className="student-sidebar-func-container grid grid-cols-[10%,1fr] text-center items-center"
+            className="student-sidebar-func-container grid grid-cols-[20%,1fr] text-center items-center"
           >
             <button>
               <AiOutlinePieChart />

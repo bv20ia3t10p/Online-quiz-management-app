@@ -6,11 +6,11 @@ import image from "./images/ico.png";
 const Navbar = () => {
   const { uid, privilege } = useGlobalContext();
   return (
-    <nav className="drop-shadow-md bg-yellow-300 grid grid-rows-1 grid-cols-10 aboslute w-screen h-10 items-center justify-center">
+    <nav className=" bg-yellow-300 grid grid-rows-1 grid-cols-10 aboslute w-screen h-10 items-center justify-center">
       <img
         className="h-10 col-start-1 col-end-1"
         src={image}
-        alt="Your Company"
+        alt="Quizzer"
       ></img>
       <Link
         to="/"
