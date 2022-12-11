@@ -96,6 +96,63 @@ if (isset($_GET['updFieldStu'])) {
     echo $result;
 }
 
+if (isset($_GET['getAllClasses'])) {
+    $sql = 'select c.ID as classID, c.name as className, c.ID_lecturer as lecturerID,
+    l.name as lecturerName, s.name as subjectName, s.description as subjectDescription
+    from classes c
+    inner join lecturers l on c.ID_lecturer = l.ID
+    inner join subjects s on c.ID_subject = s.ID;';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['getSingleClass'])) {
+    $sql = 'select c.ID as classID, c.name as className, c.ID_lecturer as lecturerID,
+    l.name as lecturerName, s.name as subjectName, s.description as subjectDescription
+    from classes c
+    inner join lecturers l on c.ID_lecturer = l.ID
+    inner join subjects s on c.ID_subject = s.ID
+    where c.ID = "' . str_replace('_', ' ', $_GET['getSingleClass']) . '" or
+    c.name= "' . str_replace('_', ' ', $_GET['getSingleClass']) . '" or
+    l.ID = "' . str_replace('_', ' ', $_GET['getSingleClass']) . '" or
+    l.name= "' . str_replace('_', ' ', $_GET['getSingleClass']) . '" or
+    s.name = "' . str_replace('_', ' ', $_GET['getSingleClass']) . '" or
+    s.description = "' . str_replace('_', ' ', $_GET['getSingleClass']) . '";
+    ';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['insertEnrollStu'])) {
+    $sql = 'insert into enrollment values (' . $_GET['class'] . ',' . $_GET['insertEnrollStu'] . ');';
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        echo 'succeed';
+    } else die(mysqli_error($con));
+}
+
+if (isset($_GET['removeClassEnrollment'])) {
+    $sql = 'delete from enrollment where id_class=' . $_GET['removeClassEnrollment'] . ' and id_student =' . $_GET['stu'];
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        echo 'succeed';
+    } else die(mysqli_error($con));
+}
+
 // if (!$id) echo '[';
 // for ($i = 0; $i < mysqli_num_rows($result); $i++) {
 //     echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
