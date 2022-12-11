@@ -16,6 +16,7 @@ const StuExamPage = () => {
   );
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswer] = useState([]);
+  const [selected, setSelected] = useState(0);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   useEffect(() => {
     if (!isTakingExam) return;
@@ -75,7 +76,7 @@ const StuExamPage = () => {
               className={`${
                 index === currentQuestion
                   ? "exam-question show-question"
-                  : "exam-question"
+                  : "hidden"
               }`}
               key={index}
             >
@@ -93,50 +94,58 @@ const StuExamPage = () => {
                 else
                   return (
                     <div
-                      className="answer"
+                      className={`${
+                        index === selected ? `answer selected-answer` : "answer"
+                      }`}
                       key={index}
-                      onClick={() =>
+                      onClick={() => {
+                        setSelected(index);
                         storeAnswer(
                           examContent[currentQuestion].id_question,
                           examContent[currentQuestion].content,
                           index - 2,
                           n
-                        )
-                      }
+                        );
+                      }}
                     >
-                      <button>V</button> {n}
+                      {n}
                     </div>
                   );
               })}
-              <button
-                onClick={() =>
-                  setCurrentQuestion(checkIndex(currentQuestion + 1))
-                }
-              >
-                Next
-              </button>
-              <button
-                onClick={() => {
-                  setCurrentQuestion(checkIndex(currentQuestion - 1));
-                }}
-              >
-                Prev
-              </button>
-              <button
-                onClick={() => {
-                  handleSubmit(
-                    answers,
-                    examContent[0].id_exam,
-                    currentClass.ID_class,
-                    ID,
-                    phpHandler
-                  );
-                  setIsTakingExam(false);
-                  setExamContent([]);
-                }}
-              >
-                Submit all answer
-              </button>
+              <div className="stu-exam-btn-container">
+                <button
+                  onClick={() => {
+                    setSelected(0);
+                    setCurrentQuestion(checkIndex(currentQuestion + 1));
+                  }}
+                >
+                  Next
+                </button>
+                <button
+                  onClick={() => {
+                    setSelected(0);
+                    setCurrentQuestion(checkIndex(currentQuestion - 1));
+                  }}
+                >
+                  Prev
+                </button>
+                <button
+                  onClick={() => {
+                    handleSubmit(
+                      answers,
+                      examContent[0].id_exam,
+                      currentClass.ID_class,
+                      ID,
+                      phpHandler
+                    );
+                    setIsTakingExam(false);
+                    setExamContent([]);
+                    setSelected(0);
+                  }}
+                >
+                  Submit all answer
+                </button>
+              </div>
             </div>
           );
         })}
