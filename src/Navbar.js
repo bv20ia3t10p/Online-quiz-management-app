@@ -14,15 +14,15 @@ const Navbar = () => {
       ></img>
       <Link
         to="/"
-        className=" w-20 text-center col-start-2 col-end-2 bg-amber-400 text-amber-900 py-2 rounded-md text-sm font-medium"
+        className="translate-x-[-7vw] w-20 text-center col-start-2 col-end-2 bg-amber-400 text-amber-900 py-2 rounded-md text-sm font-medium"
       >
         Home
       </Link>
-      <h3 className="text-sm text-amber-900 col-span-2">
+      <h3 className="translate-x-[-10vw] text-sm text-amber-900 col-span-2">
         Hello, {privilege} {uid}
       </h3>
       <h3
-        className="text-red-600 text-xl font-bold underline font-mono italic 
+        className="translate-x-[-3vw] text-red-600 text-xl font-bold underline font-mono italic 
       antialised tracking-widest decoration-2 decoration-amber-500 drop-shadow-md col-span-5"
       >
         Online quiz management app

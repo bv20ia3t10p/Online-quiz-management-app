@@ -36,9 +36,10 @@ const EditingField = (props) => {
     commitUpdate(phpHandler, state[`ID`], name, state[`${name}`]);
   };
   return (
-    <div>
-      <p>{text}: </p>
+    <div key={index} className="StuInfo-Basic-Cards">
+      <p className="label">{text}: </p>
       <input
+        className="value"
         type="text"
         value={value}
         onChange={(e) => {
@@ -53,12 +54,12 @@ const EditingField = (props) => {
 const NonEditingFields = (props) => {
   const { text, value, isEditable, setIsEditing, index, isEditing } = props;
   return (
-    <div>
-      <p>{text}: </p>
-      <span>{value}</span>
+    <div key={index} className="StuInfo-Basic-Cards">
+      <p className="label">{text}: </p>
+      <span className="value">{value}</span>
       {isEditable[index] && (
         <button
-          onClick={(e) =>
+          onClick={() =>
             isEditable[index]
               ? setIsEditing(
                   isEditing.map((n, index2) => {

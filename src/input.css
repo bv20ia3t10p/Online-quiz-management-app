@@ -233,6 +233,171 @@
     @apply shadow-sm;
     @apply cursor-pointer;
   }
+  .StuInfo-Basic {
+    @apply col-span-full;
+  }
+  .StuInfo-Basic h1 {
+    @apply col-span-3;
+    @apply text-center;
+    @apply text-xl;
+    @apply m-3;
+    @apply mt-0;
+    @apply tracking-wider;
+    @apply font-bold;
+    @apply text-amber-600;
+  }
+  .StuInfo-Basic h1:nth-of-type(2) {
+    @apply mb-5;
+  }
+  .StuInfo-Basic-Cards {
+    @apply w-[48vw];
+    @apply ml-[28vw];
+    @apply col-span-full;
+    @apply grid;
+    @apply grid-cols-[30%,48%,2%];
+    @apply grid-rows-[auto];
+    @apply tracking-widest;
+    @apply border-spacing-4;
+    @apply items-center;
+  }
+  .StuInfo-Basic-Cards .label {
+    @apply m-1;
+    @apply col-start-1;
+    @apply col-end-1;
+    @apply font-serif;
+    @apply text-xl;
+    @apply w-[100%];
+    @apply font-bold;
+    @apply text-red-600;
+  }
+  .StuInfo-Basic-Cards .value {
+    @apply col-start-2;
+    @apply col-end-2;
+    @apply ml-2;
+  }
+  .StuInfo-Basic-Card button {
+    @apply col-start-3;
+    @apply col-end-3;
+  }
+  .StuInfo-Basic-Classes {
+    @apply translate-y-[-5vh];
+    @apply col-span-2;
+    @apply w-[95vw];
+    @apply overflow-y-scroll;
+    @apply h-[43vh];
+  }
+  .StuInfo-Basic-Classes .single-class {
+    @apply ml-[16vw];
+    @apply grid-cols-[9%_18%_15%_10%_40%_5%];
+    @apply grid-rows-[auto];
+    @apply grid;
+    @apply tracking-widest;
+  }
+  .single-class.header {
+    @apply font-bold;
+    @apply text-red-600;
+  }
+  .edit-class-btn {
+    @apply absolute;
+    @apply translate-y-[-9vh];
+    @apply ml-[60vw];
+    @apply text-sm;
+  }
+  .StuInfo-Edit-Class-btn-container {
+    @apply translate-y-[-4vh];
+    @apply ml-[25vw];
+    @apply flex;
+    @apply justify-around;
+    @apply w-[50vw];
+  }
+  .StuInfo-Edit-Class-btn-container button {
+    @apply bg-red-600;
+    @apply w-[10vw];
+    @apply rounded-lg;
+    @apply text-red-50;
+    @apply drop-shadow-xl;
+    @apply tracking-wider;
+  }
+  .enroll-new-class-modal {
+    @apply z-50;
+    @apply absolute;
+    @apply bg-amber-300;
+    @apply ml-[20vw];
+    @apply w-[60vw];
+    @apply mt-[10vh];
+    @apply mb-[10vh];
+    @apply overflow-hidden;
+    @apply h-[70vh];
+    @apply grid;
+    @apply grid-cols-1;
+    @apply grid-rows-[50%_40%_10%];
+    @apply justify-center;
+    @apply box-border;
+    @apply transition-all;
+    @apply ease-in;
+    @apply duration-300;
+    @apply rounded-md;
+  }
+  .enroll-new-class-search {
+    @apply grid;
+    @apply grid-cols-[19%_71%_10%];
+    @apply box-border;
+    @apply w-[97%];
+    @apply bg-amber-50;
+    @apply h-[20%];
+    @apply m-2;
+    @apply rounded-md;
+  }
+  .enroll-new-class-list {
+    @apply mt-[-25vh];
+    @apply ml-[1vw];
+  }
+  .enroll-new-class-search > * {
+    @apply m-2;
+  }
+  .enroll-new-class-search input {
+    @apply bg-amber-100;
+    @apply pl-1;
+    @apply h-[98%];
+    @apply m-0;
+  }
+  .enroll-new-class-modal .enroll-single-class {
+    @apply grid;
+    @apply grid-cols-[10%_17%_12%_18%_12%_30%];
+    @apply grid-rows-[auto];
+    @apply ease-in;
+    @apply transition-all;
+    @apply delay-150;
+    @apply duration-100;
+    @apply opacity-100;
+  }
+  .StuInfo-Basic {
+    @apply opacity-100;
+    @apply ease-in;
+    @apply duration-300;
+  }
+  .StuInfo-Basic.dimmed {
+    @apply inset-0;
+    @apply transition-all;
+    @apply opacity-0;
+    @apply duration-300;
+    @apply ease-out;
+  }
+  .enroll-new-class-list {
+    @apply overflow-scroll;
+  }
+  .enroll-single-class.header {
+    @apply font-bold;
+    @apply text-red-600;
+  }
+  .enroll-single-class {
+    @apply cursor-pointer;
+  }
+  .enroll-single-class.selected {
+    @apply bg-amber-500;
+    @apply transition-all;
+    @apply duration-150;
+  }
 }
 html {
   height: 100%;

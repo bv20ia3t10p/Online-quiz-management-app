@@ -4,7 +4,7 @@ import { useStudentContext } from "./studentContext";
 const StudentSelectClassModal = () => {
   const { setIsSelectingClass, classList, setCurrentClass } =
     useStudentContext();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(-1);
   return (
     <div className="student-modal-selectClass">
       <table>
