@@ -36,7 +36,13 @@ const StudentHome = () => {
   };
   return (
     <>
-      <aside className="student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1">
+      <aside
+        className={`${
+          isSelectingClass
+            ? "ease-out duration-300 opacity-25 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
+            : "ease-in duration-300 opacity-100 student-sidebar col-start-1 col-end-3 bg-amber-200 h-full p-1"
+        }`}
+      >
         <div className="stu-sidebar-info w-fit pr-1 grid grid-cols-[10% 30% 60%] grid-rows-[repeat(6,auto-fill)] gap-x-1 w-40 items-center">
           <AiOutlineUser className="col-start-1 col-end-1" />
           <h3 className="col-start-2 col-end-2 flex-wrap w-20 text-left">

@@ -5,9 +5,7 @@
 /* .student-modal-selectClasS {
   z-index: 2;
 } */
-.row-isSelected {
-  background-color: aqua;
-}
+
 .exam-question {
   position: fixed;
   z-index: -2;
@@ -20,10 +18,14 @@
 
 .student-sidebar-func-container {
   margin-top: 11px;
-  height: 40px;
+  height: 7.2vh;
 }
 
 @layer base {
+  body {
+    @apply inset-0;
+    @apply transition-opacity;
+  }
   .stu-sidebar-info .col-start-3 {
     @apply font-mono;
   }
@@ -60,6 +62,68 @@
   .student-sidebar-func-container button {
     @apply pl-3;
   }
+  .student-modal-selectClass {
+    @apply transform;
+    @apply transition-all;
+    @apply z-10;
+    @apply absolute;
+    @apply inset-0;
+    @apply row-span-full;
+    @apply col-span-full;
+    @apply my-8;
+    @apply w-[69vw];
+    @apply h-[60vh];
+    @apply grid;
+    @apply ml-[15vw];
+    @apply mt-[20vh];
+    @apply bg-yellow-100;
+    @apply p-2;
+    @apply rounded-lg;
+    @apply drop-shadow-xl;
+    @apply border-2;
+    @apply border-red-700;
+  }
+  .student-modal-selectClass button {
+    @apply text-amber-100;
+    @apply col-span-full;
+    @apply bg-red-700;
+    @apply mx-[20vw];
+    @apply mt-[2vh];
+    @apply rounded-lg;
+    @apply drop-shadow-xl;
+    @apply font-bold;
+    @apply tracking-widest;
+  }
+  .student-modal-selectClass table {
+    @apply overflow-y-scroll;
+    @apply overflow-x-hidden;
+    @apply text-red-900;
+    @apply border-spacing-4;
+  }
+  .student-modal-selectClass thead {
+    @apply text-gray-800;
+    @apply border-b-2;
+    @apply border-red-700;
+    @apply text-left;
+    @apply font-serif;
+    @apply tracking-wider;
+  }
+  .student-modal-selectClass tbody {
+    @apply font-mono;
+    @apply border-b-2;
+    @apply border-red-700;
+    @apply overflow-x-hidden;
+  }
+  .stu-class-tbl-row {
+    @apply cursor-pointer;
+  }
+  .row-isSelected {
+    @apply transition-all;
+    @apply ease-in-out;
+    @apply rounded-3xl;
+    @apply bg-amber-200;
+    @apply overflow-hidden;
+  }
 }
 html {
   height: 100%;
@@ -68,4 +132,5 @@ html {
 body {
   height: 100%;
   position: absolute;
+  @apply bg-amber-100;
 }
