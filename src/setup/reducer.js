@@ -16,6 +16,9 @@ const reducer = (state, action) => {
         ...action.payload,
       };
     }
+    case "SET_IS_DIMMED": {
+      return { ...state, isDimmed: action.payload };
+    }
     default:
       return { ...state };
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { useGlobalContext } from "../setup/Context";
 import { useStudentContext } from "./studentContext";
 import {
@@ -23,9 +23,9 @@ const StudentSidebar = () => {
     currentClass,
     setIsSelectingClass,
     setIsTakingExam,
-    isDimmed,
   } = useStudentContext();
-  const { uid } = useGlobalContext();
+  const { uid, isDimmed } = useGlobalContext();
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const navigateToExam = () => {
     if (currentClass.ID_class) {
@@ -73,7 +73,13 @@ const StudentSidebar = () => {
       </div>
       <div className="stu-sideBar-function-select">
         <div
-          onClick={() => setIsSelectingClass(true)}
+          onClick={() => {
+            if (pathname === "/Student/Exam") {
+              alert(`You can't do this during a test`);
+              return;
+            }
+            setIsSelectingClass(true);
+          }}
           className="stu-sideBar-function-container"
         >
           {/* <AiOutlineOrderedList className="ico" /> */}

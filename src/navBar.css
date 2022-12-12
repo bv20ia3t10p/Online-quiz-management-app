@@ -3,6 +3,7 @@
 @tailwind utilities;
 @layer base {
   .navBar {
+    @apply z-20;
     @apply w-screen;
     @apply fixed;
     @apply h-12;

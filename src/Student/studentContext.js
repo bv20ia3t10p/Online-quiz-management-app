@@ -18,7 +18,7 @@ const initialState = {
 
 export const StudentContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(studentReducer, initialState);
-  const { uid, phpHandler } = useGlobalContext();
+  const { uid, phpHandler, setIsDimmed } = useGlobalContext();
   useEffect(() => {
     if (!uid) return;
     setUID(uid);
@@ -26,8 +26,13 @@ export const StudentContextProvider = ({ children }) => {
     fetchClass(phpHandler, uid, setClassList);
   }, [phpHandler, uid]);
   const setIsSelectingClass = (selection) => {
-    if (selection) dispatch({ type: "SELECT_CLASS" });
-    else dispatch({ type: "CLOSE_SELECT_CLASS" });
+    if (selection) {
+      dispatch({ type: "SELECT_CLASS" });
+      setIsDimmed(true);
+    } else {
+      dispatch({ type: "CLOSE_SELECT_CLASS" });
+      setIsDimmed(false);
+    }
   };
   const setUID = (data) => {
     dispatch({ type: "SET_UID", payload: data });
@@ -44,9 +49,7 @@ export const StudentContextProvider = ({ children }) => {
   const setIsTakingExam = (choice) => {
     dispatch({ type: "SET_TAKE_EXAM", payload: choice });
   };
-  const setIsDimmed = (choice) => {
-    dispatch({ type: "SET_IS_DIMMED", payload: choice });
-  };
+
   return (
     <studentContext.Provider
       value={{

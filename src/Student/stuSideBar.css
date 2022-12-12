@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  .student-content {
+    @apply bg-gradient-to-r;
+    @apply from-pink-200;
+    @apply to-purple-300;
+    @apply ml-[16.5vw];
+    @apply h-screen;
+    @apply transition-all;
+    @apply duration-700;
+  }
   .stu-sideBar {
     @apply fixed;
     @apply h-screen;
@@ -14,7 +23,7 @@
     @apply from-purple-800;
     @apply to-pink-500;
     @apply w-1/6;
-    @apply -z-10;
+    @apply z-10;
     @apply text-gray-200;
     @apply grid;
     @apply grid-rows-[55%,45%];
@@ -61,6 +70,7 @@
     @apply justify-center;
     @apply uppercase;
     @apply tracking-wider;
+    @apply cursor-pointer;
   }
   .stu-sideBar-function-container > .text {
     background: linear-gradient(45deg, #6b21a8, #ec4899);

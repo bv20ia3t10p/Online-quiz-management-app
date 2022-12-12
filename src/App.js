@@ -8,14 +8,13 @@ import Login from "./Login/Login";
 import { Context } from "./setup/Context";
 import StudentPage from "./Student/StudentPage";
 import StuExamPage from "./Student/stuExam/StuExamPage";
-import StudentSidebar from "./Student/StudentSidebar";
-import StudentSelectClassModal from "./Student/StudentSelectClassModal";
-import "./sideBar.css";
+import "./Student/stuSideBar.css";
+import "./Student/stuSelectClass.css";
 import "./navBar.css";
 import "./login.css";
-import "./Student/stuSelectClass.css";
 import StuInfo from "./Student/StuInfo/StuInfo";
 import Navbar from "./Navbar";
+import StudentHome from "./Student/StudentHome";
 
 const app = () => {
   return (
@@ -29,8 +28,7 @@ const app = () => {
               path="Home"
               element={
                 <StudentPage>
-                  <StudentSelectClassModal />
-                  <StudentSidebar />
+                  <StudentHome />
                 </StudentPage>
               }
             />

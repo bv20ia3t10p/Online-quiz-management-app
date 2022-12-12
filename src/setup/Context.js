@@ -10,6 +10,7 @@ const initialState = {
   uid: getLocalStorage().uid,
   phpHandler: "http://localhost/onlineexamapp.php",
   privilege: "Not logged in",
+  isDimmed: false,
 };
 
 const Context = ({ children }) => {
@@ -17,6 +18,9 @@ const Context = ({ children }) => {
   useEffect(() => {
     if (state.uid) dispatch({ type: "LOG_IN", payload: state.uid });
   }, [state.uid]);
+  const setIsDimmed = (choice) => {
+    dispatch({ type: "SET_IS_DIMMED", payload: choice });
+  };
   const handleLogin = async (uid, pw) => {
     //Concat string from form input with uid and pw as Login's state
     const url = state.phpHandler + `?uid=${uid}&pw=${pw}`;
@@ -40,7 +44,7 @@ const Context = ({ children }) => {
   };
   return (
     <AppContext.Provider
-      value={{ setLoggedIn, handleLogin, setLoggedOut, ...state }}
+      value={{ setLoggedIn, handleLogin, setLoggedOut, setIsDimmed, ...state }}
     >
       {children}
     </AppContext.Provider>
