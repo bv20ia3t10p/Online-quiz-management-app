@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+div {
+  display: block;
+}
+@layer base {
+  .stu-selectClass.isHidden {
+    @apply opacity-0;
+    @apply bg-purple-800;
+    @apply -z-10;
+    @apply scale-0;
+  }
+  .stu-selectClass {
+    @apply scale-100;
+    @apply transition;
+    @apply transition-all;
+    @apply absolute;
+    @apply duration-700;
+    @apply z-20;
+    @apply opacity-100;
+    @apply bg-gradient-to-br;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    @apply left-1/4;
+    @apply m-auto;
+    @apply top-1/4;
+    @apply h-1/2;
+    @apply p-4;
+    @apply rounded-2xl;
+    @apply shadow-xl;
+    @apply text-white;
+    @apply text-left;
+    @apply box-border;
+    @apply grid;
+    @apply grid-rows-[85%_15%];
+    @apply grid-cols-none;
+  }
+  .stu-selectClass .table {
+    @apply block;
+    @apply overflow-scroll;
+  }
+  .stu-selectClass table {
+    @apply border-separate;
+    @apply border-spacing-2;
+  }
+  .stu-selectClass-btn-container {
+    @apply rounded-2xl;
+    @apply bg-purple-50;
+    @apply mx-64;
+    @apply my-1;
+    @apply cursor-pointer;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+  }
+  .stu-selectClass-btn-container h3 {
+    @apply bg-gradient-to-br;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .stu-selectClass .row-isSelected {
+    @apply text-indigo-500;
+  }
+  .stu-class-tbl-row {
+    @apply text-gray-200;
+    @apply transition-all;
+    @apply duration-500;
+  }
+  .stu-class-tbl-row:hover {
+    @apply text-pink-400;
+  }
+}

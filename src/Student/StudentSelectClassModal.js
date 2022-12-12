@@ -11,48 +11,58 @@ const StudentSelectClassModal = () => {
         isSelectingClass ? "stu-selectClass" : "stu-selectClass isHidden"
       }`}
     >
-      <table>
-        <thead>
-          <tr>
-            {[
-              "Class ID",
-              "Class name",
-              "Lecturer name",
-              "Subject",
-              "Subject description",
-            ].map((n, index) => {
-              return <th key={index}>{n}</th>;
+      <div className="table">
+        <table>
+          <thead className="header">
+            <tr>
+              {[
+                "Class ID",
+                "Class name",
+                "Lecturer name",
+                "Subject",
+                "Subject description",
+              ].map((n, index) => {
+                return <th key={index}>{n}</th>;
+              })}
+            </tr>
+          </thead>
+          <tbody>
+            {classList.map((n, index) => {
+              return (
+                <tr
+                  key={index}
+                  onClick={() => {
+                    setCurrentClass({
+                      ID_class: n.ID_class,
+                      className: n.className,
+                    });
+                    setCurrentIndex(index);
+                    localStorage.setItem(
+                      "oldClass",
+                      JSON.stringify(n.ID_class)
+                    );
+                  }}
+                  className={
+                    index === currentIndex
+                      ? "stu-class-tbl-row row-isSelected"
+                      : "stu-class-tbl-row"
+                  }
+                >
+                  {Object.values(n).map((n2, index2) => {
+                    return <td key={index2}>{n2}</td>;
+                  })}
+                </tr>
+              );
             })}
-          </tr>
-        </thead>
-        <tbody>
-          {classList.map((n, index) => {
-            return (
-              <tr
-                key={index}
-                onClick={() => {
-                  setCurrentClass({
-                    ID_class: n.ID_class,
-                    className: n.className,
-                  });
-                  setCurrentIndex(index);
-                  localStorage.setItem("oldClass", JSON.stringify(n.ID_class));
-                }}
-                className={
-                  index === currentIndex
-                    ? "stu-class-tbl-row row-isSelected"
-                    : "stu-class-tbl-row"
-                }
-              >
-                {Object.values(n).map((n2, index2) => {
-                  return <td key={index2}>{n2}</td>;
-                })}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
-      <button onClick={() => setIsSelectingClass(false)}>Close</button>
+          </tbody>
+        </table>
+      </div>
+      <div
+        className="stu-selectClass-btn-container"
+        onClick={() => setIsSelectingClass(false)}
+      >
+        <h3>Close</h3>
+      </div>
     </div>
   );
 };
