@@ -17,7 +17,7 @@ const app = () => {
   return (
     <Context>
       <Router>
-        <Navbar />{" "}
+        <Navbar />
         <div className="grid grid-cols-12 grid-rows-6">
           <Switch>
             <Route path="Student">

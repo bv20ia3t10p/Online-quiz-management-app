@@ -35,8 +35,13 @@ const Context = ({ children }) => {
   const setLoggedIn = (uid) => {
     dispatch({ type: "LOG_IN", payload: uid });
   };
+  const setLoggedOut = () => {
+    dispatch({ type: "LOG_OUT", payload: initialState });
+  };
   return (
-    <AppContext.Provider value={{ setLoggedIn, handleLogin, ...state }}>
+    <AppContext.Provider
+      value={{ setLoggedIn, handleLogin, setLoggedOut, ...state }}
+    >
       {children}
     </AppContext.Provider>
   );

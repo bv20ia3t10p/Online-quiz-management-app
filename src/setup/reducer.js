@@ -10,6 +10,12 @@ const reducer = (state, action) => {
         privilege: checkPriv(action.payload),
       };
     }
+    case "LOG_OUT": {
+      return {
+        ...state,
+        ...action.payload,
+      };
+    }
     default:
       return { ...state };
   }
