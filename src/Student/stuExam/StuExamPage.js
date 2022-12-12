@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 import { useStudentContext } from "../studentContext";
 import { getStoredExam } from "./fetchExam";
-import StudentHome from "../StudentHome";
+import StudentSidebar from "../StudentSidebar";
 import { handleSubmit } from "./handleSubmit";
 import StuExamPreview from "./StuExamPreview";
 import { Link } from "react-router-dom";
@@ -60,7 +60,7 @@ const StuExamPage = () => {
   if (!isLoading && isTakingExam)
     return (
       <>
-        <StudentHome></StudentHome>
+        <StudentSidebar></StudentSidebar>
         <div className="question-navigate">
           {examContent.map((n, index) => {
             return (

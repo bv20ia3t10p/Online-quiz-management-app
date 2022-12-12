@@ -13,6 +13,7 @@ const initialState = {
   isSelectingClass: false,
   classList: [],
   isTakingExam: false,
+  isDimmed: false,
 };
 
 export const StudentContextProvider = ({ children }) => {
@@ -43,6 +44,9 @@ export const StudentContextProvider = ({ children }) => {
   const setIsTakingExam = (choice) => {
     dispatch({ type: "SET_TAKE_EXAM", payload: choice });
   };
+  const setIsDimmed = (choice) => {
+    dispatch({ type: "SET_IS_DIMMED", payload: choice });
+  };
   return (
     <studentContext.Provider
       value={{
@@ -52,6 +56,7 @@ export const StudentContextProvider = ({ children }) => {
         setClassList,
         setCurrentClass,
         setIsTakingExam,
+        setIsDimmed,
       }}
     >
       {children}

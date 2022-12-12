@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import { useStudentContext } from "./studentContext";
 
 const StudentSelectClassModal = () => {
-  const { setIsSelectingClass, classList, setCurrentClass } =
+  const { setIsSelectingClass, classList, setCurrentClass, isSelectingClass } =
     useStudentContext();
   const [currentIndex, setCurrentIndex] = useState(-1);
   return (
-    <div className="student-modal-selectClass">
+    <div
+      className={`${
+        isSelectingClass ? "stu-selectClass" : "stu-selectClass isHidden"
+      }`}
+    >
       <table>
         <thead>
           <tr>

@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .navBar {
+    @apply w-screen;
+    @apply fixed;
+    @apply h-12;
+    @apply bg-gradient-to-r;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    @apply grid;
+    @apply grid-cols-[4%_6%_74%_6%_6%];
+    @apply grid-rows-[auto];
+    @apply items-center;
+    @apply tracking-wider;
+    @apply text-white;
+  }
+  .navBar-usr {
+    @apply justify-self-end;
+  }
+  .navBar-logo-text {
+    @apply font-bold;
+    @apply col-span-1;
+    @apply justify-self-start;
+    @apply text-2xl;
+    @apply -ml-2;
+  }
+  .navBar-logo {
+    @apply object-fill;
+    @apply h-12;
+    @apply w-12;
+    @apply col-start-1;
+  }
+  .navBar-home,
+  .navBar-logOut {
+    @apply col-span-1;
+    @apply justify-self-center;
+    @apply ml-14;
+    @apply grid;
+    @apply grid-cols-[30%_70%];
+    @apply justify-center;
+    @apply items-center;
+    @apply border-l-2;
+    @apply border-fuchsia-100;
+    @apply pl-3;
+  }
+  .navBar-home:hover,
+  .navBar-logOut:hover {
+    @apply transition-all;
+    @apply duration-700;
+    @apply text-purple-300;
+  }
+  .navBar-home {
+    @apply ml-7;
+  }
+}
+.navBar-logo-text {
+  background: #ca4246;
+  background-color: #ca4246;
+  background: conic-gradient(
+    #ca4246 16.666%,
+    #e16541 16.666%,
+    #e16541 33.333%,
+    #f18f43 33.333%,
+    #f18f43 50%,
+    #8b9862 50%,
+    #8b9862 66.666%,
+    #476098 66.666%,
+    #476098 83.333%,
+    #a7489b 83.333%
+  );
+  filter: brightness(150%);
+  background-size: 57%;
+  background-repeat: repeat;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

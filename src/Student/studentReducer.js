@@ -1,7 +1,7 @@
 export const studentReducer = (state, action) => {
   switch (action.type) {
     case "SELECT_CLASS": {
-      return { ...state, isSelectingClass: true };
+      return { ...state, isSelectingClass: true, isDimmed: true };
     }
     case "SET_STUDENT_INF": {
       return { ...state, ...action.payload };
@@ -10,7 +10,7 @@ export const studentReducer = (state, action) => {
       return { ...state, classList: action.payload };
     }
     case "CLOSE_SELECT_CLASS": {
-      return { ...state, isSelectingClass: false };
+      return { ...state, isSelectingClass: false, isDimmed: false };
     }
     case "SET_CURRENT_CLASS": {
       return { ...state, currentClass: action.payload };
@@ -18,8 +18,11 @@ export const studentReducer = (state, action) => {
     case "SET_TAKE_EXAM": {
       return { ...state, isTakingExam: action.payload };
     }
-    case "SET_UIT": {
+    case "SET_UID": {
       return { ...state, uid: action.payload };
+    }
+    case "SET_IS_DIMMED": {
+      return { ...state, isDimmed: action.payload };
     }
     default:
       return { ...state };
