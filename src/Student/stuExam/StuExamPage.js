@@ -10,9 +10,7 @@ const StuExamPage = () => {
   const { currentClass, ID, isTakingExam, setIsTakingExam } =
     useStudentContext();
   const { phpHandler } = useGlobalContext();
-  const [examContent, setExamContent] = useState(
-    getStoredExam(currentClass.ID_class, phpHandler)
-  );
+  const [examContent, setExamContent] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswer] = useState([]);
   const [selected, setSelected] = useState(0);
@@ -20,7 +18,7 @@ const StuExamPage = () => {
   useEffect(() => {
     if (!isTakingExam) return;
     if (isLoading) {
-      setExamContent(getStoredExam(currentClass.ID_class, phpHandler));
+      getStoredExam(currentClass.ID_class, phpHandler, setExamContent);
       setIsLoading(false);
     }
     if (!examContent) setIsLoading(true);
@@ -51,35 +49,48 @@ const StuExamPage = () => {
       );
     }
   };
-  const checkIndex = (n) => {
-    if (n > examContent.length - 1) return 0;
-    else if (n < 0) return examContent.length - 1;
-    else return n;
-  };
   if (!isLoading && isTakingExam)
     return (
       <>
         <div className="question-navigate">
-          {examContent.map((n, index) => {
-            return (
-              <span
-                className={`${
-                  answers.find(
-                    (n) => n.idQuestion === examContent[index].id_question
-                  )
-                    ? "answered"
-                    : ""
-                }`}
-                key={index}
-                onClick={() => {
-                  setCurrentQuestion(index);
-                  setSelected(0);
-                }}
-              >
-                {index + 1}
-              </span>
-            );
-          })}
+          <div className="question-navigate-numbers">
+            {examContent.map((n, index) => {
+              return (
+                <span
+                  className={`${
+                    answers.find(
+                      (n) => n.idQuestion === examContent[index].id_question
+                    )
+                      ? "answered"
+                      : ""
+                  }`}
+                  key={index}
+                  onClick={() => {
+                    setCurrentQuestion(index);
+                    setSelected(0);
+                  }}
+                >
+                  {index + 1}
+                </span>
+              );
+            })}
+          </div>
+          <button
+            onClick={() => {
+              handleSubmit(
+                answers,
+                examContent[0].id_exam,
+                currentClass.ID_class,
+                ID,
+                phpHandler
+              );
+              setIsTakingExam(false);
+              setExamContent([]);
+              setSelected(0);
+            }}
+          >
+            <h3>Submit</h3>
+          </button>
         </div>
         {examContent.map((n, index) => {
           return (
@@ -124,40 +135,6 @@ const StuExamPage = () => {
                     </div>
                   );
               })}
-              <div className="stu-exam-btn-container">
-                <button
-                  onClick={() => {
-                    setSelected(0);
-                    setCurrentQuestion(checkIndex(currentQuestion + 1));
-                  }}
-                >
-                  <h3>Next</h3>
-                </button>
-                <button
-                  onClick={() => {
-                    setSelected(0);
-                    setCurrentQuestion(checkIndex(currentQuestion - 1));
-                  }}
-                >
-                  <h3>Prev</h3>
-                </button>
-                <button
-                  onClick={() => {
-                    handleSubmit(
-                      answers,
-                      examContent[0].id_exam,
-                      currentClass.ID_class,
-                      ID,
-                      phpHandler
-                    );
-                    setIsTakingExam(false);
-                    setExamContent([]);
-                    setSelected(0);
-                  }}
-                >
-                  <h3>Submit all answer</h3>
-                </button>
-              </div>
             </div>
           );
         })}

@@ -3,17 +3,23 @@
 @tailwind utilities;
 
 @layer base {
+  * {
+    @apply ease-in-out;
+  }
   .question-navigate {
     @apply absolute;
     @apply ml-[73.5vw];
     @apply mt-[8vh];
     @apply bg-violet-300;
     @apply shadow-md;
-    @apply opacity-80;
     @apply w-[6.5vw];
     @apply h-[20vh];
     @apply z-30;
     @apply rounded-xl;
+    @apply grid;
+    @apply grid-rows-[70%_30%];
+  }
+  .question-navigate-numbers {
     @apply grid;
     @apply grid-cols-3;
     @apply overflow-scroll;
@@ -32,11 +38,7 @@
     @apply z-10;
     @apply w-[81.2vw];
     @apply h-[86.2vh];
-    background: linear-gradient(
-      rgba(147, 51, 234, 0.2),
-      rgba(147, 51, 234, 0.2)
-    );
-    @apply shadow-xl;
+    @apply shadow-2xl;
     @apply m-4;
     @apply rounded-xl;
     @apply scale-100;
@@ -47,9 +49,9 @@
     @apply grid-cols-2;
     @apply justify-center;
     @apply items-center;
-    @apply grid-rows-[50%_16%_16%_8%];
+    @apply grid-rows-[50%_16%_16%];
     @apply p-4;
-    @apply gap-4;
+    @apply gap-8;
     @apply text-center;
     @apply items-center;
     @apply justify-center;
@@ -67,13 +69,12 @@
   .exam-question .question {
     @apply col-span-2;
     @apply text-center;
-    background: linear-gradient(
-      rgba(147, 51, 234, 0.2),
-      rgba(147, 51, 234, 0.2)
-    );
+    @apply bg-gradient-to-br;
+    @apply from-purple-600;
+    @apply to-pink-500;
     @apply row-start-1;
     @apply h-full;
-    @apply rounded-xl;
+    @apply rounded-3xl;
     @apply shadow-lg;
     @apply text-indigo-50;
     @apply overflow-y-scroll;
@@ -87,9 +88,9 @@
     @apply tracking-wider;
   }
   .exam-question .answer {
-    background: linear-gradient(#ec489930, #ec489930);
+    background: linear-gradient(#ec489950, #ec489950);
     @apply h-full;
-    @apply rounded-xl;
+    @apply rounded-full;
     @apply text-gray-100;
     @apply tracking-widest;
     @apply text-lg;
@@ -101,13 +102,16 @@
   }
   .exam-question .selected-answer {
     @apply transition-all;
-    background: linear-gradient(#ec489950, #ec489950);
+    /* background: linear-gradient(#ec489970, #ec489970); */
+    @apply bg-gradient-to-br;
+    @apply from-purple-600;
+    @apply to-pink-500;
     @apply duration-300;
   }
   .exam-question .answer:hover {
     @apply transition-all;
     @apply scale-105;
-    background: linear-gradient(#ec489960, #ec489960);
+    background: linear-gradient(#ec489980, #ec489980);
     @apply duration-300;
   }
   .stu-exam-btn-container {
@@ -120,13 +124,13 @@
     @apply px-36;
     @apply font-mono;
   }
-  .stu-exam-btn-container button {
+  .question-navigate button {
     @apply rounded-lg;
     @apply bg-violet-100;
     @apply shadow-xl;
-    @apply w-[14vw];
+    @apply w-full;
   }
-  .stu-exam-btn-container h3 {
+  .question-navigate h3 {
     @apply bg-gradient-to-br;
     @apply from-purple-600;
     @apply to-pink-500;
