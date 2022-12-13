@@ -40,7 +40,6 @@ const EnrollNewClassStu = ({ setIsAddingClasses }) => {
   const [selectedClass, setSelectecClass] = useState(0);
   useEffect(() => {
     fetchAllClasses(phpHandler, setClasses);
-    console.log(uid);
   }, [setClasses, phpHandler, uid]);
   const handleSearch = (e) => {
     e.preventDefault();

@@ -2,8 +2,11 @@ import React from "react";
 import { useGlobalContext } from "../../setup/Context";
 
 const commitUpdate = async (phpHandler, sid, field, newVal) => {
-  const url = phpHandler + `?updFieldStu=${field}&newVal=${newVal}&sid=${sid}`;
+  const encoded = encodeURI(newVal);
+  const url = phpHandler + `?updFieldStu=${field}&newVal=${encoded}&sid=${sid}`;
   console.log(url);
+  const data = await fetch(url);
+  await data.json();
 };
 
 const StuInfoPersonDetail = (props) => {

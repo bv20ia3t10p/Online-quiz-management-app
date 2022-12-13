@@ -88,10 +88,10 @@ if (isset($_GET['insertAnswer'])) {
     $sql = 'insert into student_answer(ID_student,ID_exam,ID_class,selection,ID_question) values (' . $_GET['insertAnswer'] . ',' . $_GET['idExam'] . ',' . $_GET['idClass'] .
         ',' . $_GET['sel'] . ',' . $_GET['idq'] . ');';
     $result = mysqli_query($con, $sql);
-    echo $sql;
+    echo $result;
 }
 if (isset($_GET['updFieldStu'])) {
-    $sql = 'update students set ' . $_GET['updFieldStu'] . ' =' . $_GET['newVal'] . ' where id = ' . $_GET['sid'];
+    $sql = 'update students set ' . $_GET['updFieldStu'] . ' ="' . $_GET['newVal'] . '" where id = ' . $_GET['sid'];
     $result = mysqli_query($con, $sql);
     echo $result;
 }

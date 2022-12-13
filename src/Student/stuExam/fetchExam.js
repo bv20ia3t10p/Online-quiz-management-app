@@ -1,5 +1,4 @@
 export const fetchExam = async (phpHandler, classID, seed, setExamContent) => {
-  console.log("fetching new");
   const url = phpHandler + "?fetchExam=" + classID + "&seed=" + seed;
   const resp = await fetch(url);
   const data = await resp.json();
@@ -13,7 +12,6 @@ export const getStoredExam = (classID, phpHandler, setExamContent) => {
   if (!questionList)
     return fetchExam(phpHandler, classID, seed, setExamContent);
   else {
-    console.log("old questions");
     setExamContent(JSON.parse(questionList));
   }
 };

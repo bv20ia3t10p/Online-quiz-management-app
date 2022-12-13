@@ -5,7 +5,6 @@ import { AiOutlineUserDelete } from "react-icons/ai";
 //First map method iterate through each class and create a list for each class in the array
 //Second map method creates an ul element containing value of each property in the class
 const deleteFromEnrollment = async (url) => {
-  console.log(url);
   const reps = await fetch(url);
   await reps.json();
 };
@@ -22,7 +21,6 @@ const StuInfoClasses = ({
 }) => {
   const handleRemove = (classID) => {
     const url = phpHandler + `?removeClassEnrollment=${classID}&stu=${uid}`;
-    console.log(url);
     setState({
       ...state,
       classes: classes.filter((n) => n.ID_class !== classID),

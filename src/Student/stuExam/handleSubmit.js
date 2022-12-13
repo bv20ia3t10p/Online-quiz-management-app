@@ -22,8 +22,7 @@ export const handleSubmit = async (
   phpHandler
 ) => {
   localStorage.removeItem("questionList");
-  const array = answers.map((a) => {
-    console.log(answers);
+  answers.map((a) => {
     const { idQuestion, selection } = a;
     return insertData(
       idExam,
@@ -35,5 +34,4 @@ export const handleSubmit = async (
     );
   });
   localStorage.removeItem("oldClass");
-  console.log(array);
 };

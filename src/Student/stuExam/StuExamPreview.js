@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 const StuExamPreview = ({ answers }) => {
-  console.log(answers);
   const navi = useNavigate();
   const navigateToHome = () => {
     navi("/Student/Home");

@@ -30,7 +30,6 @@ const Login = () => {
   };
   const navi = useNavigate();
   useEffect(() => {
-    console.log(isLoggedIn);
     if (!isLoggedIn) return;
     switch (privilege) {
       case "Student":

@@ -6,7 +6,6 @@ import StudentSidebar from "./StudentSidebar";
 
 const StudentPage = ({ children }) => {
   const { isDimmed } = useGlobalContext();
-  console.log(isDimmed);
   return (
     <StudentContextProvider>
       <StudentSidebar />
