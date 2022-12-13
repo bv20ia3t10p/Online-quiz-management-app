@@ -63,7 +63,7 @@ const StuExamPage = () => {
                     )
                       ? "answered"
                       : ""
-                  }`}
+                  } ${index === currentQuestion ? "isActive" : ""}`}
                   key={index}
                   onClick={() => {
                     setCurrentQuestion(index);

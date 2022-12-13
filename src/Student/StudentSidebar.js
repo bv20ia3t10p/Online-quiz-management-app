@@ -38,34 +38,34 @@ const StudentSidebar = () => {
       <div className="stu-sideBar-info">
         <div className="stu-sideBar-info-singlet">
           <AiOutlineUser className="ico" />
-          <h3 className="text">Student name:</h3>
+          <h3 className="text">Name</h3>
           <h3 className="value">{name}</h3>
         </div>
         <div className="stu-sideBar-info-singlet">
           <AiOutlineSmile className="ico" />
-          <h3 className="text">Student ID:</h3>
+          <h3 className="text">ID</h3>
           <h3 className="value">{uid}</h3>{" "}
         </div>
         <div className="stu-sideBar-info-singlet">
           <AiOutlineMail className="ico" />
-          <h3 className="text">Email:</h3>
+          {/* <h3 className="text">Email</h3> */}
           <h3 className="value">{email}</h3>
         </div>
         <div className="stu-sideBar-info-singlet">
           <AiOutlinePhone className="ico" />
-          <h3 className="text">Phone number:</h3>
+          <h3 className="text">Phone</h3>
           <h3 className="value">{phone}</h3>
         </div>
         <div className="stu-sideBar-info-singlet">
           <AiOutlineContainer className="ico" />
-          <h3 className="text">Current class:</h3>
+          <h3 className="text">Class</h3>
           <h3 className="value">
             {currentClass.className ? currentClass.className : "Not selected"}
           </h3>
         </div>
         <div className="stu-sideBar-info-singlet">
           <AiOutlineDatabase className="ico" />
-          <h3 className="text">Class ID:</h3>
+          <h3 className="text">C.ID</h3>
           <h3 className="value">
             {currentClass.ID_class ? currentClass.ID_class : "-"}
           </h3>
