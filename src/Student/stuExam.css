@@ -1,0 +1,137 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  .question-navigate {
+    @apply absolute;
+    @apply ml-[73.5vw];
+    @apply mt-[8vh];
+    @apply bg-violet-300;
+    @apply shadow-md;
+    @apply opacity-80;
+    @apply w-[6.5vw];
+    @apply h-[20vh];
+    @apply z-30;
+    @apply rounded-xl;
+    @apply grid;
+    @apply grid-cols-3;
+    @apply overflow-scroll;
+    @apply justify-center;
+    @apply items-center;
+    @apply text-white;
+    @apply text-center;
+    @apply cursor-pointer;
+  }
+  .question-navigate .answered {
+    @apply text-indigo-600;
+  }
+
+  .exam-question {
+    @apply fixed;
+    @apply z-10;
+    @apply w-[81.2vw];
+    @apply h-[86.2vh];
+    background: linear-gradient(
+      rgba(147, 51, 234, 0.2),
+      rgba(147, 51, 234, 0.2)
+    );
+    @apply shadow-xl;
+    @apply m-4;
+    @apply rounded-xl;
+    @apply scale-100;
+    @apply opacity-100;
+    @apply transition-all;
+    @apply duration-1000;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply justify-center;
+    @apply items-center;
+    @apply grid-rows-[50%_16%_16%_8%];
+    @apply p-4;
+    @apply gap-4;
+    @apply text-center;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .exam-question.left {
+    @apply -z-10;
+    @apply -translate-x-[100vw];
+    @apply scale-50;
+  }
+  .exam-question.right {
+    @apply -z-10;
+    @apply translate-x-[100vw];
+    @apply scale-50;
+  }
+  .exam-question .question {
+    @apply col-span-2;
+    @apply text-center;
+    background: linear-gradient(
+      rgba(147, 51, 234, 0.2),
+      rgba(147, 51, 234, 0.2)
+    );
+    @apply row-start-1;
+    @apply h-full;
+    @apply rounded-xl;
+    @apply shadow-lg;
+    @apply text-indigo-50;
+    @apply overflow-y-scroll;
+    @apply text-4xl;
+    @apply justify-center;
+    @apply font-serif;
+    @apply items-center;
+    @apply text-center;
+    @apply flex;
+    @apply px-32;
+    @apply tracking-wider;
+  }
+  .exam-question .answer {
+    background: linear-gradient(#ec489930, #ec489930);
+    @apply h-full;
+    @apply rounded-xl;
+    @apply text-gray-100;
+    @apply tracking-widest;
+    @apply text-lg;
+    @apply text-center;
+    @apply flex;
+    @apply justify-center;
+    @apply items-center;
+    @apply shadow-md;
+  }
+  .exam-question .selected-answer {
+    @apply transition-all;
+    background: linear-gradient(#ec489950, #ec489950);
+    @apply duration-300;
+  }
+  .exam-question .answer:hover {
+    @apply transition-all;
+    @apply scale-105;
+    background: linear-gradient(#ec489960, #ec489960);
+    @apply duration-300;
+  }
+  .stu-exam-btn-container {
+    @apply w-full;
+    @apply col-span-2;
+    @apply flex;
+    @apply justify-between;
+    @apply row-start-4;
+    @apply h-full;
+    @apply px-36;
+    @apply font-mono;
+  }
+  .stu-exam-btn-container button {
+    @apply rounded-lg;
+    @apply bg-violet-100;
+    @apply shadow-xl;
+    @apply w-[14vw];
+  }
+  .stu-exam-btn-container h3 {
+    @apply bg-gradient-to-br;
+    @apply from-purple-600;
+    @apply to-pink-500;
+    @apply bg-clip-text;
+    @apply uppercase;
+    -webkit-text-fill-color: transparent;
+  }
+}

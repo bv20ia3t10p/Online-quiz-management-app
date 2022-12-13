@@ -3,6 +3,7 @@
 @tailwind utilities;
 @layer base {
   .student-content {
+    @apply pt-12;
     @apply bg-gradient-to-r;
     @apply from-pink-200;
     @apply to-purple-300;

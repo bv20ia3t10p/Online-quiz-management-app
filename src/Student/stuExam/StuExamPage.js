@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 import { useStudentContext } from "../studentContext";
 import { getStoredExam } from "./fetchExam";
-import StudentSidebar from "../StudentSidebar";
 import { handleSubmit } from "./handleSubmit";
 import StuExamPreview from "./StuExamPreview";
 import { Link } from "react-router-dom";
@@ -60,11 +59,23 @@ const StuExamPage = () => {
   if (!isLoading && isTakingExam)
     return (
       <>
-        <StudentSidebar></StudentSidebar>
         <div className="question-navigate">
           {examContent.map((n, index) => {
             return (
-              <span key={index} onClick={() => setCurrentQuestion(index)}>
+              <span
+                className={`${
+                  answers.find(
+                    (n) => n.idQuestion === examContent[index].id_question
+                  )
+                    ? "answered"
+                    : ""
+                }`}
+                key={index}
+                onClick={() => {
+                  setCurrentQuestion(index);
+                  setSelected(0);
+                }}
+              >
                 {index + 1}
               </span>
             );
@@ -75,16 +86,17 @@ const StuExamPage = () => {
             <div
               className={`${
                 index === currentQuestion
-                  ? "exam-question show-question"
-                  : "hidden"
+                  ? "exam-question"
+                  : "exam-question isHidden"
+              } ${
+                index < currentQuestion
+                  ? "left"
+                  : `${index !== currentQuestion ? "right" : ""}`
               }`}
               key={index}
             >
               {Object.values(n).map((n, index) => {
-                if (index < 2)
-                  return (
-                    <p style={{ zIndex: "-10", opacity: 0 }} key={index}></p>
-                  );
+                if (index < 2) return <p className="hidden" key={index}></p>;
                 if (index === 2)
                   return (
                     <div className="question" key={index}>
@@ -119,7 +131,7 @@ const StuExamPage = () => {
                     setCurrentQuestion(checkIndex(currentQuestion + 1));
                   }}
                 >
-                  Next
+                  <h3>Next</h3>
                 </button>
                 <button
                   onClick={() => {
@@ -127,7 +139,7 @@ const StuExamPage = () => {
                     setCurrentQuestion(checkIndex(currentQuestion - 1));
                   }}
                 >
-                  Prev
+                  <h3>Prev</h3>
                 </button>
                 <button
                   onClick={() => {
@@ -143,7 +155,7 @@ const StuExamPage = () => {
                     setSelected(0);
                   }}
                 >
-                  Submit all answer
+                  <h3>Submit all answer</h3>
                 </button>
               </div>
             </div>

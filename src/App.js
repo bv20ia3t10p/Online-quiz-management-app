@@ -15,6 +15,7 @@ import "./login.css";
 import StuInfo from "./Student/StuInfo/StuInfo";
 import Navbar from "./Navbar";
 import StudentHome from "./Student/StudentHome";
+import "./Student/stuExam.css";
 
 const app = () => {
   return (
