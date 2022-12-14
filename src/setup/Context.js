@@ -7,7 +7,7 @@ const AppContext = React.createContext();
 
 const initialState = {
   isLoggedIn: false,
-  uid: getLocalStorage().uid,
+  uid: "",
   phpHandler: "http://localhost/onlineexamapp.php",
   privilege: "Not logged in",
   isDimmed: false,

@@ -3,10 +3,76 @@
 @tailwind utilities;
 
 @layer base {
-  .student-content {
-    @apply overflow-y-scroll;
+  .stu-stat-page {
+    @apply grid;
+    @apply p-4;
+    @apply grid-rows-[20%_20%_1fr];
+    @apply grid-cols-3;
+    @apply h-[92vh];
+    @apply gap-4;
+  }
+  .stu-stat-page > * {
+    @apply rounded-2xl;
+    @apply bg-purple-50;
+    @apply shadow-sm;
+    @apply p-4;
+    @apply justify-center;
+    @apply items-center;
+  }
+  .stu-stat-page .cards h1 {
+    @apply text-pink-700;
+    @apply text-3xl;
+    @apply tracking-wider;
+    @apply font-bold;
+  }
+  .stu-stat-page .cards {
+    @apply grid;
+    @apply grid-cols-[25%_1fr];
+    @apply grid-rows-[60%_1fr];
+  }
+  .stu-stat-page .greetings {
+    @apply grid;
+    @apply grid-rows-[70%_1fr];
+    @apply grid-cols-none;
+    @apply justify-start;
+  }
+  .stu-stat-page .cards p {
+    @apply text-gray-600;
+    @apply text-sm;
+  }
+  .stu-stat-page .cards .ico {
+    @apply rounded-full;
+    @apply font-bold;
+    @apply text-white;
+    @apply bg-pink-800;
+    @apply row-span-2;
+    @apply w-[5vw];
+    @apply h-[10vh];
+    @apply p-2;
+  }
+  .stu-stat-page .headings {
+    @apply flex;
+    @apply flex-wrap;
+    @apply items-center;
+  }
+  .stu-stat-page .headings h2 {
+    @apply ml-2;
+    @apply text-gray-700;
+  }
+  .stu-stat-page .headings h1 {
+    @apply text-pink-600;
   }
   .stu-stat-lineChart-container {
-    @apply p-56;
+    @apply col-span-2;
+    @apply row-start-3;
+  }
+  .stu-stat-pieChart-container {
+    @apply row-start-3;
+    @apply h-full;
+    @apply col-start-3;
+  }
+  .stu-stat-page .greetings {
+    @apply row-start-1;
+    @apply col-span-full;
   }
 }

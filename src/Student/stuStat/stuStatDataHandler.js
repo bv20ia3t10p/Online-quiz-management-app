@@ -9,6 +9,7 @@ const options = {
       text: "Exam scores",
     },
   },
+  maintainAspectRatio: false,
 };
 
 const chartData = (data) => {
@@ -19,15 +20,15 @@ const chartData = (data) => {
         fill: true,
         label: "Your score",
         data: data.personal.score,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        borderColor: "rgb(230, 30, 0)",
+        backgroundColor: "rgba(255, 0, 0, 0.5)",
       },
       {
         fill: true,
-        label: "Everyone's score",
+        label: "Class average",
         data: data.everyone.score,
-        borderColor: "rgb(245, 40, 145)",
-        backgroundColor: "rgba(245, 40, 145, 0.5)",
+        borderColor: "rgb(0, 30, 230)",
+        backgroundColor: "rgba(0, 0, 255, 0.5)",
       },
     ],
   };
@@ -69,4 +70,64 @@ const getEveryoneScore = async (
   setData({ personal: personalData, everyone: newData });
 };
 
-export { getEveryoneScore, getScore, separateData, chartData, options };
+const analyseData = (data) => {
+  const examCount = data.length;
+  const avgScore =
+    data.reduce((sum, n) => {
+      return sum + parseFloat(n);
+    }, 0) / examCount;
+  const aboveAverage =
+    data.reduce((sum, n) => {
+      return parseFloat(n) >= 5 ? sum + 1 : sum;
+    }, 0) / examCount;
+  const goodScore = data.reduce(
+    (sum, n) => (parseFloat(n) > 8 ? sum + 1 : sum),
+    0
+  );
+  const decentScore = data.reduce(
+    (sum, n) => (parseFloat(n) > 5 && parseFloat(n) < 8 ? sum + 1 : sum),
+    0
+  );
+  const badScore = data.reduce(
+    (sum, n) => (parseFloat(n) < 5 ? sum + 1 : sum),
+    0
+  );
+  return {
+    examCount,
+    avgScore,
+    aboveAverage,
+    variations: [goodScore, decentScore, badScore],
+  };
+};
+const pieChartData = (data) => {
+  console.log(data);
+  return {
+    labels: ["Good (8~)", "Decent (5~8)", "Bad(~5)"],
+    datasets: [
+      {
+        labels: "Score",
+        data: data,
+        backgroundColor: [
+          "rgba(15, 76, 120,1)",
+          "rgba(255, 120, 36,1)",
+          "rgba(190, 3, 30,01",
+        ],
+        borderColor: [
+          "rgba(95, 15, 64, 1)",
+          "rgba(95, 15, 64, 1)",
+          "rgba(95, 15, 64,1)",
+        ],
+        borderWidth: 0.5,
+      },
+    ],
+  };
+};
+export {
+  analyseData,
+  getEveryoneScore,
+  getScore,
+  separateData,
+  chartData,
+  pieChartData,
+  options,
+};
