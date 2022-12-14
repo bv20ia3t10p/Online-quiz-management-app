@@ -1,11 +1,10 @@
 import React from "react";
-import StuStat from "./StuStat";
+import StuStat from "./stuStat/StuStat";
 
 const StudentHome = () => {
   return (
     <div>
-      {/* <StuStat /> */}
-      placeholder
+      <StuStat />
     </div>
   );
 };
