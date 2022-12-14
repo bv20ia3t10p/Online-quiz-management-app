@@ -85,8 +85,8 @@ if (isset($_GET['fetchExam'])) {
 }
 
 if (isset($_GET['insertAnswer'])) {
-    $sql = 'insert into student_answer(ID_student,ID_exam,ID_class,selection,ID_question) values (' . $_GET['insertAnswer'] . ',' . $_GET['idExam'] . ',' . $_GET['idClass'] .
-        ',' . $_GET['sel'] . ',' . $_GET['idq'] . ');';
+    $sql = 'insert into student_answer(ID_student,ID_exam,ID_class,selection,ID_question,id_student_exam) values (' . $_GET['insertAnswer'] . ',' . $_GET['idExam'] . ',' . $_GET['idClass'] .
+        ',' . $_GET['sel'] . ',' . $_GET['idq'] . ',' . $_GET['idStudentExam'] . ')';
     $result = mysqli_query($con, $sql);
     echo $result;
 }
@@ -153,33 +153,52 @@ if (isset($_GET['removeClassEnrollment'])) {
     } else die(mysqli_error($con));
 }
 if (isset($_GET['getScore'])) {
-    $sql = 'select sa.ID_class as classID, s.description as classDescription, count(*) as score
-    from student_answer sa
-    inner join questions q
-    on sa.ID_question = q.id
-    inner join classes c
-    on sa.ID_class = c.id
-    inner join subjects s
-    on c.id_subject = s.id
-    where sa.ID_student="' . $_GET['getScore'] . '"
-    and sa.selection = q.correct
-    group by sa.ID_student, sa.ID_class,sa.ID_exam,s.description;';
-    $result = mysqli_query($con, $sql);
-    if (!$id) echo '[';
+    $sql = 'select s.description as subjectDescription,
+    c.name as className, max(score) as score
+    from student_exams se 
+    inner join classes c on se.id_class = c.id 
+    inner join subjects s on c.id_subject = s.id
+    where se.ID_student=' . $_GET['getScore'] . '
+    group by s.description,c.name';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
         die(mysqli_error($con));
     }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['newStudentExam'])) {
+    $sql = 'insert into student_exams(id_student,id_class,id_exam)
+    values (' . $_GET['idStu'] . ',' . $_GET['idClass'] . ',' . $_GET['idExam'] . ')';
+    $result = mysqli_query($con, $sql);
+    $sql = 'select id_student_exam from student_exams order by id_student_exam desc limit 1';
+    $result = mysqli_query($con, $sql);
+    echo json_encode(mysqli_fetch_object($result));
+}
+
+if (isset($_GET['getAllScore'])) {
+    $sql = 'select s.description as subjectDescription,
+    c.name as className, avg(score) as score
+    from student_exams se
+    inner join classes c on se.id_class = c.id
+    inner join subjects s on c.id_subject = s.id
+    where c.name in (' . $_GET['getAllScore'] . ')
+    group by c.name
+    order by field(c.name,' . $_GET['getAllScore'] . ')';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
     for ($i = 0; $i < mysqli_num_rows($result); $i++) {
         echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
     }
     if (!$id) echo ']';
 }
 
-// if (!$id) echo '[';
-// for ($i = 0; $i < mysqli_num_rows($result); $i++) {
-//     echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
-// }
-// if (!$id) echo ']';
 $con->close();
