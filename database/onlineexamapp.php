@@ -152,6 +152,30 @@ if (isset($_GET['removeClassEnrollment'])) {
         echo 'succeed';
     } else die(mysqli_error($con));
 }
+if (isset($_GET['getScore'])) {
+    $sql = 'select sa.ID_class as classID, s.description as classDescription, count(*) as score
+    from student_answer sa
+    inner join questions q
+    on sa.ID_question = q.id
+    inner join classes c
+    on sa.ID_class = c.id
+    inner join subjects s
+    on c.id_subject = s.id
+    where sa.ID_student="' . $_GET['getScore'] . '"
+    and sa.selection = q.correct
+    group by sa.ID_student, sa.ID_class,sa.ID_exam,s.description;';
+    $result = mysqli_query($con, $sql);
+    if (!$id) echo '[';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
 
 // if (!$id) echo '[';
 // for ($i = 0; $i < mysqli_num_rows($result); $i++) {

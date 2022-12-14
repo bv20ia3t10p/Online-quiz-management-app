@@ -16,6 +16,7 @@ import StuInfo from "./Student/StuInfo/StuInfo";
 import Navbar from "./Navbar";
 import StudentHome from "./Student/StudentHome";
 import "./Student/stuExam.css";
+import "./Student/stuStat.css";
 
 const app = () => {
   return (
