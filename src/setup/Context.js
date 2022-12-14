@@ -16,7 +16,8 @@ const initialState = {
 const Context = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
-    if (state.uid) dispatch({ type: "LOG_IN", payload: state.uid });
+    const uid = getLocalStorage().uid;
+    if (uid) dispatch({ type: "LOG_IN", payload: uid });
   }, [state.uid]);
   const setIsDimmed = (choice) => {
     dispatch({ type: "SET_IS_DIMMED", payload: choice });
