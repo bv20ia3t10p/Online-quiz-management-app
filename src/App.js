@@ -17,6 +17,9 @@ import Navbar from "./Navbar";
 import StudentHome from "./Student/StudentHome";
 import "./Student/stuExam.css";
 import "./Student/stuStat.css";
+import LecHome from "./Lecturer/LecHome";
+import LecPage from "./Lecturer/LecPage";
+import LecExam from "./Lecturer/LecExam";
 
 const app = () => {
   return (
@@ -24,9 +27,10 @@ const app = () => {
       <Router>
         <Navbar />
         <Switch>
-          <Route path="Student">
+          <Route exact path="Student">
             <Route path="about/:sid" element={<StuInfo />} />
             <Route
+              exact
               path="Home"
               element={
                 <StudentPage>
@@ -40,6 +44,24 @@ const app = () => {
                 <StudentPage>
                   <StuExamPage />
                 </StudentPage>
+              }
+            />
+          </Route>
+          <Route exact path="Lecturer">
+            <Route
+              path="Home"
+              element={
+                <LecPage>
+                  <LecHome />
+                </LecPage>
+              }
+            />
+            <Route
+              path="Exam"
+              element={
+                <LecPage>
+                  <LecExam />
+                </LecPage>
               }
             />
           </Route>
