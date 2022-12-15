@@ -49,6 +49,12 @@ const LecExamList = ({ phpHandler, classes }) => {
       </div>
       {examAssigns && (
         <div className="exam-assign-list">
+          <h1>List of assigned examms</h1>
+          <div className="headings">
+            <h1>Class ID</h1>
+            <h3>Class name</h3>
+            <h2>Exam ID</h2>
+          </div>
           {examAssigns.map((n, index) => (
             <div key={index} className="exam-assign-item">
               {Object.values(n).map((n2, index2) => (

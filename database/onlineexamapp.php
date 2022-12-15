@@ -223,7 +223,10 @@ if (isset($_GET['getLecInfo'])) {
 }
 
 if (isset($_GET['getExamsListByClass'])) {
-    $sql = 'select id_class,id_exam from exam_assign where id_class in ' . $_GET['getExamsListByClass'];
+    $sql = 'select ea.id_class,c.name as className, ea.id_exam 
+    from exam_assign ea
+    inner join classes c on c.id = id_class
+    where id_class in ' . $_GET['getExamsListByClass'];
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);

@@ -17,6 +17,7 @@ import Navbar from "./Navbar";
 import StudentHome from "./Student/StudentHome";
 import "./Student/stuExam.css";
 import "./Student/stuStat.css";
+import "./Lecturer/lecSideBar.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";

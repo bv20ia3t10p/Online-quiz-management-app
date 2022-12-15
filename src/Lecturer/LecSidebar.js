@@ -70,6 +70,13 @@ const LecSideFunc = ({ text, action, params }) => {
 };
 
 const LecSideInfoCards = ({ ico, text, value }) => {
+  if (text == "Email")
+    return (
+      <div className="cards">
+        <div className="ico-container">{ico}</div>
+        <h2>{value}</h2>
+      </div>
+    );
   return (
     <div className="cards">
       <div className="ico-container">{ico}</div>
