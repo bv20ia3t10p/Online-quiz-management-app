@@ -159,7 +159,8 @@ if (isset($_GET['getScore'])) {
     inner join classes c on se.id_class = c.id 
     inner join subjects s on c.id_subject = s.id
     where se.ID_student=' . $_GET['getScore'] . '
-    group by s.description,c.name';
+    group by s.description,c.name
+    order by se.id_student_exam';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -206,9 +207,37 @@ if (isset($_GET['getLecInfo'])) {
     from lecturers l 
     inner join classes c on l.id = c.ID_lecturer
     inner join subjects s on c.ID_subject = s.ID
-    inner join student_exams se on c.id = se.id_class 
+    left join student_exams se on c.id = se.id_class 
     where l.id =' . $_GET['getLecInfo'] . '
     group by l.name, l.id, phone, email, c.id, c.name, s.description;';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getExamsListByClass'])) {
+    $sql = 'select id_class,id_exam from exam_assign where id_class in ' . $_GET['getExamsListByClass'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getExamsCreatedBy'])) {
+    $sql = 'select * from exams where created_by = ' . $_GET['getExamsCreatedBy'];
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);

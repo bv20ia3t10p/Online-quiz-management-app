@@ -89,7 +89,7 @@ const StuStat = () => {
       <div className="cards">
         <AiOutlineBarChart className="ico" />
         <div className="headings">
-          <h1>{analysedData.avgScore.toFixed(2)}</h1>
+          <h1>{parseFloat(analysedData.avgScore).toFixed(2)}</h1>
           <h2>Average score</h2>
         </div>
         <p>An average of your results</p>
@@ -97,7 +97,7 @@ const StuStat = () => {
       <div className="cards">
         <AiOutlineAlert className="ico" />
         <div className="headings">
-          <h1>{analysedData.aboveAverage * 100}</h1>
+          <h1>{(analysedData.aboveAverage * 100).toFixed(2)}</h1>
           <h2>%</h2>
         </div>
         <p>Chance of getting a score {`>5`}</p>

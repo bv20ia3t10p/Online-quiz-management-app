@@ -57,7 +57,7 @@ const app = () => {
               }
             />
             <Route
-              path="Exam"
+              path="Exams"
               element={
                 <LecPage>
                   <LecExam />

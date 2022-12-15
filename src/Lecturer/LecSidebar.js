@@ -17,10 +17,18 @@ const LecSidebar = () => {
   return (
     <div className="lec-sideBar">
       <div className="info-cards">
-        <LecSideInfoCards ico={AiOutlineUser} text={"ID"} value={id} />
-        <LecSideInfoCards ico={AiOutlineSmile} text={"Name"} value={name} />
-        <LecSideInfoCards ico={AiOutlineMail} text={"Email"} value={email} />
-        <LecSideInfoCards ico={AiOutlinePhone} text={"Phone"} value={phone} />
+        <LecSideInfoCards ico={<AiOutlineUser />} text={"ID"} value={id} />
+        <LecSideInfoCards ico={<AiOutlineSmile />} text={"Name"} value={name} />
+        <LecSideInfoCards
+          ico={<AiOutlineMail />}
+          text={"Email"}
+          value={email}
+        />
+        <LecSideInfoCards
+          ico={<AiOutlinePhone />}
+          text={"Phone"}
+          value={phone}
+        />
       </div>
       <div className="functions">
         <LecSideFunc
@@ -30,6 +38,11 @@ const LecSidebar = () => {
         />
         <LecSideFunc
           text={"Manage exams"}
+          action={toFunction}
+          params={`/Lecturer/Exams`}
+        />
+        <LecSideFunc
+          text={"Manage questions"}
           action={toFunction}
           params={`/Lecturer/Exams`}
         />

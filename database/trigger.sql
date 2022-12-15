@@ -9,9 +9,18 @@ CREATE TABLE IF NOT EXISTS `onlineexamapp`.`student_exams` (
     `id_student_exam` INT NOT NULL AUTO_INCREMENT,
     `id_student` INT NULL,
     `id_exam` INT NULL,
-    'id_class' INT NULL,
+    `id_class` INT NULL,
     `score` DOUBLE NULL,
     PRIMARY KEY (`id_student_exam`)
+) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `onlineexamapp`.`score_adjustment` (
+    `id_score_adjustment` INT NOT NULL AUTO_INCREMENT,
+    `reason` VARCHAR(1000) NULL,
+    `id_student_exam` INT NULL,
+    `adjuster` INT NULL,
+    `score` DOUBLE NULL,
+    PRIMARY KEY (`id_score_adjustment`)
 ) ENGINE = InnoDB;
 
 DELIMITER $ $ USE `onlineexamapp` $ $ CREATE DEFINER = CURRENT_USER TRIGGER `onlineexamapp`.`student_answer_AFTER_INSERT`
@@ -105,14 +114,7 @@ where
 
 END;
 
-$ $ CREATE TABLE IF NOT EXISTS `onlineexamapp`.`score_adjustment` (
-    `id_score_adjustment` INT NOT NULL AUTO_INCREMENT,
-    `reason` VARCHAR(1000) NULL,
-    `id_student_exam` INT NULL,
-    `adjuster` INT NULL,
-    `score` DOUBLE NULL,
-    PRIMARY KEY (`id_score_adjustment`)
-) ENGINE = InnoDB;
+$ $ 
 
 DELIMITER $ $ USE `onlineexamapp` $ $ CREATE DEFINER = CURRENT_USER TRIGGER `onlineexamapp`.`score_adjustment_AFTER_INSERT`
 AFTER

@@ -2,11 +2,11 @@ import React from "react";
 import LecContext from "./LecContext";
 import LecSidebar from "./LecSidebar";
 
-const LecPage = () => {
+const LecPage = ({ children }) => {
   return (
     <LecContext>
       <LecSidebar />
-      <div className="lec-content">LecPage</div>
+      <div className="lec-content">{children}</div>
     </LecContext>
   );
 };
