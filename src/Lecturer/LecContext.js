@@ -24,11 +24,19 @@ const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
     email: data[0].email,
   };
   const classes = data.map((n) => {
-    return (({ classID, className, subject, classAvg, examNumbers }) => ({
+    return (({
       classID,
       className,
       subject,
       classAvg,
+      examNumbers,
+      subjectID,
+    }) => ({
+      classID,
+      className,
+      subject,
+      classAvg,
+      subjectID,
       examNumbers,
     }))(n);
   });

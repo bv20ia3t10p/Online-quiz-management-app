@@ -8,17 +8,17 @@ INSERT INTO users(id, password) values(20526,'123');
 INSERT INTO users(id, password) values(20527,'123');
 INSERT INTO users(id, password) values(20528,'123');
 INSERT INTO users(id, password) values(20529,'123');
-INSERT INTO users(id, password) values(205210,'123');
-INSERT INTO users(id, password) values(205211,'123');
-INSERT INTO users(id, password) values(205212,'123');
-INSERT INTO users(id, password) values(205213,'123');
-INSERT INTO users(id, password) values(205214,'123');
-INSERT INTO users(id, password) values(205215,'123');
-INSERT INTO users(id, password) values(205216,'123');
-INSERT INTO users(id, password) values(205217,'123');
-INSERT INTO users(id, password) values(205218,'123');
-INSERT INTO users(id, password) values(205219,'123');
-INSERT INTO users(id, password) values(205220,'123'); 
+INSERT INTO users(id, password) values(20530,'123');
+INSERT INTO users(id, password) values(20531,'123');
+INSERT INTO users(id, password) values(20532,'123');
+INSERT INTO users(id, password) values(20534,'123');
+INSERT INTO users(id, password) values(20535,'123');
+INSERT INTO users(id, password) values(20536,'123');
+INSERT INTO users(id, password) values(20537,'123');
+INSERT INTO users(id, password) values(20538,'123');
+INSERT INTO users(id, password) values(20539,'123');
+INSERT INTO users(id, password) values(20540,'123');
+INSERT INTO users(id, password) values(20541,'123'); 
 
 INSERT INTO users(id, password) values(8081,'456');
 INSERT INTO users(id, password) values(8082,'456');
@@ -29,17 +29,17 @@ INSERT INTO users(id, password) values(8086,'456');
 INSERT INTO users(id, password) values(8087,'456');
 INSERT INTO users(id, password) values(8088,'456');
 INSERT INTO users(id, password) values(8089,'456');
-INSERT INTO users(id, password) values(80810,'456');
-INSERT INTO users(id, password) values(80811,'456');
-INSERT INTO users(id, password) values(80812,'456');
-INSERT INTO users(id, password) values(80813,'456');
-INSERT INTO users(id, password) values(80814,'456');
-INSERT INTO users(id, password) values(80815,'456');
-INSERT INTO users(id, password) values(80816,'456');
-INSERT INTO users(id, password) values(80817,'456');
-INSERT INTO users(id, password) values(80818,'456');
-INSERT INTO users(id, password) values(80819,'456');
-INSERT INTO users(id, password) values(80820,'456');
+INSERT INTO users(id, password) values(8090,'456');
+INSERT INTO users(id, password) values(8091,'456');
+INSERT INTO users(id, password) values(8092,'456');
+INSERT INTO users(id, password) values(8093,'456');
+INSERT INTO users(id, password) values(8094,'456');
+INSERT INTO users(id, password) values(8095,'456');
+INSERT INTO users(id, password) values(8096,'456');
+INSERT INTO users(id, password) values(8097,'456');
+INSERT INTO users(id, password) values(8098,'456');
+INSERT INTO users(id, password) values(8099,'456');
+INSERT INTO users(id, password) values(8100,'456');
 
  
 INSERT INTO users(id, password) values(9900,'admin');
@@ -112,17 +112,17 @@ insert into lecturers(id, name, phone, email) values(8086,  'Nguyen Van A6',  '0
 insert into lecturers(id, name, phone, email) values(8087,  'Nguyen Van A7',  '0380807000',  'uit80807@gm.uit.edu.vn');
 insert into lecturers(id, name, phone, email) values(8088,  'Nguyen Van A8',  '0380808000',  'uit80808@gm.uit.edu.vn');
 insert into lecturers(id, name, phone, email) values(8089,  'Nguyen Van A9',  '0380809000',  'uit80809@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80810, 'Nguyen Van A10', '0380810000',  'uit80810@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80811, 'Nguyen Van A11', '0380811000',  'uit80811@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80812, 'Nguyen Van A12', '0380812000',  'uit80812@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80813, 'Nguyen Van A13', '0380813000',  'uit80813@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80814, 'Nguyen Van A14', '0380814000',  'uit80814@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80815, 'Nguyen Van A15', '0380815000',  'uit80815@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80816, 'Nguyen Van A16', '0380816000',  'uit80816@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80817, 'Nguyen Van A17', '0380817000',  'uit80817@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80818, 'Nguyen Van A18', '0380818000',  'uit80818@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80819, 'Nguyen Van A19', '0380819000',  'uit80819@gm.uit.edu.vn');
-insert into lecturers(id, name, phone, email) values(80820, 'Nguyen Van A20', '0380820000',  'uit80820@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8090, 'Nguyen Van A10', '0380810000',  'uit80810@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8091, 'Nguyen Van A11', '0380811000',  'uit80811@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8092, 'Nguyen Van A12', '0380812000',  'uit80812@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8093, 'Nguyen Van A13', '0380813000',  'uit80813@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8094, 'Nguyen Van A14', '0380814000',  'uit80814@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8095, 'Nguyen Van A15', '0380815000',  'uit80815@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8096, 'Nguyen Van A16', '0380816000',  'uit80816@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8097, 'Nguyen Van A17', '0380817000',  'uit80817@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8098, 'Nguyen Van A18', '0380818000',  'uit80818@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8099, 'Nguyen Van A19', '0380819000',  'uit80819@gm.uit.edu.vn');
+insert into lecturers(id, name, phone, email) values(8100, 'Nguyen Van A20', '0380820000',  'uit80820@gm.uit.edu.vn');
 
 -- Insert students
 insert into students(id, name, phone, email) values(20521, 'Le Van A1', '0987632145', 'uit20521@gm.uit.edu.vn');
@@ -134,17 +134,17 @@ insert into students(id, name, phone, email) values(20526, 'Le Van A6', '0987632
 insert into students(id, name, phone, email) values(20527, 'Le Van A7', '0987632145', 'uit20527@gm.uit.edu.vn');
 insert into students(id, name, phone, email) values(20528, 'Le Van A8', '0987632145', 'uit20528@gm.uit.edu.vn');
 insert into students(id, name, phone, email) values(20529, 'Le Van A9', '0987632145', 'uit20529@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052010, 'Le Van A10', '0987632145', 'uit205210@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052011, 'Le Van A11', '0987632145', 'uit205211@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052012, 'Le Van A12', '0987632145', 'uit205212@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052013, 'Le Van A13', '0987632145', 'uit205213@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052014, 'Le Van A14', '0987632145', 'uit205214@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052015, 'Le Van A15', '0987632145', 'uit205215@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052016, 'Le Van A16', '0987632145', 'uit205216@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052017, 'Le Van A17', '0987632145', 'uit205217@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052018, 'Le Van A18', '0987632145', 'uit205218@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052019, 'Le Van A19', '0987632145', 'uit205219@gm.uit.edu.vn');
-insert into students(id, name, phone, email) values(2052020, 'Le Van A20', '0987632145', 'uit205220@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20530, 'Le Van A10', '0987632145', 'uit205210@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20531, 'Le Van A11', '0987632145', 'uit205211@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20532, 'Le Van A12', '0987632145', 'uit205212@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20533, 'Le Van A13', '0987632145', 'uit205213@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20534, 'Le Van A14', '0987632145', 'uit205214@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20535, 'Le Van A15', '0987632145', 'uit205215@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20536, 'Le Van A16', '0987632145', 'uit205216@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20537, 'Le Van A17', '0987632145', 'uit205217@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20538, 'Le Van A18', '0987632145', 'uit205218@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20539, 'Le Van A19', '0987632145', 'uit205219@gm.uit.edu.vn');
+insert into students(id, name, phone, email) values(20540, 'Le Van A20', '0987632145', 'uit205220@gm.uit.edu.vn');
 
 -- insert into class
 insert into classes(ID, name, description, ID_lecturer, ID_subject) values(3001, 'IT004.HTCL.M11', null, 8081, 1001);
@@ -185,11 +185,11 @@ insert into classes(name, description, ID_lecturer, ID_subject) values('MA006.HT
 
 -- insert into exams;
 insert into exams(id) values(4000);
-insert into exams (ID_sub, name, created_by, numQues) values ("1001","Statistics_FinalExam","80800001","9");
+insert into exams (ID_sub, name, created_by, numQues) values ("1001","Statistics_FinalExam","8081","9");
 
-insert into exams (ID_sub, name, created_by, numQues) values ("115117007","Fundamentals of Database Systems_FinalExam","80800007","9");
-insert into exams (ID_sub, name, created_by, numQues) values ("115117008","OOP_FinalExam","80800008","9");
-insert into exams (ID_sub, name, created_by, numQues) values ("115117009","Database Management_FinalExam","80800009","9");
+insert into exams (ID_sub, name, created_by, numQues) values ("1002","Fundamentals of Database Systems_FinalExam","8081","9");
+insert into exams (ID_sub, name, created_by, numQues) values ("1003","OOP_FinalExam","8081","9");
+insert into exams (ID_sub, name, created_by, numQues) values ("1004","Database Management_FinalExam","8081","9");
 
 
 -- insert into exam_content
@@ -243,7 +243,7 @@ insert into exam_assign values("4001", "3006", "2022-06-16 00:00:00", "2022-06-2
 insert into exam_assign values("4001", "3007", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4001", "3008", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4001", "3009", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
-insert into exam_assign values("4001", "30010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
+insert into exam_assign values("4001", "3010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 
 insert into exam_assign values("4002", "3001", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4002", "3002", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
@@ -254,7 +254,7 @@ insert into exam_assign values("4002", "3006", "2022-06-16 00:00:00", "2022-06-2
 insert into exam_assign values("4002", "3007", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4002", "3008", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4002", "3009", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
-insert into exam_assign values("4002", "30010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
+insert into exam_assign values("4002", "3010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 
 insert into exam_assign values("4003", "3001", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4003", "3002", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
@@ -265,7 +265,7 @@ insert into exam_assign values("4003", "3006", "2022-06-16 00:00:00", "2022-06-2
 insert into exam_assign values("4003", "3007", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4003", "3008", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4003", "3009", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
-insert into exam_assign values("4003", "30010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
+insert into exam_assign values("4003", "3010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 
 insert into exam_assign values("4004", "3001", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4004", "3002", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
@@ -276,7 +276,7 @@ insert into exam_assign values("4004", "3006", "2022-06-16 00:00:00", "2022-06-2
 insert into exam_assign values("4004", "3007", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4004", "3008", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 insert into exam_assign values("4004", "3009", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
-insert into exam_assign values("4004", "30010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
+insert into exam_assign values("4004", "3010", "2022-06-16 00:00:00", "2022-06-24 00:00:00");
 
 -- insert enrollment
 
@@ -314,31 +314,31 @@ insert into enrollment (ID_class,ID_student) values ("3006","20521");
 insert into enrollment (ID_class,ID_student) values ("3007","20521");
 insert into enrollment (ID_class,ID_student) values ("3008","20521");
 insert into enrollment (ID_class,ID_student) values ("3009","20521");
-insert into enrollment (ID_class,ID_student) values ("30010","20521");
+insert into enrollment (ID_class,ID_student) values ("3010","20521");
 
 insert into enrollment (ID_class,ID_student) values ("3006","20522");
 insert into enrollment (ID_class,ID_student) values ("3007","20522");
 insert into enrollment (ID_class,ID_student) values ("3008","20522");
 insert into enrollment (ID_class,ID_student) values ("3009","20522");
-insert into enrollment (ID_class,ID_student) values ("30010","20522");
+insert into enrollment (ID_class,ID_student) values ("3010","20522");
 
 insert into enrollment (ID_class,ID_student) values ("3006","20523");
 insert into enrollment (ID_class,ID_student) values ("3007","20523");
 insert into enrollment (ID_class,ID_student) values ("3008","20523");
 insert into enrollment (ID_class,ID_student) values ("3009","20523");
-insert into enrollment (ID_class,ID_student) values ("30010","20523");
+insert into enrollment (ID_class,ID_student) values ("3010","20523");
 
 insert into enrollment (ID_class,ID_student) values ("3006","20524");
 insert into enrollment (ID_class,ID_student) values ("3007","20524");
 insert into enrollment (ID_class,ID_student) values ("3008","20524");
 insert into enrollment (ID_class,ID_student) values ("3009","20524");
-insert into enrollment (ID_class,ID_student) values ("30010","20524");
+insert into enrollment (ID_class,ID_student) values ("3010","20524");
 
 insert into enrollment (ID_class,ID_student) values ("3006","20525");
 insert into enrollment (ID_class,ID_student) values ("3007","20525");
 insert into enrollment (ID_class,ID_student) values ("3008","20525");
 insert into enrollment (ID_class,ID_student) values ("3009","20525");
-insert into enrollment (ID_class,ID_student) values ("30010","20525");
+insert into enrollment (ID_class,ID_student) values ("3010","20525");
 
 
 

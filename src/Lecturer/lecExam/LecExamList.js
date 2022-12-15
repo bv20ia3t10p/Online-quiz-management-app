@@ -1,5 +1,6 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useGlobalContext } from "../setup/Context";
+import React, { useEffect, useState } from "react";
+import { useGlobalContext } from "../../setup/Context";
+import AssignNewExam from "./AssignNewExam";
 
 const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   if (!uid) return;
@@ -22,11 +23,17 @@ const getExamsForListOfClasses = async (idList, phpHandler, setExamAssigns) => {
   const data = await resp.json();
   setExamAssigns(data);
 };
+
 const LecExamList = ({ phpHandler, classes }) => {
-  const { uid } = useGlobalContext();
+  const { uid, setIsDimmed } = useGlobalContext();
   const [examAssigns, setExamAssigns] = useState([]);
   const [createdExams, setCreatedExams] = useState([]);
+  const [isOpeningModal, setIsOpeningModal] = useState(false);
   const listOfIDs = classes.map((n) => n.classID);
+  const handleAdd = () => {
+    setIsDimmed(true);
+    setIsOpeningModal(true);
+  };
   useEffect(() => {
     if (listOfIDs)
       getExamsForListOfClasses(listOfIDs, phpHandler, setExamAssigns);
@@ -35,7 +42,9 @@ const LecExamList = ({ phpHandler, classes }) => {
   return (
     <div className="manage-exam">
       <div className="exam-assign-btns">
-        <div className="exam-assign-btn">Add</div>
+        <div className="exam-assign-btn" onClick={handleAdd}>
+          Add
+        </div>
         <div className="exam-assign-btn">Delete</div>
       </div>
       {examAssigns && (
@@ -51,6 +60,11 @@ const LecExamList = ({ phpHandler, classes }) => {
           ))}
         </div>
       )}
+      <div className="exam-manage-btns">
+        <div className="exam-manage-btn">Add</div>
+        <div className="exam-manage-btn">Edit</div>
+        <div className="exam-manage-btn">Delete</div>
+      </div>
       {typeof createdExams && (
         <div className="created-exam-list">
           {createdExams.map((n, index) => (
@@ -61,6 +75,15 @@ const LecExamList = ({ phpHandler, classes }) => {
           ))}
         </div>
       )}
+      <AssignNewExam
+        phpHandler={phpHandler}
+        setExamAssigns={setExamAssigns}
+        listOfIDs={listOfIDs}
+        examAssigns={examAssigns}
+        createdExams={createdExams}
+        setIsOpeningModal={setIsOpeningModal}
+        isOpeningModal={isOpeningModal}
+      />
     </div>
   );
 };

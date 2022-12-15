@@ -19,7 +19,7 @@ import "./Student/stuExam.css";
 import "./Student/stuStat.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
-import LecExam from "./Lecturer/LecExam";
+import LecExam from "./Lecturer/lecExam/LecExam";
 
 const app = () => {
   return (

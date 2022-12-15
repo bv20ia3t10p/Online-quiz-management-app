@@ -204,12 +204,12 @@ if (isset($_GET['getAllScore'])) {
 
 if (isset($_GET['getLecInfo'])) {
     $sql = 'select l.name as name, l.id as id, phone, email, c.id as classID, c.name as className, s.description as subject, avg(score) as classAvg, count(id_student_exam) as examNumbers
-    from lecturers l 
+    , s.id as subjectID from lecturers l 
     inner join classes c on l.id = c.ID_lecturer
     inner join subjects s on c.ID_subject = s.ID
     left join student_exams se on c.id = se.id_class 
     where l.id =' . $_GET['getLecInfo'] . '
-    group by l.name, l.id, phone, email, c.id, c.name, s.description;';
+    group by l.name, l.id, phone, email, c.id, c.name, s.description,s.id;';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
