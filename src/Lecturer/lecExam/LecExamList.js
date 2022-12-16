@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 import AssignNewExam from "./AssignNewExam";
+import { AiOutlineSearch } from "react-icons/ai";
 
 const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   if (!uid) return;
@@ -10,14 +11,9 @@ const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   setCreatedExams(data);
 };
 
-const getExamsForListOfClasses = async (idList, phpHandler, setExamAssigns) => {
-  if (!idList) return;
-  const listInString = idList.map((n, index) => {
-    if (index === 0) return `(${n}`;
-    else if (index === idList.length - 1) return `${n})`;
-    else return `${n}`;
-  });
-  const url = phpHandler + `?getExamsListByClass=${listInString}`;
+const getExamsForListOfClasses = async (uid, phpHandler, setExamAssigns) => {
+  if (!uid) return;
+  const url = phpHandler + `?getExamsListByClass=${uid}`;
   const encoded = encodeURI(url);
   const resp = await fetch(encoded);
   const data = await resp.json();
@@ -29,31 +25,101 @@ const LecExamList = ({ phpHandler, classes }) => {
   const [examAssigns, setExamAssigns] = useState([]);
   const [createdExams, setCreatedExams] = useState([]);
   const [isOpeningModal, setIsOpeningModal] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [backUp, setBackUp] = useState({
+    isBackedUp: false,
+    examAssigns: [],
+    createdExams: [],
+  });
+  const [searchValueCreated, setSearchValueCreated] = useState("");
   const listOfIDs = classes.map((n) => n.classID);
   const handleAdd = () => {
     setIsDimmed(true);
     setIsOpeningModal(true);
   };
   useEffect(() => {
-    if (listOfIDs)
-      getExamsForListOfClasses(listOfIDs, phpHandler, setExamAssigns);
-    if (uid) getListOfCreatedExams(uid, phpHandler, setCreatedExams);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (!uid || examAssigns.length || createdExams.length) return;
+    getExamsForListOfClasses(
+      uid,
+      phpHandler,
+      setExamAssigns,
+      backUp,
+      setBackUp
+    );
+    getListOfCreatedExams(uid, phpHandler, setCreatedExams, backUp, setBackUp);
+  }, [uid, examAssigns.length, createdExams.length, phpHandler, backUp]); // eslint-disable-line react-hooks/exhaustive-deps
+  const handleSearchAssign = () => {
+    if (!backUp.isBackedUp) {
+      setBackUp({ isBackedUp: true, examAssigns, createdExams });
+    }
+    if (backUp.isBackedUp && searchValue === "") {
+      setExamAssigns(backUp.examAssigns);
+    } else {
+      const newAssigns = [];
+      examAssigns.forEach((n) => {
+        if (
+          Object.values(n).find((n2) => n2.includes(searchValue.toUpperCase()))
+        )
+          newAssigns.push(n);
+      });
+      setExamAssigns(newAssigns);
+    }
+    return false;
+  };
+  const handleSearchCreated = () => {
+    if (!backUp.isBackedUp) {
+      setBackUp({ isBackedUp: true, examAssigns, createdExams });
+    }
+    if (backUp.isBackedUp && searchValueCreated === "") {
+      setCreatedExams(backUp.createdExams);
+    } else {
+      const newCreated = [];
+      createdExams.forEach((n) => {
+        if (
+          Object.values(n).find((n2) =>
+            n2.toUpperCase().includes(searchValueCreated.toUpperCase())
+          )
+        )
+          newCreated.push(n);
+      });
+      setCreatedExams(newCreated);
+    }
+    return false;
+  };
   return (
     <div className="manage-exam">
+      {/* Exam assigns */}
       <div className="exam-assign-btns">
         <div className="exam-assign-btn" onClick={handleAdd}>
           Add
         </div>
+        <form
+          className="search"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearchAssign();
+          }}
+        >
+          <input
+            type="text"
+            className="text"
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            placeholder="Leave blank to get all result"
+          />
+          <button type="submit">
+            <AiOutlineSearch />
+          </button>
+        </form>
         <div className="exam-assign-btn">Delete</div>
       </div>
+      <h1>List of assigned exams</h1>
       {examAssigns && (
         <div className="exam-assign-list">
-          <h1>List of assigned examms</h1>
           <div className="headings">
             <h1>Class ID</h1>
-            <h3>Class name</h3>
-            <h2>Exam ID</h2>
+            <h1>Class name</h1>
+            <h1>Exam ID</h1>
           </div>
           {examAssigns.map((n, index) => (
             <div key={index} className="exam-assign-item">
@@ -66,17 +132,42 @@ const LecExamList = ({ phpHandler, classes }) => {
           ))}
         </div>
       )}
-      <div className="exam-manage-btns">
-        <div className="exam-manage-btn">Add</div>
-        <div className="exam-manage-btn">Edit</div>
-        <div className="exam-manage-btn">Delete</div>
+      {/* Created exams */}
+      <div className="exam-assign-btns">
+        <div className="exam-assign-btn" onClick={handleAdd}>
+          Add
+        </div>
+        <form
+          className="search"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearchCreated();
+          }}
+        >
+          <input
+            type="text"
+            className="text"
+            value={searchValueCreated}
+            onChange={(e) => setSearchValueCreated(e.target.value)}
+            placeholder="Leave blank to get all result"
+          />
+          <button type="submit">
+            <AiOutlineSearch />
+          </button>
+        </form>
+        <div className="exam-assign-btn">Delete</div>
       </div>
+      <h1>List of created exams</h1>
       {typeof createdExams && (
         <div className="created-exam-list">
+          <div className="headings">
+            <h1>Class ID</h1>
+            <h1>Exam name</h1>
+          </div>
           {createdExams.map((n, index) => (
             <div key={index} className="created-exam">
               <h1>{n.ID}</h1>
-              <h2>{n.name}</h2>
+              <h1>{n.name}</h1>
             </div>
           ))}
         </div>

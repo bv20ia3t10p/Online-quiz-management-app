@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .manage-exam {
+    @apply grid;
+    @apply grid-cols-2;
+    @apply grid-rows-[auto];
+    @apply p-6;
+    @apply pl-7;
+    @apply gap-4;
+    @apply overflow-hidden;
+    @apply h-[90vh];
+    @apply w-[82.8vw];
+  }
+  .lec-content {
+    @apply w-[80.5vw];
+    @apply h-screen;
+    @apply pt-10;
+    @apply ml-[13.3rem];
+  }
+  .exam-assign-list {
+    @apply col-start-1;
+    @apply row-start-3;
+    @apply overflow-scroll;
+    @apply h-[70vh];
+    @apply text-center;
+  }
+  .manage-exam > h1 {
+    @apply col-start-1;
+    @apply row-start-2;
+    @apply text-center;
+    @apply tracking-widest;
+    @apply font-bold;
+    @apply text-pink-600;
+  }
+  .exam-assign-item,
+  .headings {
+    @apply grid-cols-[20%_1fr_20%];
+    @apply grid;
+  }
+  .manage-exam > h1:nth-of-type(2) {
+    @apply col-start-2;
+    @apply row-start-2;
+  }
+  .exam-assign-btns {
+    @apply grid-cols-[15%_1fr_15%];
+    @apply grid;
+    @apply gap-2;
+    @apply text-indigo-50;
+    @apply justify-start;
+    @apply text-center;
+    @apply items-center;
+  }
+  .exam-assign-btns > * {
+    @apply bg-pink-600;
+    @apply rounded-2xl;
+    @apply text-center;
+    @apply h-full;
+  }
+  .exam-assign-btns > div {
+    @apply pt-0.5;
+  }
+  .exam-assign-btns .search button {
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply h-full;
+    @apply pl-1;
+    @apply text-white;
+    @apply font-bold;
+    @apply text-xl;
+  }
+  .exam-assign-btns input {
+    @apply w-[23.08vw];
+    @apply p-1;
+    @apply rounded-2xl;
+    @apply float-left;
+  }
+  .lec-exam-assign-new-modal.isHidden {
+    @apply opacity-0;
+    @apply -z-30;
+    @apply scale-0;
+  }
+  .created-exam,
+  .created-exam-list > .headings {
+    @apply text-center;
+    @apply w-full;
+    @apply grid;
+    @apply grid-cols-[20%_1fr];
+  }
+  .created-exam > * {
+    @apply h-full;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .created-exam > h2 {
+    @apply col-start-2;
+  }
+  .created-exam-list {
+    @apply row-start-3;
+    @apply grid-rows-[auto];
+    @apply h-[30vh];
+    @apply overflow-y-scroll;
+    @apply shadow-xl;
+    @apply bg-pink-50;
+    @apply border-4;
+    @apply border-purple-200;
+    @apply rounded-md;
+  }
+  .exam-assign-list {
+    @apply bg-pink-50;
+    @apply border-4;
+    @apply border-purple-200;
+    @apply rounded-md;
+    @apply shadow-md;
+  }
+  .headings {
+    @apply font-bold;
+    @apply tracking-wider;
+    @apply text-indigo-800;
+    @apply bg-purple-200;
+  }
+  .manage-exam > h1 {
+    @apply text-xl;
+  }
+}

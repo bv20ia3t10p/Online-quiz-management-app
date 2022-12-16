@@ -67,15 +67,4 @@
         @apply bg-clip-text;
         -webkit-text-fill-color:transparent;
    }
-   .lec-content {
-    @apply w-[83.5vw];
-    @apply h-screen;
-    @apply pt-12;
-    @apply ml-[13.3rem];
-   }
-   .exam-assign-item,.headings{
-    @apply grid-cols-3;
-    @apply grid;
-   }
-
 }
