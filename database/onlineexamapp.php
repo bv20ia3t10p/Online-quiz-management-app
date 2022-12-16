@@ -255,4 +255,14 @@ if (isset($_GET['getExamsCreatedBy'])) {
     if (!$id) echo ']';
 }
 
+if (isset($_GET['insertNewExamAssign'])) {
+    $sql = 'insert into exam_assign (id_class,id_exam) values (' . $_GET['insertNewExamAssign'] . ',' . $_GET['idexam'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
 $con->close();

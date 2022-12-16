@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 import AssignNewExam from "./AssignNewExam";
-import { AiOutlineSearch } from "react-icons/ai";
+import { AiOutlineBulb, AiOutlineSearch } from "react-icons/ai";
 
 const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   if (!uid) return;
@@ -32,6 +32,8 @@ const LecExamList = ({ phpHandler, classes }) => {
     createdExams: [],
   });
   const [searchValueCreated, setSearchValueCreated] = useState("");
+  const [selectedAssign, setSelectedAssign] = useState(-1);
+  const [selectedCreated, setSelectedCreated] = useState(-1);
   const listOfIDs = classes.map((n) => n.classID);
   const handleAdd = () => {
     setIsDimmed(true);
@@ -87,91 +89,7 @@ const LecExamList = ({ phpHandler, classes }) => {
     return false;
   };
   return (
-    <div className="manage-exam">
-      {/* Exam assigns */}
-      <div className="exam-assign-btns">
-        <div className="exam-assign-btn" onClick={handleAdd}>
-          Add
-        </div>
-        <form
-          className="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearchAssign();
-          }}
-        >
-          <input
-            type="text"
-            className="text"
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder="Leave blank to get all result"
-          />
-          <button type="submit">
-            <AiOutlineSearch />
-          </button>
-        </form>
-        <div className="exam-assign-btn">Delete</div>
-      </div>
-      <h1>List of assigned exams</h1>
-      {examAssigns && (
-        <div className="exam-assign-list">
-          <div className="headings">
-            <h1>Class ID</h1>
-            <h1>Class name</h1>
-            <h1>Exam ID</h1>
-          </div>
-          {examAssigns.map((n, index) => (
-            <div key={index} className="exam-assign-item">
-              {Object.values(n).map((n2, index2) => (
-                <p className="value" key={index2}>
-                  {n2}
-                </p>
-              ))}
-            </div>
-          ))}
-        </div>
-      )}
-      {/* Created exams */}
-      <div className="exam-assign-btns">
-        <div className="exam-assign-btn" onClick={handleAdd}>
-          Add
-        </div>
-        <form
-          className="search"
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSearchCreated();
-          }}
-        >
-          <input
-            type="text"
-            className="text"
-            value={searchValueCreated}
-            onChange={(e) => setSearchValueCreated(e.target.value)}
-            placeholder="Leave blank to get all result"
-          />
-          <button type="submit">
-            <AiOutlineSearch />
-          </button>
-        </form>
-        <div className="exam-assign-btn">Delete</div>
-      </div>
-      <h1>List of created exams</h1>
-      {typeof createdExams && (
-        <div className="created-exam-list">
-          <div className="headings">
-            <h1>Class ID</h1>
-            <h1>Exam name</h1>
-          </div>
-          {createdExams.map((n, index) => (
-            <div key={index} className="created-exam">
-              <h1>{n.ID}</h1>
-              <h1>{n.name}</h1>
-            </div>
-          ))}
-        </div>
-      )}
+    <>
       <AssignNewExam
         phpHandler={phpHandler}
         setExamAssigns={setExamAssigns}
@@ -181,7 +99,125 @@ const LecExamList = ({ phpHandler, classes }) => {
         setIsOpeningModal={setIsOpeningModal}
         isOpeningModal={isOpeningModal}
       />
-    </div>
+      <div className="manage-exam">
+        {/* Exam assigns */}
+        <div className="exam-assign-btns">
+          <div className="exam-assign-btn" onClick={handleAdd}>
+            Add
+          </div>
+          <form
+            className="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearchAssign();
+            }}
+          >
+            <input
+              type="text"
+              className="text"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Leave blank to get all result"
+            />
+            <button type="submit">
+              <AiOutlineSearch />
+            </button>
+          </form>
+          <div className="exam-assign-btn">Delete</div>
+        </div>
+        <h1>List of assigned exams</h1>
+        {examAssigns && (
+          <div className="exam-assign-list">
+            <div className="headings">
+              <h1>Class ID</h1>
+              <h1>Class name</h1>
+              <h1>Exam ID</h1>
+            </div>
+            {examAssigns.map((n, index) => (
+              <div
+                key={index}
+                className={`${
+                  index === selectedAssign
+                    ? "exam-assign-item isSelected"
+                    : "exam-assign-item"
+                }`}
+                onClick={() => setSelectedAssign(index)}
+              >
+                {Object.values(n).map((n2, index2) => (
+                  <p className="value" key={index2}>
+                    {n2}
+                  </p>
+                ))}
+              </div>
+            ))}
+          </div>
+        )}
+        {/* Created exams */}
+        <div className="exam-assign-btns">
+          <div className="exam-assign-btn" onClick={handleAdd}>
+            Add
+          </div>
+          <form
+            className="search"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearchCreated();
+            }}
+          >
+            <input
+              type="text"
+              className="text"
+              value={searchValueCreated}
+              onChange={(e) => setSearchValueCreated(e.target.value)}
+              placeholder="Leave blank to get all result"
+            />
+            <button type="submit">
+              <AiOutlineSearch />
+            </button>
+          </form>
+          <div className="exam-assign-btn">Delete</div>
+        </div>
+        <h1>List of created exams</h1>
+        {typeof createdExams && (
+          <div className="created-exam-list">
+            <div className="headings">
+              <h1>Class ID</h1>
+              <h1>Exam name</h1>
+            </div>
+            {createdExams.map((n, index) => (
+              <div
+                key={index}
+                className={`${
+                  index === selectedCreated
+                    ? "created-exam isSelected"
+                    : "created-exam"
+                }`}
+                onClick={() => setSelectedCreated(index)}
+              >
+                <h1>{n.ID}</h1>
+                <h1>{n.name}</h1>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="info-card" style={{ position: "absolute" }}>
+          <AiOutlineBulb className="Ico" />
+          <h1>
+            Instructions<span>!!!</span>
+          </h1>
+          <h2>
+            To delete, first select a row then press the respective delete
+            button on the top.
+          </h2>
+          <h3>
+            Use the search bar to search for any item in the list or leave it
+            blank to get original list back.
+          </h3>
+          <h4>Double click on an exam to view its content.</h4>
+        </div>
+      </div>
+    </>
   );
 };
 export default LecExamList;

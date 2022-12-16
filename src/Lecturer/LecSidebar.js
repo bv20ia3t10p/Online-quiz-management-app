@@ -7,15 +7,17 @@ import {
   AiOutlinePhone,
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../setup/Context";
 
 const LecSidebar = () => {
+  const { isDimmed } = useGlobalContext();
   const { id, name, phone, email } = useLecContext();
   const navigate = useNavigate();
   const toFunction = (destination) => {
     navigate(`${destination}`);
   };
   return (
-    <div className="lec-sideBar">
+    <div className={`${isDimmed ? "lec-sideBar dimmed" : "lec-sideBar"}`}>
       <div className="info-cards">
         <LecSideInfoCards ico={<AiOutlineUser />} text={"ID"} value={id} />
         <LecSideInfoCards ico={<AiOutlineSmile />} text={"Name"} value={name} />
@@ -70,7 +72,7 @@ const LecSideFunc = ({ text, action, params }) => {
 };
 
 const LecSideInfoCards = ({ ico, text, value }) => {
-  if (text == "Email")
+  if (text === "Email")
     return (
       <div className="cards">
         <div className="ico-container">{ico}</div>

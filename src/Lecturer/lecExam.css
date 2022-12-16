@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  .exam-content {
+    @apply bg-transparent;
+    @apply h-full;
+    @apply w-screen;
+  }
   .manage-exam {
     @apply grid;
     @apply grid-cols-2;
@@ -11,6 +16,7 @@
     @apply gap-4;
     @apply overflow-hidden;
     @apply h-[90vh];
+    @apply opacity-100;
     @apply w-[82.8vw];
   }
   .lec-content {
@@ -23,7 +29,7 @@
     @apply col-start-1;
     @apply row-start-3;
     @apply overflow-scroll;
-    @apply h-[70vh];
+    @apply h-[68vh];
     @apply text-center;
   }
   .manage-exam > h1 {
@@ -124,5 +130,135 @@
   }
   .manage-exam > h1 {
     @apply text-xl;
+  }
+  .manage-exam .info-card {
+    @apply ml-[40.5vw];
+    @apply mt-[50vh];
+    @apply grid;
+    @apply grid-cols-[20%_1fr];
+    @apply grid-rows-4;
+    @apply w-[38vw];
+    @apply h-[35.5vh];
+    @apply bg-red-50;
+    @apply rounded-xl;
+    @apply border-red-100;
+    @apply border-4;
+    @apply gap-4;
+    @apply items-center;
+    @apply p-2;
+  }
+  .manage-exam .info-card .Ico {
+    @apply row-span-2;
+    @apply row-start-1;
+    @apply text-8xl;
+    @apply -rotate-12;
+    @apply text-yellow-400;
+  }
+  .manage-exam .info-card h1 {
+    @apply text-3xl;
+    @apply tracking-widest;
+    @apply font-bold;
+    @apply text-yellow-500;
+  }
+  .manage-exam .info-card h1 span {
+    @apply italic;
+    @apply text-orange-400;
+  }
+  .manage-exam .info-card h3 {
+    @apply mt-4;
+  }
+  .manage-exam .info-card h3,
+  h4 {
+    @apply col-span-2;
+  }
+  .manage-exam .info-card > h2,
+  .manage-exam .info-card > h3,
+  .manage-exam .info-card > h4 {
+    @apply text-gray-600;
+  }
+  .created-exam,
+  .exam-assign-item {
+    @apply my-2;
+    @apply transition-all;
+    @apply duration-500;
+    @apply cursor-pointer;
+  }
+  .exam-assign-item:hover,
+  .created-exam:hover {
+    @apply bg-indigo-200;
+    @apply text-indigo-500;
+  }
+
+  .exam-assign-item.isSelected,
+  .created-exam.isSelected {
+    @apply bg-indigo-200;
+  }
+  .lec-exam-assign-new-modal {
+    @apply absolute;
+    @apply z-50;
+    @apply mb-[30vh];
+    @apply bg-gradient-to-br;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    @apply text-pink-100;
+    @apply rounded-3xl;
+    @apply ml-[20vw];
+    @apply grid-cols-2;
+    @apply grid;
+    @apply w-[30vw];
+    @apply h-[40vh];
+    @apply shadow-2xl;
+    @apply mt-[25vh];
+    @apply p-4;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+  }
+  .lec-exam-assign-new-modal > .class-list,
+  .lec-exam-assign-new-modal > .exam-list {
+    @apply overflow-y-scroll;
+  }
+  .lec-exam-assign-new-modal > .heading {
+    @apply col-span-2;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply justify-start;
+    @apply text-white;
+    @apply font-bold;
+    @apply tracking-widest;
+    @apply border-b-2;
+  }
+  .lec-exam-assign-new-modal > .assign-new-btn {
+    @apply col-span-2;
+    @apply w-full;
+    @apply bg-white;
+    @apply rounded-xl;
+    @apply cursor-pointer;
+  }
+  .assign-new-btn > h1 {
+    @apply bg-gradient-to-br;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .lec-exam-assign-new-modal .isSelected.class,
+  .lec-exam-assign-new-modal .isSelected.exam {
+    @apply duration-700;
+    @apply transition-all;
+    @apply rounded-3xl;
+    @apply bg-pink-50;
+    @apply text-pink-400;
+    @apply font-bold;
+  }
+
+  .lec-exam-assign-new-modal .class:hover,
+  .lec-exam-assign-new-modal .exam:hover {
+    @apply duration-700;
+    @apply transition-all;
+    @apply rounded-3xl;
+    @apply bg-pink-200;
+    @apply text-pink-400;
+    @apply cursor-pointer;
   }
 }

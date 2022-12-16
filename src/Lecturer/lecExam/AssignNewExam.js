@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useGlobalContext } from "../../setup/Context";
 
 const insertNewExamAssignment = async (
   phpHandler,
@@ -8,10 +9,16 @@ const insertNewExamAssignment = async (
   setExamAssigns
 ) => {
   const url = phpHandler + `?insertNewExamAssign=${idclass}&idexam=${idexam}`;
-  const resp = await fetch(url);
-  const data = await resp.json();
-  if (data)
-    setExamAssigns([...examAssigns, { id_class: idclass, id_exam: idexam }]);
+  console.log(url);
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data)
+      setExamAssigns([...examAssigns, { id_class: idclass, id_exam: idexam }]);
+    else throw "Insert failed";
+  } catch (e) {
+    alert("Insert failed (check for duplicates)");
+  }
 };
 
 const AssignNewExam = ({
@@ -23,8 +30,10 @@ const AssignNewExam = ({
   setIsOpeningModal,
   isOpeningModal,
 }) => {
+  const { setIsDimmed } = useGlobalContext();
   const [selected, setSelected] = useState({ id_class: 0, id_exam: 0 });
   const handleAdd = () => {
+    setIsDimmed(false);
     if ((selected.id_class === selected.id_exam) === 0) {
       alert(`You haven't selected which one to insert`);
       return;
@@ -46,10 +55,16 @@ const AssignNewExam = ({
           : "lec-exam-assign-new-modal isHidden"
       }`}
     >
+      <div className="heading">
+        <h1>Class ID</h1>
+        <h1>Exam ID</h1>
+      </div>
       <div className="class-list">
         {listOfIDs.map((n, index) => (
           <div
-            className="class"
+            className={`${
+              n === selected.id_class ? "isSelected class" : "class"
+            }`}
             key={index}
             onClick={() => {
               setSelected({ ...selected, id_class: n });
@@ -62,7 +77,9 @@ const AssignNewExam = ({
       <div className="exam-list">
         {createdExams.map((n, index) => (
           <div
-            className="exam"
+            className={`${
+              n.ID === selected.id_exam ? "isSelected exam" : "exam"
+            }`}
             key={index}
             onClick={() => setSelected({ ...selected, id_exam: n.ID })}
           >
@@ -71,7 +88,7 @@ const AssignNewExam = ({
         ))}
       </div>
       <div className="assign-new-btn" onClick={() => handleAdd()}>
-        Confirm
+        <h1>Confirm</h1>
       </div>
     </div>
   );

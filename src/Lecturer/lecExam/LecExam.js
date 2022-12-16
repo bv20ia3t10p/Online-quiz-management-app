@@ -7,7 +7,7 @@ const LecExam = () => {
   const { phpHandler } = useGlobalContext();
   const { classes } = useLecContext();
   return (
-    <div className="lec-exam">
+    <div className="exam-content">
       <LecExamList phpHandler={phpHandler} classes={classes} />
     </div>
   );

@@ -1,70 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@layer base{
-    .lec-sideBar{
-        @apply fixed;
-        @apply h-screen;
-        @apply transition-all;
-        @apply transition;
-        @apply ease-in-out;
-        @apply duration-700;
-        @apply pt-10;
-        @apply bg-gradient-to-b;
-        @apply from-purple-800;
-        @apply to-pink-500;
-        @apply w-1/6;
-        @apply z-10;
-        @apply text-gray-200;
-        @apply grid;
-        @apply grid-rows-[50%_1fr];
-        @apply rounded-r-3xl;
-        @apply items-center;
-    }
-    .lec-sideBar .info-cards{
-        @apply h-full;
-        @apply grid;
-        @apply grid-rows-4;
-        @apply items-center;
-    }
-    .lec-sideBar .cards{
-        @apply h-full;
-        @apply justify-center;
-        @apply items-center;
-        @apply border-t-2;
-        @apply pl-2;
-        @apply grid;
-        @apply gap-2;
-        @apply grid-cols-[10%,20%,1fr];
-    }
-    .lec-sideBar .cards .ico-container{
-        @apply text-xl;
-    }
-    .lec-sideBar .cards:nth-of-type(3){
-        @apply grid;
-        @apply grid-cols-[10%_1fr];
-        @apply gap-1;
-    }
-    .lec-sideBar .functions{
-        @apply grid;
-        @apply grid-rows-5;
-        @apply h-full;
-        @apply text-center;
-    }
-    .lec-sideBar .functions .lec-func-container{
-        @apply bg-purple-100;
-        @apply rounded-xl;
-        @apply m-2;
-        @apply flex;
-        @apply items-center;
-        @apply justify-center;
-        @apply cursor-pointer;
-    }
-    .lec-sideBar .functions .lec-func-container h1{
-        @apply bg-gradient-to-br;
-        @apply from-purple-800;
-        @apply to-pink-500;
-        @apply bg-clip-text;
-        -webkit-text-fill-color:transparent;
-   }
+@layer base {
+  .lec-sideBar {
+    @apply fixed;
+    @apply h-screen;
+    @apply transition-all;
+    @apply transition;
+    @apply ease-in-out;
+    @apply duration-700;
+    @apply pt-10;
+    @apply bg-gradient-to-b;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    @apply w-1/6;
+    @apply z-10;
+    @apply text-gray-200;
+    @apply grid;
+    @apply grid-rows-[50%_1fr];
+    @apply items-center;
+  }
+  .lec-sideBar .info-cards {
+    @apply h-full;
+    @apply grid;
+    @apply grid-rows-4;
+    @apply items-center;
+  }
+  .lec-sideBar .cards {
+    @apply h-full;
+    @apply justify-center;
+    @apply items-center;
+    @apply border-t-2;
+    @apply pl-2;
+    @apply grid;
+    @apply gap-2;
+    @apply grid-cols-[10%,20%,1fr];
+  }
+  .lec-sideBar .cards .ico-container {
+    @apply text-xl;
+  }
+  .lec-sideBar .cards:nth-of-type(3) {
+    @apply grid;
+    @apply grid-cols-[10%_1fr];
+    @apply gap-1;
+  }
+  .lec-sideBar .functions {
+    @apply grid;
+    @apply grid-rows-5;
+    @apply h-full;
+    @apply text-center;
+  }
+  .lec-sideBar .functions .lec-func-container {
+    @apply bg-purple-100;
+    @apply rounded-xl;
+    @apply m-2;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply cursor-pointer;
+  }
+  .lec-sideBar .functions .lec-func-container h1 {
+    @apply bg-gradient-to-br;
+    @apply from-purple-800;
+    @apply to-pink-500;
+    @apply bg-clip-text;
+    -webkit-text-fill-color: transparent;
+  }
 }
