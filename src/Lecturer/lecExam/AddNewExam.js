@@ -23,6 +23,7 @@ const insertNewExam = async (phpHandler, name, subject, uid) => {
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Insert failed");
+    window.location.reload(true);
   } catch (e) {
     alert(e);
   }

@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
+  html {
+    @apply w-screen;
+    @apply overflow-x-hidden;
+  }
   .exam-content {
     @apply bg-transparent;
     @apply h-full;

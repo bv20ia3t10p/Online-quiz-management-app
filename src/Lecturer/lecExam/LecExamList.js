@@ -65,6 +65,7 @@ const deleteCreatedExams = async (
       const newCreateds = createdExams.filter((n) => n.ID !== idExam);
       setCreatedExams(newCreateds);
       setBackUp({ ...backUp, createdExams: newCreateds });
+      window.location.reload(true);
     } else throw new Error("Delete failed");
   } catch (e) {
     alert(e);
@@ -178,6 +179,8 @@ const LecExamList = ({ phpHandler, classes }) => {
       <AddNewExam
         isAddingNewExam={isAddingNewExam}
         setIsAddingNewExam={setIsAddingNewExam}
+        createdExams={createdExams}
+        setCreatedExams={setCreatedExams}
       />
       <AssignNewExam
         phpHandler={phpHandler}

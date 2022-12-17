@@ -310,7 +310,6 @@ if (isset($_GET['getAllSubjects'])) {
 }
 if (isset($_GET['insertNewExam'])) {
     $sql = 'insert into exams (name,id_sub,created_by) values ("' . $_GET['insertNewExam'] . '",' . $_GET['idsubject'] . ',' . $_GET['created_by'] . ')';
-    echo $sql;
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);

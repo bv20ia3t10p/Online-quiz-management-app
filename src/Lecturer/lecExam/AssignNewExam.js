@@ -16,6 +16,7 @@ const insertNewExamAssignment = async (
     if (data)
       setExamAssigns([...examAssigns, { id_class: idclass, id_exam: idexam }]);
     else throw new Error("Insert failed");
+    window.location.reload(true);
   } catch (e) {
     alert("Insert failed (check for duplicates)");
   }
@@ -78,12 +79,12 @@ const AssignNewExam = ({
         {createdExams.map((n, index) => (
           <div
             className={`${
-              n.ID === selected.id_exam ? "isSelected exam" : "exam"
+              n.examId === selected.id_exam ? "isSelected exam" : "exam"
             }`}
             key={index}
-            onClick={() => setSelected({ ...selected, id_exam: n.ID })}
+            onClick={() => setSelected({ ...selected, id_exam: n.examId })}
           >
-            {n.ID}
+            {n.examId}
           </div>
         ))}
       </div>
