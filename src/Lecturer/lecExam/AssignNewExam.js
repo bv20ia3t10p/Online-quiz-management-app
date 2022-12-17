@@ -15,7 +15,7 @@ const insertNewExamAssignment = async (
     const data = await resp.json();
     if (data)
       setExamAssigns([...examAssigns, { id_class: idclass, id_exam: idexam }]);
-    else throw "Insert failed";
+    else throw new Error("Insert failed");
   } catch (e) {
     alert("Insert failed (check for duplicates)");
   }
@@ -31,10 +31,10 @@ const AssignNewExam = ({
   isOpeningModal,
 }) => {
   const { setIsDimmed } = useGlobalContext();
-  const [selected, setSelected] = useState({ id_class: 0, id_exam: 0 });
+  const [selected, setSelected] = useState({ id_class: -1, id_exam: -1 });
   const handleAdd = () => {
     setIsDimmed(false);
-    if ((selected.id_class === selected.id_exam) === 0) {
+    if (selected.id_class === -1 || selected.id_exam === -1) {
       alert(`You haven't selected which one to insert`);
       return;
     }

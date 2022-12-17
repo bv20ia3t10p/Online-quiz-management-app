@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 import AssignNewExam from "./AssignNewExam";
 import { AiOutlineBulb, AiOutlineSearch } from "react-icons/ai";
+import AddNewExam from "./AddNewExam";
 
 const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   if (!uid) return;
@@ -20,6 +21,55 @@ const getExamsForListOfClasses = async (uid, phpHandler, setExamAssigns) => {
   setExamAssigns(data);
 };
 
+const deleteExamAssign = async (
+  phpHandler,
+  idClass,
+  idExam,
+  setExamAssigns,
+  examAssigns,
+  setBackUp,
+  backUp
+) => {
+  const url = phpHandler + `?deleteExamAssign=${idClass}&idexam=${idExam}`;
+  console.log(url);
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data) {
+      const newAssigns = examAssigns.filter(
+        (n) => n.classID !== idClass && n.id_exam !== idExam
+      );
+      setExamAssigns(newAssigns);
+      setBackUp({ ...backUp, examAssigns: newAssigns });
+    } else throw new Error("Delete failed");
+  } catch (e) {
+    alert(e);
+  }
+};
+
+const deleteCreatedExams = async (
+  phpHandler,
+  idExam,
+  setCreatedExams,
+  createdExams,
+  setBackUp,
+  backUp
+) => {
+  const url = phpHandler + `?deleteCreatedExam=${idExam}`;
+  console.log(url);
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (data) {
+      const newCreateds = createdExams.filter((n) => n.ID !== idExam);
+      setCreatedExams(newCreateds);
+      setBackUp({ ...backUp, createdExams: newCreateds });
+    } else throw new Error("Delete failed");
+  } catch (e) {
+    alert(e);
+  }
+};
+
 const LecExamList = ({ phpHandler, classes }) => {
   const { uid, setIsDimmed } = useGlobalContext();
   const [examAssigns, setExamAssigns] = useState([]);
@@ -34,6 +84,7 @@ const LecExamList = ({ phpHandler, classes }) => {
   const [searchValueCreated, setSearchValueCreated] = useState("");
   const [selectedAssign, setSelectedAssign] = useState(-1);
   const [selectedCreated, setSelectedCreated] = useState(-1);
+  const [isAddingNewExam, setIsAddingNewExam] = useState(false);
   const listOfIDs = classes.map((n) => n.classID);
   const handleAdd = () => {
     setIsDimmed(true);
@@ -88,8 +139,41 @@ const LecExamList = ({ phpHandler, classes }) => {
     }
     return false;
   };
+  const handleDeleteAssign = () => {
+    if (selectedAssign < 0) {
+      alert("Please first select an assign to delete");
+      return;
+    }
+    deleteExamAssign(
+      phpHandler,
+      examAssigns[selectedAssign].id_class,
+      examAssigns[selectedAssign].id_exam,
+      setExamAssigns,
+      examAssigns,
+      setBackUp,
+      backUp
+    );
+  };
+  const handleDeleteCreated = () => {
+    if (selectedCreated < 0) {
+      alert("Please first select an exam to delete");
+      return;
+    }
+    deleteCreatedExams(
+      phpHandler,
+      createdExams[selectedCreated].ID,
+      setCreatedExams,
+      createdExams,
+      setBackUp,
+      backUp
+    );
+  };
   return (
     <>
+      <AddNewExam
+        isAddingNewExam={isAddingNewExam}
+        setIsAddingNewExam={setIsAddingNewExam}
+      />
       <AssignNewExam
         phpHandler={phpHandler}
         setExamAssigns={setExamAssigns}
@@ -123,7 +207,9 @@ const LecExamList = ({ phpHandler, classes }) => {
               <AiOutlineSearch />
             </button>
           </form>
-          <div className="exam-assign-btn">Delete</div>
+          <div className="exam-assign-btn" onClick={handleDeleteAssign}>
+            Delete
+          </div>
         </div>
         <h1>List of assigned exams</h1>
         {examAssigns && (
@@ -154,7 +240,10 @@ const LecExamList = ({ phpHandler, classes }) => {
         )}
         {/* Created exams */}
         <div className="exam-assign-btns">
-          <div className="exam-assign-btn" onClick={handleAdd}>
+          <div
+            className="exam-assign-btn"
+            onClick={() => setIsAddingNewExam(true)}
+          >
             Add
           </div>
           <form
@@ -175,7 +264,9 @@ const LecExamList = ({ phpHandler, classes }) => {
               <AiOutlineSearch />
             </button>
           </form>
-          <div className="exam-assign-btn">Delete</div>
+          <div className="exam-assign-btn" onClick={handleDeleteCreated}>
+            Delete
+          </div>
         </div>
         <h1>List of created exams</h1>
         {typeof createdExams && (
@@ -200,7 +291,6 @@ const LecExamList = ({ phpHandler, classes }) => {
             ))}
           </div>
         )}
-
         <div className="info-card" style={{ position: "absolute" }}>
           <AiOutlineBulb className="Ico" />
           <h1>

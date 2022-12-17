@@ -265,4 +265,55 @@ if (isset($_GET['insertNewExamAssign'])) {
     echo $result;
 }
 
+if (isset($_GET['deleteExamAssign'])) {
+    $sql = 'Delete from exam_assign where id_class = ' . $_GET['deleteExamAssign'] .
+        ' and id_exam=' . $_GET['idexam'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['deleteCreatedExam'])) {
+    $sql = 'Delete from exam_assign where id_exam = '
+        . $_GET['deleteCreatedExam'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    $sql = 'Delete from exams where id = ' . $_GET['deleteCreatedExam'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['getAllSubjects'])) {
+    $sql = 'Select * from subjects';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['insertNewExam'])) {
+    $sql = 'insert into exams (name,id_sub,created_by) values ("' . $_GET['insertNewExam'] . '",' . $_GET['idsubject'] . ',' . $_GET['created_by'] . ')';
+    echo $sql;
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
 $con->close();

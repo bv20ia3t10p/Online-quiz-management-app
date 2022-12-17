@@ -261,4 +261,118 @@
     @apply text-pink-400;
     @apply cursor-pointer;
   }
+  .lec-add-new-exam-modal {
+    @apply duration-700;
+    @apply opacity-100;
+    @apply bg-indigo-500;
+    @apply absolute;
+    @apply z-30;
+    @apply w-[50vw];
+    @apply h-[54vh];
+    @apply ml-[14vw];
+    @apply mt-[13vh];
+    @apply rounded-3xl;
+    @apply shadow-2xl;
+    @apply border-2;
+    @apply grid;
+    @apply grid-cols-[30%_1fr];
+    @apply grid-rows-[10%_5%_10%_1fr_10%];
+    @apply justify-center;
+    @apply gap-4;
+    @apply p-4;
+  }
+  .lec-add-new-exam-modal .close-btn {
+    @apply absolute;
+    @apply ml-[45vw];
+    @apply mt-[3vh];
+  }
+  .lec-add-new-exam-modal > h1:first-of-type {
+    @apply col-span-full;
+    @apply row-start-1;
+    @apply text-center;
+    @apply tracking-widest;
+    @apply text-lg;
+    @apply text-violet-50;
+    @apply font-semibold;
+  }
+  .lec-add-new-exam-modal > h2 {
+    @apply col-start-1;
+    @apply mt-3;
+    @apply row-start-2;
+    @apply text-center;
+    @apply self-center;
+    @apply text-indigo-100;
+  }
+  .lec-add-new-exam-modal > h3 {
+    @apply text-center;
+    @apply text-indigo-100;
+  }
+  .lec-add-new-exam-modal > input {
+    @apply col-start-1;
+    @apply row-start-3;
+    @apply border-b-2;
+    @apply bg-transparent;
+    @apply self-center;
+    @apply mt-4;
+    @apply border-indigo-100;
+    @apply text-yellow-100;
+    @apply mx-2;
+  }
+  .lec-add-new-exam-modal > h2:last-of-type {
+    @apply col-start-1;
+    @apply row-start-4;
+    @apply self-center;
+    @apply text-center;
+  }
+  .add-subjects {
+    @apply overflow-y-scroll;
+    @apply h-[26vh];
+    @apply col-start-2;
+    @apply row-start-3;
+    @apply row-span-2;
+  }
+  .add-btn-confirm {
+    @apply col-span-full;
+    @apply text-center;
+  }
+  .add-headings,
+  .add-subject {
+    @apply grid;
+    @apply grid-cols-[15%_15%_1fr];
+    @apply w-full;
+    @apply my-1;
+    @apply text-sm;
+    @apply text-purple-100;
+  }
+  .add-btn-confirm,
+  .close-btn {
+    @apply bg-violet-50;
+    @apply rounded-full;
+    @apply cursor-pointer;
+  }
+  .close-btn {
+    @apply p-1;
+  }
+  .close-btn > h1 {
+    @apply text-sm;
+  }
+  .add-btn-confirm > h1,
+  .close-btn > h1 {
+    @apply text-indigo-500;
+  }
+  .lec-add-new-exam-modal.isHidden {
+    @apply scale-0;
+    @apply opacity-0;
+    @apply -mt-20;
+    @apply translate-x-20;
+  }
+  .add-subject.isSelected {
+    @apply bg-violet-200;
+    @apply rounded-xl;
+    @apply text-indigo-500;
+  }
+  .add-subject {
+    @apply cursor-pointer;
+    @apply duration-500;
+  }
 }
