@@ -93,7 +93,8 @@
     @apply text-center;
     @apply w-full;
     @apply grid;
-    @apply grid-cols-[20%_1fr];
+    @apply text-sm;
+    @apply grid-cols-[20%_1fr_20%_20%];
   }
   .created-exam > * {
     @apply h-full;

@@ -242,7 +242,9 @@ if (isset($_GET['getExamsListByClass'])) {
 }
 
 if (isset($_GET['getExamsCreatedBy'])) {
-    $sql = 'select * from exams where created_by = ' . $_GET['getExamsCreatedBy'];
+    $sql = 'select e.id as examId,e.name as name,s.name as subjectName, s.id as subjectID from exams e
+    inner join subjects s on e.id_sub = s.id
+    where created_by = ' . $_GET['getExamsCreatedBy'];
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -315,5 +317,45 @@ if (isset($_GET['insertNewExam'])) {
         die(mysqli_error($con));
     }
     echo $result;
+}
+if (isset($_GET['getListOfQuestionsFor'])) {
+    $sql = 'select q.id,content,opt1,opt2,opt3,opt4,correct,q.created_by
+    from questions q 
+    inner join subjects s 
+    on q.id_sub = s.id
+    right join exams e 
+    on e.id_sub = s.id
+    where e.ID =' . $_GET['getListOfQuestionsFor'] . '
+    and q.id not in (
+        select id_question
+        from exam_content ec
+        where ec.ID_exam = ' . $_GET['getListOfQuestionsFor'] . ' );';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['getListOfAssignedQuestionsFor'])) {
+    $sql = 'select q.id,content,opt1,opt2,opt3,opt4,correct,q.created_by
+    from questions q 
+    inner join exam_content ec 
+    on ec.id_question = q.id
+    where ec.ID_exam =' . $_GET['getListOfAssignedQuestionsFor'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
 }
 $con->close();

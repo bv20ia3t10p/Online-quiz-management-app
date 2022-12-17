@@ -22,6 +22,7 @@ import "./Lecturer/lecExam.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";
+import ExamContent from "./Lecturer/lecExam/ExamContent";
 
 const app = () => {
   return (
@@ -63,6 +64,14 @@ const app = () => {
               element={
                 <LecPage>
                   <LecExam />
+                </LecPage>
+              }
+            ></Route>
+            <Route
+              path="Exams/Content/:eid"
+              element={
+                <LecPage>
+                  <ExamContent />
                 </LecPage>
               }
             />

@@ -161,7 +161,7 @@ const LecExamList = ({ phpHandler, classes }) => {
     }
     deleteCreatedExams(
       phpHandler,
-      createdExams[selectedCreated].ID,
+      createdExams[selectedCreated].examId,
       setCreatedExams,
       createdExams,
       setBackUp,
@@ -272,8 +272,10 @@ const LecExamList = ({ phpHandler, classes }) => {
         {typeof createdExams && (
           <div className="created-exam-list">
             <div className="headings">
-              <h1>Class ID</h1>
+              <h1>Exam ID</h1>
               <h1>Exam name</h1>
+              <h1>Subject name</h1>
+              <h1>Subject ID</h1>
             </div>
             {createdExams.map((n, index) => (
               <div
@@ -285,8 +287,10 @@ const LecExamList = ({ phpHandler, classes }) => {
                 }`}
                 onClick={() => setSelectedCreated(index)}
               >
-                <h1>{n.ID}</h1>
+                <h1>{n.examId}</h1>
                 <h1>{n.name}</h1>
+                <h1>{n.subjectName}</h1>
+                <h1>{n.subjectID}</h1>
               </div>
             ))}
           </div>
