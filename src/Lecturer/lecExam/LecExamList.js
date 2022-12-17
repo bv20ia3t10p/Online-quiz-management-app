@@ -3,6 +3,7 @@ import { useGlobalContext } from "../../setup/Context";
 import AssignNewExam from "./AssignNewExam";
 import { AiOutlineBulb, AiOutlineSearch } from "react-icons/ai";
 import AddNewExam from "./AddNewExam";
+import { useNavigate } from "react-router-dom";
 
 const getListOfCreatedExams = async (uid, phpHandler, setCreatedExams) => {
   if (!uid) return;
@@ -154,6 +155,10 @@ const LecExamList = ({ phpHandler, classes }) => {
       backUp
     );
   };
+  const navi = useNavigate();
+  const navigateToContent = (examId) => {
+    navi(`Content/${examId}`);
+  };
   const handleDeleteCreated = () => {
     if (selectedCreated < 0) {
       alert("Please first select an exam to delete");
@@ -286,6 +291,7 @@ const LecExamList = ({ phpHandler, classes }) => {
                     : "created-exam"
                 }`}
                 onClick={() => setSelectedCreated(index)}
+                onDoubleClick={() => navigateToContent(n.examId)}
               >
                 <h1>{n.examId}</h1>
                 <h1>{n.name}</h1>

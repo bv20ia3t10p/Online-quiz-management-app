@@ -358,4 +358,26 @@ if (isset($_GET['getListOfAssignedQuestionsFor'])) {
     }
     if (!$id) echo ']';
 }
+if (isset($_GET['deleteQuestionFromExam'])) {
+    $sql = 'delete from exam_content where id_exam = ' . $_GET['deleteQuestionFromExam'] .
+        ' and id_question =' . $_GET['questionToDelete'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['assignNewQuestionToExam'])) {
+    $sql = 'insert into exam_content 
+    (id_exam,id_question) 
+    values (' . $_GET['assignNewQuestionToExam'] . ',
+    ' . $_GET['questionToAssign'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
 $con->close();

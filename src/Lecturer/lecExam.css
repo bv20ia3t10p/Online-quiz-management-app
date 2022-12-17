@@ -376,4 +376,108 @@
     @apply cursor-pointer;
     @apply duration-500;
   }
+  .lec-exam-content-edit {
+    @apply mt-2;
+    @apply grid;
+    @apply grid-cols-[1fr_2%_1fr];
+    @apply p-8;
+    @apply gap-2;
+    @apply justify-center;
+    @apply overflow-hidden;
+    @apply w-[83.35vw];
+    @apply items-center;
+    @apply h-[91vh];
+  }
+  .lec-exam-content-list-heading,
+  .lec-exam-content-list-value {
+    @apply grid;
+    @apply grid-cols-[8%_1fr_repeat(4,8%)_5%_8%];
+    @apply grid-rows-[auto];
+    @apply break-words;
+    @apply items-center;
+    @apply text-xs;
+    @apply text-center;
+    @apply gap-2;
+    @apply p-2;
+  }
+  .lec-exam-content-list-value {
+    @apply border-b-2;
+    @apply border-pink-500;
+    @apply cursor-pointer;
+  }
+  .lec-exam-content-list-value:last-of-type {
+    @apply border-none;
+  }
+  .lec-exam-content-list-values {
+    @apply h-[calc(91.5vh-10rem)];
+    @apply overflow-y-scroll;
+    @apply border-pink-600;
+    @apply border-2;
+    @apply rounded-xl;
+    @apply mt-1;
+    @apply bg-pink-50;
+    @apply w-[38vw];
+    @apply text-indigo-900;
+  }
+  .lec-exam-content-list-heading {
+    @apply font-semibold;
+    @apply text-pink-600;
+    @apply p-2;
+  }
+  .lec-exam-content-list-heading > .icon {
+    @apply ml-2;
+  }
+  .lec-exam-content-list-value-singe:nth-of-type(2) {
+    @apply font-semibold;
+    @apply tracking-wider;
+  }
+  .lec-exam-content-list-value.isSelected {
+    @apply duration-500;
+    @apply bg-pink-300;
+    @apply text-purple-800;
+  }
+  .lec-exam-content-edit-btns {
+    @apply grid;
+    @apply grid-rows-2;
+    @apply justify-center;
+    @apply items-center;
+    @apply gap-8;
+    @apply mt-14;
+  }
+  .lec-exam-content-edit-btns > * > * {
+    @apply font-bold;
+    @apply text-2xl;
+    @apply text-pink-800;
+    @apply cursor-pointer;
+  }
+  .lec-exam-content-edit-btns > * > *:hover {
+    @apply duration-100;
+    @apply scale-125;
+  }
+  .lec-exam-content-list-title {
+    @apply text-center;
+    @apply font-semibold;
+    @apply text-pink-700;
+    @apply tracking-wider;
+    @apply mb-2;
+  }
+  .lec-exam-content-edit-search {
+    @apply w-full;
+    @apply bg-pink-500;
+    @apply rounded-2xl;
+    @apply overflow-hidden;
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+  }
+  .lec-exam-content-edit-search-input {
+    @apply pl-2;
+    @apply text-xs;
+    @apply font-mono;
+    @apply h-[5vh];
+  }
+  .lec-exam-content-edit-search-sub {
+    @apply ml-0.5;
+    @apply font-bold;
+    @apply text-pink-50;
+  }
 }
