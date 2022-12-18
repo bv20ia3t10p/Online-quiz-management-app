@@ -46,7 +46,7 @@ const LecSidebar = () => {
         <LecSideFunc
           text={"Manage questions"}
           action={toFunction}
-          params={`/Lecturer/Exams`}
+          params={`/Lecturer/Questions`}
         />
         <LecSideFunc
           text={"Manage student scores"}

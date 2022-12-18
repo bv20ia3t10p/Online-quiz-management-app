@@ -19,10 +19,12 @@ import "./Student/stuExam.css";
 import "./Student/stuStat.css";
 import "./Lecturer/lecSideBar.css";
 import "./Lecturer/lecExam.css";
+import "./Lecturer/lecQuestion.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";
 import ExamContent from "./Lecturer/lecExam/ExamContent";
+import LecQuestion from "./Lecturer/lecQuestion/LecQuestion";
 
 const app = () => {
   return (
@@ -75,6 +77,14 @@ const app = () => {
                 </LecPage>
               }
             />
+            <Route
+              path="Questions"
+              element={
+                <LecPage>
+                  <LecQuestion />
+                </LecPage>
+              }
+            ></Route>
           </Route>
           <Route exact path="/" element={<Login />}></Route>
         </Switch>

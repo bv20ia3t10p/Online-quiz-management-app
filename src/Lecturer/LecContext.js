@@ -14,7 +14,6 @@ const initialState = {
 
 const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
   const url = phpHandler + `?getLecInfo=${uid}`;
-  console.log(url);
   const resp = await fetch(url);
   const data = await resp.json();
   const lecInfo = {
@@ -31,6 +30,7 @@ const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
       classAvg,
       examNumbers,
       subjectID,
+      subjectName,
     }) => ({
       classID,
       className,
@@ -38,6 +38,7 @@ const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
       classAvg,
       subjectID,
       examNumbers,
+      subjectName,
     }))(n);
   });
   const newLecInfo = { ...lecInfo, classes };

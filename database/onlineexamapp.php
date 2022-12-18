@@ -204,7 +204,7 @@ if (isset($_GET['getAllScore'])) {
 
 if (isset($_GET['getLecInfo'])) {
     $sql = 'select l.name as name, l.id as id, phone, email, c.id as classID, c.name as className, s.description as subject, avg(score) as classAvg, count(id_student_exam) as examNumbers
-    , s.id as subjectID from lecturers l 
+    , s.id as subjectID,s.name as subjectName from lecturers l 
     inner join classes c on l.id = c.ID_lecturer
     inner join subjects s on c.ID_subject = s.ID
     left join student_exams se on c.id = se.id_class 
@@ -372,6 +372,80 @@ if (isset($_GET['assignNewQuestionToExam'])) {
     (id_exam,id_question) 
     values (' . $_GET['assignNewQuestionToExam'] . ',
     ' . $_GET['questionToAssign'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['getAvailableQuestionsInDbForSubject'])) {
+    $sql = 'select ID as questionID, content, opt1,opt2,opt3,opt4,correct, created_by as createdBy
+    from questions
+    WHERE ID not in (
+        select ID
+        from questions
+        where created_by = ' . $_GET['lecID'] . ') and id_sub = ' . $_GET['getAvailableQuestionsInDbForSubject'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['getCreatedQuestionsInDbForSubject'])) {
+    $sql = 'select ID as questionID, content, opt1,opt2,opt3,opt4,correct
+    from questions
+    WHERE created_by = ' . $_GET['lecID'] . ' 
+    and id_sub = ' . $_GET['getCreatedQuestionsInDbForSubject'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['updateQuestionCreatedByLecturer'])) {
+    $sql = 'update questions set
+     content=' . $_GET['content'] .
+        ' ,opt1=' . $_GET['opt1'] .
+        ' ,opt2=' . $_GET['opt2'] .
+        ' ,opt3=' . $_GET['opt3'] .
+        ' ,opt4=' . $_GET['opt4'] .
+        ' ,correct=' . $_GET['correct'] .
+        ' where id = ' . $_GET['updateQuestionCreatedByLecturer'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['deleteQuestionCreatedByLecturer'])) {
+    $sql = 'delete from questions where id = ' . $_GET['deleteQuestionCreatedByLecturer'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['addNewQuestionCreatedByLec'])) {
+    $sql = 'insert into questions (content,opt1,opt2,opt3,opt4,correct,created_by,id_sub)
+    values (' . $_GET['addNewQuestionCreatedByLec']
+        . ',' . $_GET['opt1'] . ',' . $_GET['opt2'] . ','
+        . $_GET['opt3'] . ',' . $_GET['opt4'] . ',' . $_GET['correct']
+        . ',' . $_GET['idLecturer'] . ',' . $_GET['idSubject'] . ')';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
