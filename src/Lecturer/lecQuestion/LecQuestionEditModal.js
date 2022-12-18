@@ -35,7 +35,7 @@ const editQuestion = async (
     setCreated(
       created.map((n) => {
         if (n.questionID === questionID)
-          return { ...n, content, opt1, opt2, opt3, opt4 };
+          return { ...n, content, opt1, opt2, opt3, opt4, correct };
         return n;
       })
     );
