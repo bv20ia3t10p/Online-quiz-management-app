@@ -25,6 +25,7 @@ import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";
 import ExamContent from "./Lecturer/lecExam/ExamContent";
 import LecQuestion from "./Lecturer/lecQuestion/LecQuestion";
+import LecStudentManage from "./Lecturer/LecStudentManage";
 
 const app = () => {
   return (
@@ -33,7 +34,14 @@ const app = () => {
         <Navbar />
         <Switch>
           <Route exact path="Student">
-            <Route path="about/:sid" element={<StuInfo />} />
+            <Route
+              path="about/:sid"
+              element={
+                <StudentPage>
+                  <StuInfo />
+                </StudentPage>
+              }
+            />
             <Route
               exact
               path="Home"
@@ -85,6 +93,14 @@ const app = () => {
                 </LecPage>
               }
             ></Route>
+            <Route
+              path="Results"
+              element={
+                <LecPage>
+                  <LecStudentManage />
+                </LecPage>
+              }
+            />
           </Route>
           <Route exact path="/" element={<Login />}></Route>
         </Switch>

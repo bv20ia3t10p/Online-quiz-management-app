@@ -88,10 +88,10 @@ const LecQuestionEditModal = ({
               cols="84"
               rows="3"
               value={newValues.content}
-              onChange={(e) =>
-                setNewValues({ ...newValues, content: e.target.event })
-              }
-            ></textarea>
+              onChange={(e) => {
+                setNewValues({ ...newValues, content: e.target.value });
+              }}
+            />
           </div>
           {["opt1", "opt2", "opt3", "opt4"].map((n, index) => {
             return (

@@ -453,4 +453,73 @@ if (isset($_GET['addNewQuestionCreatedByLec'])) {
     }
     echo $result;
 }
+if (isset($_GET['getScoreForClass'])) {
+    $sql = 'select id_student_exam,id_student,st.name,id_exam,e.name,score
+    from student_exams se 
+    left join students st on se.id_student = st.id
+    left join exams e on e.ID = se.id_exam
+    where id_class = ' . $_GET['getScoreForClass'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['getStudentExamAnswersFor'])) {
+    $sql = 'select q.id, content,selection, 
+	case
+    	when selection = 1 then opt1
+        when selection = 2 then opt2
+        when selection = 3 then opt3
+        when selection = 4 then opt4
+        else ' . '"Not selected"' . '
+    end as answer
+from student_exams sta
+left join student_answer sa on sta.id_student_exam = sa.id_student_exam
+left join questions q on sa.id_question = q.id
+where sta.id_student_exam = ' . $_GET['getStudentExamAnswersFor'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getStudentExamAdjustHistoryFor'])) {
+    $sql = 'select id_score_adjustment,score,reason,adjuster
+    from score_adjustment
+    where ID_student_exam = ' . $_GET['getStudentExamAdjustHistoryFor'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['adjustExamScoreFor'])) {
+    $sql = 'insert into score_adjustment (id_student_exam,score,reason,adjuster) values ('
+        . $_GET['adjustExamScoreFor'] . ',' . $_GET['newScore'] . ',' . $_GET['reason'] . ',' . $_GET['by'] . ')';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
 $con->close();
