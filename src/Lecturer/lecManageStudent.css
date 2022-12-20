@@ -1,0 +1,246 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .lec-student-adjust-score-modal {
+    @apply bg-purple-200;
+    @apply z-30;
+    @apply duration-700;
+    @apply absolute;
+    @apply opacity-100;
+    @apply ml-72;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply grid-rows-3;
+    @apply gap-4;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+    @apply p-4;
+    @apply bg-rose-500;
+    @apply text-white;
+    @apply rounded-xl;
+    @apply mt-40;
+    @apply shadow-xl;
+  }
+  .lec-student-score-adjust-btns {
+    @apply col-span-2;
+    @apply justify-evenly;
+    @apply w-full;
+    @apply text-center;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply gap-12;
+  }
+
+  .lec-student-adjust-score-modal button {
+    @apply h-full;
+    @apply rounded-md;
+    @apply bg-pink-50;
+    @apply text-rose-500;
+  }
+  .lec-student-adjust-score-modal input {
+    @apply h-full;
+    @apply rounded-md;
+    @apply text-rose-500;
+    @apply pl-2;
+  }
+  .lec-student-adjust-score-modal.isHidden {
+    @apply -z-30;
+    @apply scale-0;
+    @apply opacity-0;
+  }
+  .lec-student-manage {
+    @apply bg-indigo-200;
+    @apply fixed;
+    @apply grid;
+    @apply grid-cols-[1fr_38%];
+    @apply overflow-hidden;
+    @apply mt-6;
+    @apply ml-4;
+    @apply w-[81vw];
+    @apply shadow-2xl;
+    @apply bg-pink-50;
+    @apply p-4;
+    @apply h-[86vh];
+    @apply gap-4;
+    @apply grid-rows-[10%_52%_1fr];
+  }
+  .lec-student-manage-current-class {
+    @apply col-span-2;
+    @apply h-[10vh];
+    @apply grid;
+    @apply grid-rows-[1fr_38%];
+    @apply grid-cols-[20%_1fr];
+  }
+  .lec-student-manage-current-class-dropdown {
+    @apply row-span-2;
+    @apply border-rose-500;
+    @apply border-2;
+    @apply p-2;
+    @apply font-mono;
+    @apply bg-transparent;
+    @apply rounded-xl;
+    @apply text-center;
+  }
+  .lec-student-manage-current-class-header {
+    @apply font-semibold;
+    @apply tracking-widest;
+    @apply border-b-2;
+    @apply border-rose-500;
+    @apply pl-2;
+    @apply text-2xl;
+    @apply text-rose-600;
+    @apply font-sans;
+  }
+  .lec-student-manage-current-class-subHeader {
+    @apply pl-[1vw];
+    @apply italic;
+    @apply font-serif;
+    @apply text-rose-400;
+  }
+  .lec-student-manage-edit {
+    @apply absolute;
+    @apply ml-[46vw];
+    @apply mt-[10vh];
+    @apply bg-pink-700;
+    @apply h-[4vh];
+    @apply w-[4vh];
+    @apply rounded-t-xl;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-pink-50;
+  }
+  .lec-student-manage-list-edit .icon {
+    @apply font-bold;
+  }
+  .lec-student-manage-list {
+    @apply border-pink-700;
+    @apply border-2;
+    @apply h-[69.5vh];
+    @apply overflow-hidden;
+    @apply grid;
+    @apply grid-rows-[repeat(3,8%)_1fr];
+    @apply bg-pink-100;
+    @apply rounded-md;
+  }
+  .lec-student-manage-list-title {
+    @apply text-center;
+    @apply w-full;
+    @apply tracking-widest;
+    @apply font-semibold;
+    @apply text-rose-700;
+  }
+  .lec-student-manage-list-search {
+    @apply w-full;
+    @apply bg-pink-700;
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+    @apply text-center;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .lec-student-manage-list-search input {
+    @apply pl-4;
+  }
+  .lec-student-manage-list-search .icon {
+    @apply text-center;
+    @apply text-rose-50;
+    @apply w-full;
+  }
+  .lec-student-manage-list-heading {
+    @apply bg-pink-700;
+    @apply text-rose-50;
+  }
+  .lec-student-manage-list-values {
+    @apply h-full;
+    @apply overflow-y-scroll;
+  }
+  .lec-student-manage-list-single.isSelected {
+    @apply bg-pink-200;
+    @apply duration-700;
+  }
+  .lec-student-manage-list-heading,
+  .lec-student-manage-list-single {
+    @apply grid;
+    @apply grid-cols-6;
+    @apply text-center;
+    @apply items-center;
+    @apply justify-center;
+    @apply break-words;
+  }
+  .lec-student-manage-list-single {
+    @apply text-xs;
+  }
+  .lec-student-manage-answer-list {
+    @apply border-red-500;
+    @apply border-2;
+    @apply rounded-md;
+    @apply h-[42vh];
+    @apply bg-red-100;
+    @apply text-xs;
+    @apply grid;
+    @apply grid-rows-[repeat(3,8%)_1fr];
+  }
+  .lec-student-manage-answer-list-title {
+    @apply tracking-widest;
+    @apply font-semibold;
+    @apply text-center;
+    /* @apply text-sm; */
+    @apply w-full;
+    @apply text-red-600;
+  }
+  .lec-student-manage-answer-list-search {
+    @apply w-full;
+    @apply bg-red-500;
+    @apply grid-cols-[1fr_5%];
+    @apply grid;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .lec-student-manage-answer-list-heading {
+    @apply bg-red-500;
+    @apply text-pink-50;
+  }
+  .lec-student-manage-answer-list-heading,
+  .lec-student-manage-answer-list-singlet {
+    @apply grid;
+    @apply grid-cols-[15%_1fr_15%_1fr];
+    @apply w-full;
+    @apply text-center;
+    @apply break-words;
+  }
+  .lec-student-manage-answer-list-values {
+    @apply overflow-y-scroll;
+  }
+  .lec-student-manage-history {
+    @apply col-start-2;
+    @apply border-2;
+    @apply rounded-xl;
+    @apply border-pink-400;
+    @apply bg-pink-100;
+    @apply text-xs;
+    @apply grid;
+    @apply grid-rows-[15%_15%_1fr];
+  }
+  .lec-student-manage-history-title {
+    @apply w-full;
+    @apply text-center;
+    @apply font-semibold;
+    @apply text-sm;
+    @apply text-pink-400;
+  }
+  .lec-student-manage-history-heading {
+    @apply bg-pink-400;
+    @apply text-pink-50;
+  }
+  .lec-student-manage-history-heading,
+  .lec-student-manage-history-single {
+    @apply grid;
+    @apply grid-cols-4;
+    @apply justify-center;
+    @apply items-center;
+    @apply text-center;
+  }
+}

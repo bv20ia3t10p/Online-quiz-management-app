@@ -10,7 +10,6 @@ const insertData = async (
   const url =
     phpHandler +
     `?insertAnswer=${idStudent}&idExam=${idExam}&idClass=${idClass}&sel=${selection}&idq=${idQuestion}&idStudentExam=${idStudentExam}`;
-  console.log(url);
   const resp = await fetch(url);
   const data = await resp.json();
   return data;

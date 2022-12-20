@@ -454,7 +454,7 @@ if (isset($_GET['addNewQuestionCreatedByLec'])) {
     echo $result;
 }
 if (isset($_GET['getScoreForClass'])) {
-    $sql = 'select id_student_exam,id_student,st.name,id_exam,e.name,score
+    $sql = 'select id_student_exam,id_student,st.name as stuName,id_exam,e.name,score
     from student_exams se 
     left join students st on se.id_student = st.id
     left join exams e on e.ID = se.id_exam

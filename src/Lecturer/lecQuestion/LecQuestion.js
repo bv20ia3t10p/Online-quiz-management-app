@@ -38,7 +38,6 @@ const getQuestionsCreatedBy = async (
     phpHandler +
     `?getCreatedQuestionsInDbForSubject=${idSubject}&lecID=${lecID}`;
   try {
-    console.log(url);
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to get questions of the same subject");

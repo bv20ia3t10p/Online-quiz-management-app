@@ -26,7 +26,6 @@ const getListOfAssignedQuestions = async (
   setAssignedQuestions
 ) => {
   const url = phpHandler + `?getListOfAssignedQuestionsFor=${idExam}`;
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -94,7 +93,6 @@ const assignNewQuestions = async (
       const newQuestions = questions.filter(
         (n, index) => index !== selectedAvailable
       );
-      console.log(newAssigned, newQuestions);
       setAssignedQuestions(newAssigned);
       setQuestions(newQuestions);
       setBackUp({

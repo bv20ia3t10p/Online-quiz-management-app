@@ -27,7 +27,6 @@ const editQuestion = async (
     `?updateQuestionCreatedByLecturer=${questionID}&content="${content}"&opt1="${opt1}"&opt2="${opt2}"&opt3="${opt3}"
     &opt4="${opt4}"&correct="${correct}"`;
   const url = encodeURI(prep);
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();

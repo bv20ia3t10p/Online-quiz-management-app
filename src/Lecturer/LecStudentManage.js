@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useLecContext } from "./LecContext";
 import { AiOutlineEdit, AiOutlineSearch } from "react-icons/ai";
 import { useGlobalContext } from "../setup/Context";
+
 const getScoresForClass = async (phpHandler, setList, idClass) => {
   const url = phpHandler + `?getScoreForClass=${idClass}`;
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -17,13 +17,13 @@ const getScoresForClass = async (phpHandler, setList, idClass) => {
     alert(e);
   }
 };
+
 const getStudentExamAnswers = async (
   phpHandler,
   setListAnswer,
   id_student_exam
 ) => {
   const url = phpHandler + `?getStudentExamAnswersFor=${id_student_exam}`;
-  console.log("answer test", url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -40,7 +40,6 @@ const getStudentExamScoreAdjustmentHistory = async (
   id_student_exam
 ) => {
   const url = phpHandler + `?getStudentExamAdjustHistoryFor=${id_student_exam}`;
-  console.log("history test", url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -57,12 +56,10 @@ const adjustExamScoreFor = async (
   newValues = { score: 0, reason: "Not identified" },
   id
 ) => {
-  console.log(newValues);
   const prep =
     phpHandler +
     `?adjustExamScoreFor=${id_student_exam}&newScore=${newValues.score}&reason="${newValues.reason}"&by=${id}`;
   const url = encodeURI(prep);
-  console.log("adjust exam test", url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -85,7 +82,7 @@ const LecStudentManage = () => {
   const { id, classes } = useLecContext();
   const [selected, setSelected] = useState(0);
   const [searchAnswer, setSearchAnswer] = useState("");
-  const [currentClass, setCurrentClass] = useState({ ...classes[0] });
+  const [currentClass, setCurrentClass] = useState();
   const [searchStudentExam, setSearchStudentExam] = useState("");
   const [listAnswer, setListAnswer] = useState([]);
   const [history, setHistory] = useState([]);
@@ -96,19 +93,21 @@ const LecStudentManage = () => {
     listAnswer: [],
   });
   const [newValues, setNewValues] = useState({ score: 0, reason: "" });
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    if (!typeof currentClass.classID) return;
+    if (isLoading) return;
     try {
       getScoresForClass(phpHandler, setList, currentClass.classID);
     } catch (e) {
       alert(e);
     }
-  }, [classes, currentClass, setList, setCurrentClass, phpHandler]);
+  }, [classes, currentClass, isLoading, setList, setCurrentClass, phpHandler]);
   useEffect(() => {
-    console.log(classes[0], currentClass);
+    if (isLoading) return;
     if (!typeof currentClass.classID) setCurrentClass({ ...classes[0] });
-  }, [classes, currentClass]);
+  }, [classes, currentClass, isLoading]);
   useEffect(() => {
+    if (isLoading) return;
     if (!list[selected]) return;
     getStudentExamAnswers(
       phpHandler,
@@ -120,7 +119,14 @@ const LecStudentManage = () => {
       setHistory,
       list[selected].id_student_exam
     );
-  }, [selected, list, phpHandler]);
+  }, [selected, list, isLoading, phpHandler]);
+  useEffect(() => {
+    if (!isLoading) return;
+    if (classes.length && typeof list[selected]) {
+      setCurrentClass({ ...classes[0] });
+      setIsLoading(false);
+    } else return;
+  }, [isLoading, classes, list, selected, currentClass]);
   const handleSearchStudentExam = (e) => {
     e.preventDefault();
     if (!backUp.isBackedUp) {
@@ -182,7 +188,7 @@ const LecStudentManage = () => {
     );
     setIsEditing(false);
   };
-  if (currentClass)
+  if (!isLoading)
     return (
       <>
         <div
@@ -237,12 +243,15 @@ const LecStudentManage = () => {
             <span className="lec-student-manage-current-class-header">
               {currentClass.className}
             </span>
-            <span className="lec-sttudent-manage-current-class-subHeader">
+            <span className="lec-student-manage-current-class-subHeader">
               {currentClass.subjectName} - {currentClass.subject}
             </span>
           </div>
           <div className="lec-student-manage-edit">
-            <AiOutlineEdit className="icon" />
+            <AiOutlineEdit
+              className="icon"
+              onClick={() => setIsEditing(true)}
+            />
           </div>
           <div className="lec-student-manage-list">
             <div className="lec-student-manage-list-title">

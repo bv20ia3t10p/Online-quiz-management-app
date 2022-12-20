@@ -18,7 +18,6 @@ const insertNewExam = async (phpHandler, name, subject, uid) => {
     phpHandler +
     `?insertNewExam=${name}&idsubject=${subject}&created_by=${uid}`;
   const url = encodeURI(prep);
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();

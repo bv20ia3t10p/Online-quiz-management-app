@@ -20,6 +20,7 @@ import "./Student/stuStat.css";
 import "./Lecturer/lecSideBar.css";
 import "./Lecturer/lecExam.css";
 import "./Lecturer/lecQuestion.css";
+import "./Lecturer/lecManageStudent.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";

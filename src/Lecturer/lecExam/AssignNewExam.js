@@ -9,7 +9,6 @@ const insertNewExamAssignment = async (
   setExamAssigns
 ) => {
   const url = phpHandler + `?insertNewExamAssign=${idclass}&idexam=${idexam}`;
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();

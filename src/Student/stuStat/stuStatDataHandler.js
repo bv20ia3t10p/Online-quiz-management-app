@@ -36,7 +36,6 @@ const chartData = (data) => {
 
 const getScore = async (uid, phpHandler, setData) => {
   const url = phpHandler + `?getScore=${uid}`;
-  console.log(url);
   const resp = await fetch(url);
   const fetchedData = await resp.json();
   const newData = separateData(fetchedData);
@@ -63,7 +62,6 @@ const getEveryoneScore = async (
         return `"${n}"`;
       })}`
   );
-  console.log(url);
   const resp = await fetch(url);
   const fetchedData = await resp.json();
   const newData = separateData(fetchedData);
@@ -100,7 +98,6 @@ const analyseData = (data) => {
   };
 };
 const pieChartData = (data) => {
-  console.log(data);
   return {
     labels: ["Good (8~)", "Decent (5~8)", "Bad(~5)"],
     datasets: [

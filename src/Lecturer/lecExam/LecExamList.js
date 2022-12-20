@@ -32,7 +32,6 @@ const deleteExamAssign = async (
   backUp
 ) => {
   const url = phpHandler + `?deleteExamAssign=${idClass}&idexam=${idExam}`;
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -57,7 +56,6 @@ const deleteCreatedExams = async (
   backUp
 ) => {
   const url = phpHandler + `?deleteCreatedExam=${idExam}`;
-  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
