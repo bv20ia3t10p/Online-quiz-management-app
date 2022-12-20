@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  /* Share some with lecSidebar.css */
+  .admin-sideBar-function {
+    @apply grid;
+    @apply h-full;
+    @apply uppercase;
+    @apply text-sm;
+  }
+  .admin-sideBar-function-single {
+    @apply cursor-pointer;
+  }
+  .admin-container {
+    @apply h-screen;
+    @apply w-screen;
+    @apply pt-[8.5vh];
+    @apply pl-[16.7vw];
+  }
+  .admin-manage-user {
+    @apply m-4;
+    @apply bg-rose-50;
+    @apply rounded-md;
+    @apply shadow-lg;
+    @apply p-4;
+  }
+  .admin-manage-user-list-title {
+    @apply w-full;
+    @apply text-center;
+    @apply tracking-widest;
+    @apply text-2xl;
+    @apply text-rose-500;
+    @apply font-mono;
+    @apply mb-2;
+  }
+  .admin-manage-user-list-search {
+    @apply w-full;
+  }
+  .admin-manage-user-list-heading,
+  .admin-manage-user-list-singlet {
+    @apply grid;
+    @apply grid-cols-4;
+    @apply text-center;
+  }
+  .admin-manage-user-list-singlet:nth-of-type(even) {
+    @apply bg-rose-100;
+  }
+  .admin-manage-user-list-values {
+    @apply h-full;
+    @apply border-rose-500;
+    @apply border-2;
+    @apply overflow-y-scroll;
+    @apply rounded-b-xl;
+  }
+  .admin-manage-user-list-search {
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+    @apply justify-center;
+    @apply items-center;
+    @apply rounded-tl-xl;
+    @apply border-t-2;
+    @apply border-rose-500;
+    @apply overflow-hidden;
+  }
+  .admin-manage-user-list-search > input {
+    @apply ml-0.5;
+    @apply rounded-tl-xl;
+    @apply pl-2;
+    @apply text-rose-500;
+  }
+  .admin-manage-user-list-search-btn {
+    @apply text-center;
+    @apply flex;
+    @apply w-full;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-user-list-heading,
+  .admin-manage-user-list-search {
+    @apply bg-rose-500;
+    @apply w-full;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-user-list-heading {
+    @apply text-pink-50;
+  }
+  .admin-manage-user-list-search-icon {
+    @apply text-rose-50;
+  }
+  .admin-manage-user-list-btns {
+    @apply grid;
+    @apply items-center;
+    @apply justify-center;
+    @apply grid-cols-4;
+    @apply ml-[20vw];
+    @apply bg-rose-500;
+    @apply p-1;
+    @apply rounded-t-xl;
+    @apply text-center;
+  }
+  .admin-manage-user-list-btns div {
+    @apply grid;
+    @apply items-center;
+    @apply justify-center;
+    @apply grid-cols-[10%_1fr];
+    @apply text-xs;
+    @apply text-pink-50;
+    @apply cursor-pointer;
+    @apply mx-2;
+  }
+  .admin-manage-user-list-values {
+    @apply h-[58vh];
+  }
+  .admin-manage-user-list-singlet.isSelected {
+    @apply font-semibold;
+    @apply bg-rose-300;
+    @apply text-rose-600;
+    @apply duration-700;
+  }
+  .admin-manage-user-list-singlet {
+    @apply cursor-pointer;
+  }
+  .admin-manage-user-add-new {
+    @apply opacity-100;
+    @apply scale-100;
+    @apply z-30;
+    @apply absolute;
+    @apply duration-500;
+    @apply bg-rose-500;
+    @apply text-rose-50;
+    @apply grid;
+    @apply p-4;
+    @apply gap-4;
+    @apply w-[38vw];
+    @apply rounded-3xl;
+    @apply shadow-2xl;
+    @apply ml-[25vw];
+    @apply mt-[18vh];
+  }
+  .admin-manage-user-add-new-field,
+  .admin-manage-user-add-new-btns {
+    @apply grid;
+    @apply w-full;
+    @apply items-center;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply text-center;
+    @apply gap-4;
+  }
+  .admin-manage-user-add-new-field > input {
+    @apply text-rose-500;
+    @apply rounded-sm;
+    @apply pl-2;
+  }
+  .admin-manage-user-add-new-field > select {
+    @apply text-rose-500;
+    @apply rounded-md;
+    @apply pl-2;
+    @apply text-center;
+    @apply cursor-pointer;
+  }
+  .admin-manage-user-add-new .admin-manage-user-add-new-btns .btns {
+    @apply bg-rose-50;
+    @apply text-rose-500;
+    @apply mx-8;
+    @apply rounded-xl;
+  }
+}

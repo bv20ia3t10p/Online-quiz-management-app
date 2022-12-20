@@ -19,7 +19,7 @@ if (!$con) {
 // die if SQL statement failed
 
 if (isset($_GET['uid'])) {
-    $sql = 'select * from users where id = ' . $_GET["uid"] . " and password =" . $_GET["pw"];
+    $sql = 'select * from users where id = ' . $_GET["uid"] . ' and password = "' . $_GET["pw"] . '"';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -514,6 +514,66 @@ if (isset($_GET['getStudentExamAdjustHistoryFor'])) {
 if (isset($_GET['adjustExamScoreFor'])) {
     $sql = 'insert into score_adjustment (id_student_exam,score,reason,adjuster) values ('
         . $_GET['adjustExamScoreFor'] . ',' . $_GET['newScore'] . ',' . $_GET['reason'] . ',' . $_GET['by'] . ')';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['getAdminInfo'])) {
+    $sql = 'select * from admins where id = ' . $_GET{
+        'getAdminInfo'};
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo json_encode(mysqli_fetch_object($result));
+}
+
+if (isset($_GET['getListOfUsersForAdmin'])) {
+    $sql = "select u.id, password,
+	CASE
+    	when u.id like '2%' then 'Student'
+        when u.id like '8%' then 'Lecturer'
+        when u.id like '9%' then 'Admin'
+    END as role,
+    CASE
+    	when u.id like '2%' then s.name
+        when u.id like '8%' then l.name
+        when u.id like '9%' then a.name
+    END as name
+    from users u
+    left join students s on s.id = u.id
+    left join lecturers l on l.id = u.ID
+    left join admins a on a.id = u.id;";
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['addNewStudentToDB'])) {
+    $sql = 'insert into users (id,password) 
+    select max(s.id)+1,' . $_GET['password'] .
+        'from students s';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    $sql2 = 'select max(id) as id from users  where id like "2%" ';
+    $result2 = mysqli_query($con, $sql2);
+    $newID = mysqli_fetch_object($result2)->id;
+    $sql = 'insert into students (id,name,phone,email)values ('
+        . $newID . ',' . $_GET['addNewStudentToDB'] . ',' . $_GET['phone'] . ',' . $_GET['email'] . ');';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);

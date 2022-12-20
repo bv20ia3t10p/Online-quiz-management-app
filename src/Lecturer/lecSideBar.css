@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  .lec-sideBar {
+  .lec-sideBar,
+  .admin-sideBar {
     @apply fixed;
     @apply h-screen;
     @apply transition-all;
@@ -20,13 +21,15 @@
     @apply grid-rows-[50%_1fr];
     @apply items-center;
   }
-  .lec-sideBar .info-cards {
+  .lec-sideBar .info-cards,
+  .admin-sideBar-info {
     @apply h-full;
     @apply grid;
     @apply grid-rows-4;
     @apply items-center;
   }
-  .lec-sideBar .cards {
+  .lec-sideBar .cards,
+  .admin-sideBar-info-card {
     @apply h-full;
     @apply justify-center;
     @apply items-center;
@@ -50,7 +53,8 @@
     @apply h-full;
     @apply text-center;
   }
-  .lec-sideBar .functions .lec-func-container {
+  .lec-sideBar .functions .lec-func-container,
+  .admin-sideBar-function-single {
     @apply bg-purple-100;
     @apply rounded-xl;
     @apply m-2;
@@ -59,7 +63,8 @@
     @apply justify-center;
     @apply cursor-pointer;
   }
-  .lec-sideBar .functions .lec-func-container h1 {
+  .lec-sideBar .functions .lec-func-container h1,
+  .admin-sideBar-action-single-text {
     @apply bg-gradient-to-br;
     @apply from-purple-800;
     @apply to-pink-500;

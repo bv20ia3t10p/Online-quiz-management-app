@@ -21,12 +21,16 @@ import "./Lecturer/lecSideBar.css";
 import "./Lecturer/lecExam.css";
 import "./Lecturer/lecQuestion.css";
 import "./Lecturer/lecManageStudent.css";
+import "./Admin/adminSidebar.css";
 import LecHome from "./Lecturer/LecHome";
 import LecPage from "./Lecturer/LecPage";
 import LecExam from "./Lecturer/lecExam/LecExam";
 import ExamContent from "./Lecturer/lecExam/ExamContent";
 import LecQuestion from "./Lecturer/lecQuestion/LecQuestion";
 import LecStudentManage from "./Lecturer/LecStudentManage";
+import AdminHome from "./Admin/AdminHome";
+import AdminPage from "./Admin/AdminPage";
+import AdminManageUser from "./Admin/AdminManageUser/AdminManageUser";
 
 const app = () => {
   return (
@@ -102,6 +106,32 @@ const app = () => {
                 </LecPage>
               }
             />
+          </Route>
+          <Route exact path="/Admin">
+            <Route
+              path="Student/:sid"
+              element={
+                <AdminPage>
+                  <StuInfo />
+                </AdminPage>
+              }
+            />
+            <Route
+              path="Home"
+              element={
+                <AdminPage>
+                  <AdminHome />
+                </AdminPage>
+              }
+            />
+            <Route
+              path="Users"
+              element={
+                <AdminPage>
+                  <AdminManageUser />
+                </AdminPage>
+              }
+            ></Route>
           </Route>
           <Route exact path="/" element={<Login />}></Route>
         </Switch>
