@@ -29,3 +29,4 @@
 # Designated test users (ID/pw):
 
 - Student: 20521/123
+- Lecturer: 8081/456
