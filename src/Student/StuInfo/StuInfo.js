@@ -55,84 +55,58 @@ const StuInfo = () => {
       <div
         className={isAddingClasses ? `StuInfo-Basic dimmed` : "StuInfo-Basic"}
       >
-        <h1>Information page for student: {sid}</h1>
-        {Object.keys(state).map((n0, index) => {
-          if (index === 4)
-            return (
-              <ClassesList
-                index={index}
-                key={index}
-                isEditable={isEditable}
-                setIsEditing={setIsEditing}
-                isEditing={isEditing}
-                state={state}
-                uid={uid}
-                phpHandler={phpHandler}
-                setState={setState}
-                setIsAddingClasses={setIsAddingClasses}
-              />
-            );
-          switch (index) {
-            case 0:
-              return (
-                <StuInfoPersonDetail
-                  key={index}
-                  text={"Student ID"}
-                  value={state.ID}
-                  isEditable={isEditable}
-                  isEditing={isEditing}
-                  index={index}
-                  state={state}
-                  setState={setState}
-                  setIsEditing={setIsEditing}
-                />
-              );
-            case 1:
-              return (
-                <StuInfoPersonDetail
-                  key={index}
-                  text={"Full name"}
-                  value={state.name}
-                  isEditable={isEditable}
-                  isEditing={isEditing}
-                  index={index}
-                  state={state}
-                  setState={setState}
-                  setIsEditing={setIsEditing}
-                />
-              );
-            case 2:
-              return (
-                <StuInfoPersonDetail
-                  key={index}
-                  text={"Phone number"}
-                  value={state.phone}
-                  isEditable={isEditable}
-                  isEditing={isEditing}
-                  index={index}
-                  state={state}
-                  setState={setState}
-                  setIsEditing={setIsEditing}
-                />
-              );
-            case 3:
-              return (
-                <StuInfoPersonDetail
-                  key={index}
-                  text={"Email address"}
-                  value={state.email}
-                  isEditable={isEditable}
-                  isEditing={isEditing}
-                  index={index}
-                  state={state}
-                  setState={setState}
-                  setIsEditing={setIsEditing}
-                />
-              );
-            default:
-          }
-          return <></>;
-        })}
+        <h1 className="stu-info-title">Information page for student: {sid}</h1>
+        <div className="stu-info-cards">
+          <StuInfoPersonDetail
+            text={"Student ID"}
+            value={state.ID}
+            isEditable={isEditable}
+            isEditing={isEditing}
+            state={state}
+            setState={setState}
+            setIsEditing={setIsEditing}
+          />
+          <StuInfoPersonDetail
+            text={"Full name"}
+            index={1}
+            value={state.name}
+            isEditable={isEditable}
+            isEditing={isEditing}
+            state={state}
+            setState={setState}
+            setIsEditing={setIsEditing}
+          />
+          <StuInfoPersonDetail
+            text={"Phone number"}
+            value={state.phone}
+            index={2}
+            isEditable={isEditable}
+            isEditing={isEditing}
+            state={state}
+            setState={setState}
+            setIsEditing={setIsEditing}
+          />
+          <StuInfoPersonDetail
+            text={"Email address"}
+            index={3}
+            value={state.email}
+            isEditable={isEditable}
+            isEditing={isEditing}
+            state={state}
+            setState={setState}
+            setIsEditing={setIsEditing}
+          />
+        </div>
+        <ClassesList
+          isEditable={isEditable}
+          setIsEditing={setIsEditing}
+          isEditing={isEditing}
+          state={state}
+          uid={uid}
+          phpHandler={phpHandler}
+          setState={setState}
+          setIsAddingClasses={setIsAddingClasses}
+        />
       </div>
     </>
   );
@@ -150,8 +124,7 @@ const ClassesList = ({
   setIsAddingClasses,
 }) => {
   return (
-    <>
-      <h1 key={index * 2}>List of enrolled classes:</h1>;
+    <div className="stu-info-class">
       {isEditable[4] && (
         <button
           key={index * 3}
@@ -176,7 +149,7 @@ const ClassesList = ({
         setIsEditing={setIsEditing}
         setIsAddingClasses={setIsAddingClasses}
       />
-    </>
+    </div>
   );
 };
 

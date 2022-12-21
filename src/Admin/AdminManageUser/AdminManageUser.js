@@ -6,8 +6,10 @@ import {
   AiOutlineUserAdd,
   AiOutlineUserDelete,
 } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../setup/Context";
 import AddNewUserModal from "./AddNewUserModal";
+import AdminEditPasswordModal from "./AdminEditPasswordModal";
 
 const getListOfUsers = async (phpHandler, setUsers, setBackUp) => {
   const url = phpHandler + `?getListOfUsersForAdmin`;
@@ -25,6 +27,26 @@ const getListOfUsers = async (phpHandler, setUsers, setBackUp) => {
   }
 };
 
+const deleteUserOffDB = async (
+  phpHandler,
+  userToDelete,
+  setUsers,
+  users,
+  setBackUp
+) => {
+  const url = phpHandler + `?deleteUserOffDB=${userToDelete}`;
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (!data) throw new Error("Failed to delete user");
+    const newUsers = users.filter((n) => n.id !== userToDelete);
+    setUsers(newUsers);
+    setBackUp({ isBackedUp: true, users: newUsers });
+  } catch (e) {
+    alert(e);
+  }
+};
+
 const AdminManageUser = () => {
   const { phpHandler } = useGlobalContext();
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +55,8 @@ const AdminManageUser = () => {
   const [search, setSearch] = useState("");
   const [isAdding, setIsAdding] = useState(false);
   const [backUp, setBackUp] = useState({ isBackedUp: false, users: [] });
+  const [isChangingPW, setIsChangingPW] = useState(false);
+  const navi = useNavigate();
   const handleSearch = (e) => {
     e.preventDefault();
     if (!search) {
@@ -50,9 +74,17 @@ const AdminManageUser = () => {
       setUsers(newUsers);
     }
   };
-  const handleEdit = () => {};
-  const handleChangePW = () => {};
-  const handleDelete = () => {};
+  const handleEdit = () => {
+    if (users[selected].id[0] === "2") {
+      navi(`/Admin/Student/${users[selected].id}`);
+    }
+  };
+  const handleChangePW = () => {
+    setIsChangingPW(true);
+  };
+  const handleDelete = () => {
+    deleteUserOffDB(phpHandler, users[selected].id, setUsers, users, setBackUp);
+  };
   useEffect(() => {
     if (!users.length) {
       getListOfUsers(phpHandler, setUsers, setBackUp);
@@ -62,6 +94,13 @@ const AdminManageUser = () => {
   if (isLoading) return <div className="admin-manage-user">Is loading</div>;
   return (
     <>
+      {users[selected] && (
+        <AdminEditPasswordModal
+          userToEditPassWord={users[selected].id}
+          isChangingPW={isChangingPW}
+          setIsChangingPW={setIsChangingPW}
+        />
+      )}
       <AddNewUserModal isAdding={isAdding} setIsAdding={setIsAdding} />
       <div className="admin-manage-user">
         <div className="admin-manage-user-list-title">

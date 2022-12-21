@@ -140,17 +140,21 @@ if (isset($_GET['getSingleClass'])) {
 if (isset($_GET['insertEnrollStu'])) {
     $sql = 'insert into enrollment values (' . $_GET['class'] . ',' . $_GET['insertEnrollStu'] . ');';
     $result = mysqli_query($con, $sql);
-    if ($result) {
-        echo 'succeed';
-    } else die(mysqli_error($con));
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
 }
 
 if (isset($_GET['removeClassEnrollment'])) {
     $sql = 'delete from enrollment where id_class=' . $_GET['removeClassEnrollment'] . ' and id_student =' . $_GET['stu'];
     $result = mysqli_query($con, $sql);
-    if ($result) {
-        echo 'succeed';
-    } else die(mysqli_error($con));
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
 }
 if (isset($_GET['getScore'])) {
     $sql = 'select s.description as subjectDescription,
@@ -581,5 +585,70 @@ if (isset($_GET['addNewStudentToDB'])) {
     }
     echo $result;
 }
+if (isset($_GET['addNewLecturerToDB'])) {
+    $sql = 'insert into users (id,password) 
+    select max(l.id)+1,' . $_GET['password'] .
+        'from lecturers l';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    $sql2 = 'select max(id) as id from users  where id like "8%" ';
+    $result2 = mysqli_query($con, $sql2);
+    $newID = mysqli_fetch_object($result2)->id;
+    $sql = 'insert into lecturers (id,name,phone,email)values ('
+        . $newID . ',' . $_GET['addNewLecturerToDB'] . ',' . $_GET['phone'] . ',' . $_GET['email'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['addNewAdminToDB'])) {
+    $sql = 'insert into users (id,password) 
+    select max(a.id)+1,' . $_GET['password'] .
+        'from admins a';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    $sql2 = 'select max(id) as id from users  where id like "9%" ';
+    $result2 = mysqli_query($con, $sql2);
+    $newID = mysqli_fetch_object($result2)->id;
+    $sql = 'insert into admins (id,name,phone,email)values ('
+        . $newID . ',' . $_GET['addNewAdminToDB'] . ',' . $_GET['phone'] . ',' . $_GET['email'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
 
+if (isset($_GET['setNewPassWordForUser'])) {
+    $sql = 'update users set password = ' . $_GET['pw'] . ' where id=' . $_GET['setNewPassWordForUser'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['deleteUserOffDB'])) {
+    $sql = 'delete u,l,s,a from users u 
+    left join lecturers l on u.id = l.id 
+    left join students s on s.id = u.id 
+    left join admins a on a.id = s.id
+    where u.id = ' . $_GET['deleteUserOffDB'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
 $con->close();

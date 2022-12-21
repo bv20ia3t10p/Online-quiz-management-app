@@ -27,15 +27,22 @@ const fetchSingleClass = async (phpHandler, setClasses, searchParam) => {
 };
 const insertNewEnrollment = async (phpHandler, uid, classID) => {
   const url = phpHandler + `?insertEnrollStu=${uid}&class=${classID}`;
-  const resp = await fetch(url);
-  await resp.json();
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (!data) throw new Error("Insert failed");
+    alert("Inserted successfully");
+    window.location.reload();
+  } catch (e) {
+    alert(e);
+  }
 };
 
 const EnrollNewClassStu = ({ setIsAddingClasses }) => {
   const { phpHandler } = useGlobalContext();
   const { sid } = useParams("sid");
   const uid = sid;
-  const [searchValue, setID_class] = useState("Enter 'all' to get all classes");
+  const [searchValue, setID_class] = useState("");
   const [classes, setClasses] = useState([]);
   const [selectedClass, setSelectecClass] = useState(0);
   useEffect(() => {
@@ -65,18 +72,19 @@ const EnrollNewClassStu = ({ setIsAddingClasses }) => {
           onChange={(e) => {
             setID_class(e.target.value);
           }}
+          placeholder="Enter 'all' for all results"
         />
         <button>Search</button>
       </form>
+      <div className="enroll-single-class header">
+        <div>Class ID</div>
+        <div>Class name</div>
+        <div>Lecturer ID</div>
+        <div>Lecturer name</div>
+        <div>Subject ID</div>
+        <div>Subject description</div>
+      </div>
       <div className="enroll-new-class-list">
-        <div className="enroll-single-class header">
-          <div>Class ID</div>
-          <div>Class name</div>
-          <div>Lecturer ID</div>
-          <div>Lecturer name</div>
-          <div>Subject ID</div>
-          <div>Subject description</div>
-        </div>
         {classes.map((n, index) => {
           return (
             <div
@@ -99,12 +107,20 @@ const EnrollNewClassStu = ({ setIsAddingClasses }) => {
           );
         })}
       </div>
-      <button
-        className="enroll-new-class-modal-add"
-        onClick={() => handleAdd()}
-      >
-        Add
-      </button>
+      <div className="enroll-new-class-modal-btns">
+        <button
+          className="enroll-new-class-modal-cancel"
+          onClick={() => setIsAddingClasses(false)}
+        >
+          Cancel
+        </button>
+        <button
+          className="enroll-new-class-modal-add"
+          onClick={() => handleAdd()}
+        >
+          Add
+        </button>
+      </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  /* Share some with lecSidebar.css */
+  /* Share some with lecSidebar.css, also used for 
+  admin's manangement of students */
   .admin-sideBar-function {
     @apply grid;
     @apply h-full;
@@ -166,5 +167,49 @@
     @apply text-rose-500;
     @apply mx-8;
     @apply rounded-xl;
+  }
+  .admin-manage-user-add-new.isHidden,
+  .admin-manage-user-edit-password.isHidden {
+    @apply opacity-0;
+    @apply -z-20;
+    @apply scale-0;
+    @apply absolute;
+  }
+  .admin-manage-user-edit-password {
+    @apply absolute;
+    @apply opacity-100;
+    @apply z-30;
+    @apply grid;
+    @apply grid-rows-2;
+    @apply p-4;
+    @apply ml-[25vw];
+    @apply bg-pink-700;
+    @apply gap-4;
+    @apply shadow-xl;
+    @apply items-center;
+    @apply text-center;
+    @apply text-rose-50;
+    @apply mt-[25vh];
+    @apply rounded-md;
+    @apply duration-700;
+  }
+  .admin-manage-user-edit-password-btns {
+    @apply grid;
+    @apply mx-12;
+    @apply gap-8;
+    @apply grid-cols-2;
+  }
+  .admin-manage-user-edit-password-pw {
+    @apply grid;
+    @apply grid-cols-2;
+  }
+  .admin-manage-user-edit-password > input {
+    @apply text-pink-700;
+    @apply pl-2;
+  }
+  .admin-manage-user-edit-password-btns > button {
+    @apply bg-pink-50;
+    @apply rounded-xl;
+    @apply text-pink-700;
   }
 }
