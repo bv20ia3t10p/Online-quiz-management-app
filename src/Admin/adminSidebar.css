@@ -15,6 +15,7 @@
   }
   .admin-container {
     @apply h-screen;
+    @apply overflow-hidden;
     @apply w-screen;
     @apply pt-[8.5vh];
     @apply pl-[16.7vw];
@@ -215,5 +216,37 @@
   .admin-manage-user-edit-password-pw-inp {
     @apply text-pink-700;
     @apply pl-2;
+  }
+  .admin-info {
+    @apply grid;
+    @apply items-center;
+    @apply justify-center;
+    @apply gap-8;
+    @apply p-8;
+    @apply text-2xl;
+    @apply border-2;
+    @apply my-20;
+    @apply mx-24;
+    @apply border-rose-500;
+    @apply shadow-xl;
+    @apply rounded-xl;
+    @apply bg-rose-50;
+  }
+  .admin-info-card {
+    @apply grid-cols-[20%_1fr_5%];
+    @apply w-[60vw];
+    @apply grid;
+  }
+  .admin-info-title {
+    @apply text-center;
+  }
+  .admin-info-card-label,
+  .admin-info-title {
+    @apply text-rose-500;
+    @apply font-mono;
+  }
+  .admin-info-card-value {
+    @apply tracking-widest;
+    @apply font-mono;
   }
 }

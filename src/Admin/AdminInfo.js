@@ -33,6 +33,9 @@ const AdminInfo = () => {
 
   return (
     <div className="admin-info">
+      <span className="admin-info-title">
+        Basic information for admin {aid}
+      </span>
       <div className="admin-info-card">
         <span className="admin-info-card-label">ID</span>
         <span className="admin-info-card-value">{adminInfo.ID}</span>
