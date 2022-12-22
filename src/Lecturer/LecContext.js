@@ -12,7 +12,7 @@ const initialState = {
   classes: [],
 };
 
-const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
+export const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
   const url = phpHandler + `?getLecInfo=${uid}`;
   const resp = await fetch(url);
   const data = await resp.json();

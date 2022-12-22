@@ -25,17 +25,18 @@ const Context = ({ children }) => {
   const handleLogin = async (uid, pw) => {
     //Concat string from form input with uid and pw as Login's state
     const url = state.phpHandler + `?uid=${uid}&pw=${pw}`;
-    const resp = await fetch(url);
-    const data = await resp.json();
-    //Return array if theres data, otherwise undefined
-    if (typeof data) alert("Login successful");
-    else {
-      alert("Login failed, please recheck credentials");
-      //Abort operation
-      return;
+    try {
+      const resp = await fetch(url);
+      const data = await resp.json();
+      console.log(data);
+      //Return array if theres data, otherwise undefined
+      if (!data.ID) throw new Error();
+      localStorage.setItem("uid", JSON.stringify({ uid: data.ID }));
+      setLoggedIn(data.ID);
+      alert("Logged in successfully");
+    } catch (e) {
+      alert("Failed to login, check your credentials");
     }
-    //Change the gloabal state
-    dispatch({ type: "LOG_IN", payload: uid });
   };
   const setLoggedIn = (uid) => {
     dispatch({ type: "LOG_IN", payload: uid });

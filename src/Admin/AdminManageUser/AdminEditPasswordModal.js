@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 
-const handleEditPassword = async (phpHandler, userID, newPW) => {
+export const handleEditPassword = async (phpHandler, userID, newPW) => {
   const prep = phpHandler + `?setNewPassWordForUser=${userID}&pw="${newPW}"`;
   const url = encodeURI(prep);
   console.log(url);
@@ -9,6 +9,7 @@ const handleEditPassword = async (phpHandler, userID, newPW) => {
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to edit password");
+    alert("Changed successfully");
   } catch (e) {
     alert(e);
   }
@@ -23,6 +24,7 @@ const AdminEditPasswordModal = ({
   const [newPassword, setNewPassword] = useState("");
   const handleEdit = () => {
     handleEditPassword(phpHandler, userToEditPassWord, newPassword);
+    setIsChangingPW(false);
   };
   return (
     <div

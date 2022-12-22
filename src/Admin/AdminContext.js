@@ -1,7 +1,6 @@
 import React, { useEffect, useContext, useReducer } from "react";
 import { useGlobalContext } from "../setup/Context";
 import { adminReducer } from "./adminReducer";
-import AdminSideBar from "./AdminSideBar";
 
 const adminContext = React.createContext();
 
@@ -12,7 +11,7 @@ const initialState = {
   email: "",
 };
 
-const fetchAdminInfo = async (phpHandler, uid, setAdminInfo) => {
+export const fetchAdminInfo = async (phpHandler, uid, setAdminInfo) => {
   const url = phpHandler + `?getAdminInfo=${uid}`;
   console.log("Fetch admin info:", url);
   try {

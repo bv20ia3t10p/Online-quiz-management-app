@@ -5,6 +5,7 @@ import { getStuClass, getStuData } from "../fetchStudentInfo";
 import EnrollNewClassStu from "./EnrollNewClassStu";
 import StuInfoClasses from "./StuInfoClasses";
 import StuInfoPersonDetail from "./StuInfoPerson";
+import AdminEditPasswordModal from "../../Admin/AdminManageUser/AdminEditPasswordModal";
 
 const StuInfo = () => {
   const { sid } = useParams("sid");
@@ -13,6 +14,10 @@ const StuInfo = () => {
   const [isAddingClasses, setIsAddingClasses] = useState(false);
   const [isEditing, setIsEditing] = useState([]);
   const [isEditable, setIsEditable] = useState([]);
+  const [isChangingPW, setIsChangingPW] = useState(false);
+  const handleChangePW = () => {
+    setIsChangingPW(true);
+  };
   //   const submitChange = (property, newVal) => {};
   useEffect(() => {
     const getInfo = async () => {
@@ -52,6 +57,11 @@ const StuInfo = () => {
       {isAddingClasses && (
         <EnrollNewClassStu setIsAddingClasses={setIsAddingClasses} />
       )}
+      <AdminEditPasswordModal
+        isChangingPW={isChangingPW}
+        setIsChangingPW={setIsChangingPW}
+        userToEditPassWord={sid}
+      />
       <div
         className={isAddingClasses ? `StuInfo-Basic dimmed` : "StuInfo-Basic"}
       >
@@ -96,6 +106,9 @@ const StuInfo = () => {
             setState={setState}
             setIsEditing={setIsEditing}
           />
+          <button className="stu-info-change-pw" onClick={handleChangePW}>
+            Change login password
+          </button>
         </div>
         <ClassesList
           isEditable={isEditable}

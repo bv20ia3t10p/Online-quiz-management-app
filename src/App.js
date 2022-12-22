@@ -31,6 +31,8 @@ import LecStudentManage from "./Lecturer/LecStudentManage";
 import AdminHome from "./Admin/AdminHome";
 import AdminPage from "./Admin/AdminPage";
 import AdminManageUser from "./Admin/AdminManageUser/AdminManageUser";
+import LecInfo from "./Lecturer/LecInfo";
+import AdminInfo from "./Admin/AdminInfo";
 
 const app = () => {
   return (
@@ -44,6 +46,14 @@ const app = () => {
               element={
                 <StudentPage>
                   <StuInfo />
+                </StudentPage>
+              }
+            />
+            <Route
+              path="Lecturer/:lid"
+              element={
+                <StudentPage>
+                  <LecInfo />
                 </StudentPage>
               }
             />
@@ -71,6 +81,14 @@ const app = () => {
               element={
                 <LecPage>
                   <LecHome />
+                </LecPage>
+              }
+            />
+            <Route
+              path="About/:lid"
+              element={
+                <LecPage>
+                  <LecInfo />
                 </LecPage>
               }
             />
@@ -109,6 +127,14 @@ const app = () => {
           </Route>
           <Route exact path="/Admin">
             <Route
+              path="About/:aid"
+              element={
+                <AdminPage>
+                  <AdminInfo />
+                </AdminPage>
+              }
+            />
+            <Route
               path="Student/:sid"
               element={
                 <AdminPage>
@@ -132,6 +158,14 @@ const app = () => {
                 </AdminPage>
               }
             ></Route>
+            <Route
+              path="Lecturer/:lid"
+              element={
+                <AdminPage>
+                  <LecInfo />
+                </AdminPage>
+              }
+            />
           </Route>
           <Route exact path="/" element={<Login />}></Route>
         </Switch>

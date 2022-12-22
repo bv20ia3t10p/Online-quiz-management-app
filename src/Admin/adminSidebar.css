@@ -212,4 +212,8 @@
     @apply rounded-xl;
     @apply text-pink-700;
   }
+  .admin-manage-user-edit-password-pw-inp {
+    @apply text-pink-700;
+    @apply pl-2;
+  }
 }

@@ -77,7 +77,11 @@ const AdminManageUser = () => {
   const handleEdit = () => {
     if (users[selected].id[0] === "2") {
       navi(`/Admin/Student/${users[selected].id}`);
-    }
+    } else if (users[selected].id[0] === "8") {
+      navi(`/Admin/Lecturer/${users[selected].id}`);
+    } else if (users[selected].id[0] === "9") {
+      navi(`/Admin/About/${users[selected].id}`);
+    } else alert("Invalid selection");
   };
   const handleChangePW = () => {
     setIsChangingPW(true);

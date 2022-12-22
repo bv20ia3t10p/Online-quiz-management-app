@@ -651,4 +651,16 @@ if (isset($_GET['deleteUserOffDB'])) {
     }
     echo $result;
 }
+
+if (isset($_GET['updFieldLec'])) {
+    $sql = 'update lecturers set ' . $_GET['updFieldLec'] . ' ="' . $_GET['newVal'] . '" where id = ' . $_GET['lid'];
+    $result = mysqli_query($con, $sql);
+    echo $result;
+}
+
+if (isset($_GET['updFieldAdm'])) {
+    $sql = 'update admins set ' . $_GET['updFieldAdm'] . ' ="' . $_GET['newVal'] . '" where id = ' . $_GET['aid'];
+    $result = mysqli_query($con, $sql);
+    echo $result;
+}
 $con->close();

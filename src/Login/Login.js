@@ -26,7 +26,6 @@ const Login = () => {
       return;
     }
     handleLogin(state.uid, state.pw);
-    localStorage.setItem("uid", JSON.stringify({ uid: state.uid }));
   };
   const navi = useNavigate();
   useEffect(() => {

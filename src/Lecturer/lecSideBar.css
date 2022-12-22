@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* also applies to lecInfo */
 @layer base {
   .lec-sideBar,
   .admin-sideBar {
@@ -70,5 +71,93 @@
     @apply to-pink-500;
     @apply bg-clip-text;
     -webkit-text-fill-color: transparent;
+  }
+  .lec-info {
+    @apply ml-1;
+    @apply mt-1;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply items-center;
+    @apply justify-center;
+    @apply h-[90vh];
+    @apply text-center;
+    @apply w-[82vw];
+  }
+  .lec-info-card {
+    @apply grid;
+    @apply grid-cols-[30%_1fr_5%];
+    @apply text-xl;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .lec-info-cards {
+    @apply py-6;
+    @apply m-4;
+    @apply border-2;
+    @apply border-rose-500;
+    @apply rounded-xl;
+  }
+  .lec-info-card-change-pw {
+    @apply col-span-full;
+  }
+  .lec-info-cards {
+    @apply grid;
+    @apply gap-4;
+    @apply bg-pink-50;
+  }
+  .lec-info-card-value {
+    @apply font-mono;
+  }
+  .lec-info-card {
+    @apply border-b-2;
+    @apply border-rose-500;
+  }
+  .lec-info-heading {
+    @apply col-span-2;
+    @apply font-mono;
+    @apply tracking-widest;
+    @apply text-center;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-3xl;
+    @apply text-rose-700;
+  }
+  .lec-info-card-label,
+  .lec-info-classes-title,
+  .lec-info-classes-header {
+    @apply text-rose-500;
+    @apply font-semibold;
+    @apply font-serif;
+  }
+  .lec-info-classes {
+    @apply h-[72vh];
+    @apply border-2;
+    @apply border-pink-600;
+    @apply rounded-md;
+    @apply shadow-md;
+    @apply bg-rose-50;
+  }
+  .lec-info-classes-headers,
+  .lec-info-classes-list-class {
+    @apply grid;
+    @apply grid-cols-[repeat(2,25%)_1fr];
+    @apply gap-4;
+    @apply items-center;
+    @apply justify-center;
+    @apply break-words;
+    @apply my-4;
+  }
+  .lec-info-classes-headers {
+    @apply bg-pink-600;
+    @apply h-[8vh];
+  }
+  .lec-info-classes-header {
+    @apply text-rose-50;
+  }
+  .lec-info-card-change-pw {
+    @apply bg-rose-500;
+    @apply text-rose-50;
+    @apply h-12;
   }
 }
