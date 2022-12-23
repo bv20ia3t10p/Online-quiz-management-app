@@ -28,11 +28,7 @@ const StuInfo = () => {
       setIsEditing(Object.keys(data).map((n) => false));
       switch (privilege) {
         case "Admin": {
-          setIsEditable(
-            Object.keys(data).map((n) => {
-              return true;
-            })
-          );
+          setIsEditable([false, true, true, true, true]);
           break;
         }
         case "Student": {
