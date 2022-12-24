@@ -85,7 +85,8 @@ if (isset($_GET['fetchExam'])) {
 }
 
 if (isset($_GET['insertAnswer'])) {
-    $sql = 'insert into student_answer(ID_student,ID_exam,ID_class,selection,ID_question,id_student_exam) values (' . $_GET['insertAnswer'] . ',' . $_GET['idExam'] . ',' . $_GET['idClass'] .
+    $sql = 'insert into student_answer(ID_student,ID_exam,ID_class,selection,ID_question,id_student_exam) 
+    values (' . $_GET['insertAnswer'] . ',' . $_GET['idExam'] . ',' . $_GET['idClass'] .
         ',' . $_GET['sel'] . ',' . $_GET['idq'] . ',' . $_GET['idStudentExam'] . ')';
     $result = mysqli_query($con, $sql);
     echo $result;
@@ -517,7 +518,7 @@ if (isset($_GET['getStudentExamAdjustHistoryFor'])) {
 
 if (isset($_GET['adjustExamScoreFor'])) {
     $sql = 'insert into score_adjustment (id_student_exam,score,reason,adjuster) values ('
-        . $_GET['adjustExamScoreFor'] . ',' . $_GET['newScore'] . ',' . $_GET['reason'] . ',' . $_GET['by'] . ')';
+        . $_GET['adjustExamScoreFor'] . ',' . $_GET['newScore'] . ',"' . $_GET['reason'] . '",' . $_GET['by'] . ')';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -663,8 +664,14 @@ if (isset($_GET['updFieldAdm'])) {
     $result = mysqli_query($con, $sql);
     echo $result;
 }
-if (isset($_GET['getAllStudentExam'])) {
-    $sql = 'Select * from student_exams';
+if (isset($_GET['getAllStudentExams'])) {
+    $sql = 'Select se.id_student_exam,
+    se.id_student,s.name, se.id_exam, se.id_class,
+    c.name, score
+    from student_exams se
+    inner join classes c on se.id_class=c.id
+    inner join students s on s.id = se.id_student;
+    ';
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -675,5 +682,24 @@ if (isset($_GET['getAllStudentExam'])) {
         echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
     }
     if (!$id) echo ']';
+}
+
+
+if (isset($_GET['deleteStudentExam'])) {
+    $sql = 'delete se from student_exams se inner join student_answer sa on sa.id_student_exam = se.id_student_exam
+    where se.id_student_exam=' . $_GET['deleteStudentExam'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    $sql = 'delete sa from student_exams se inner join student_answer sa on sa.id_student_exam = se.id_student_exam
+    where se.id_student_exam=' . $_GET['deleteStudentExam'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
 }
 $con->close();

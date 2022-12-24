@@ -1,92 +1,29 @@
 import React, { useEffect, useState } from "react";
-
-const getAllStudentExams = async (phpHandler, setStudentExams) => {
-  const url = phpHandler + `?getAllStudentExams`;
-  try {
-    const resp = await fetch(url);
-    const data = await resp.json();
-    if (!data) throw new Error("Failed to get student exams");
-    setStudentExams({ stuExams: data, backUp: data });
-  } catch (e) {
-    alert(e);
-  }
-};
-
-const editAnswer = async (phpHandler, idStudentExam, field, newVal) => {
-  const url =
-    phpHandler +
-    `?editStudentAnswer=${idStudentExam}&field=${field}&newVal=${newVal}`;
-  const newVal = prompt("Enter new value");
-  if (newVal) {
-    try {
-      const resp = await fetch(url);
-      const data = await resp.json();
-      if (!data) throw new Error("Failed to edit ansewr");
-    } catch (e) {
-      alert(e);
-    }
-  }
-};
-
-const getAnswersByExam = async (phpHandler, studentExamID, setAnswers) => {
-  const url = phpHandler + `?getAnswersForExam=${studentExamID}`;
-  try {
-    const resp = await fetch(url);
-    const data = await resp.json();
-    if (!data) throw new Error("Failed to get student exams");
-    setAnswers({ stuAnswers: data, backUp: data });
-  } catch (e) {
-    alert(e);
-  }
-};
-
-const getScoreChangeLog = async (
-  phpHandler,
-  studentExamID,
-  setScoreChangeLog
-) => {
-  const url = phpHandler + `?getScoreChangeLogForExam=${studentExamID}`;
-  try {
-    const resp = await fetch(url);
-    const data = await resp.json();
-    if (!data) throw new Error("Failed to get student exams");
-  } catch (e) {
-    alert(e);
-  }
-};
-
-const handleSearch = (state, searchValue, setState) => {
-  if (!searchValue) {
-    setState({
-      [`${Object.keys(state)[0]}`]: state.backUp,
-      backUp: state.backUp,
-    });
-  } else {
-    const original = Object.values(state)[0];
-    const newStateArray = [];
-    newStateArray.forEach((n) => {
-      if (
-        Object.values(n).find((n2) =>
-          n2.toUpperCase().includes(searchValue.toUpperCase())
-        )
-      )
-        newStateArray.push(n);
-    });
-    setState({
-      [`${Object.keys(state)[0]}`]: newStateArray,
-      backUp: state.backUp,
-    });
-  }
-};
+import { useGlobalContext } from "../../setup/Context";
+import {
+  AiOutlineDelete,
+  AiOutlineEdit,
+  AiOutlineSearch,
+} from "react-icons/ai";
+import {
+  getAllStudentExams,
+  editStudentExams,
+  editAnswer,
+  getAnswersByExam,
+  getScoreChangeLog,
+  handleSearch,
+  editScoreChangeLog,
+} from "./AdminManageExamActions";
 
 const AdminManageExam = () => {
+  const { phpHandler, uid } = useGlobalContext();
   const [studentExams, setStudentExams] = useState({
     stuExams: [],
     backUp: [],
   });
   const [isLoading, setIsLoading] = useState(true);
   const [answers, setAnswers] = useState({ stuAnswers: [], backUp: [] });
-  const [selected, setIsSelected] = useState(false);
+  const [selected, setSelected] = useState(0);
   const [scoreChangeLog, setScoreChangeLog] = useState({
     changeLog: [],
     backUp: [],
@@ -96,15 +33,110 @@ const AdminManageExam = () => {
   const [searchStudentAnswer, setSearchStudentAnswer] = useState("");
   useEffect(() => {
     if (isLoading) {
-      getAllStudentExams(phpHandler, setExams);
+      getAllStudentExams(phpHandler, setStudentExams);
       setIsLoading(false);
     }
-  });
+  }, [isLoading, phpHandler]);
   useEffect(() => {
-    getAnswersByExam(phpHandler, studentExams[selected].id, setAnswers);
-    getScoreChangeLog(phpHandler, studentExams[selected].id, setScoreChangeLog);
-  }, [selected]);
-  return <div className="admin-manage-exam"></div>;
+    console.log("StuExams:", studentExams.stuExams[selected]);
+    if (!studentExams.stuExams[selected]) return;
+    getAnswersByExam(
+      phpHandler,
+      studentExams.stuExams[selected].id_student_exam,
+      setAnswers
+    );
+    getScoreChangeLog(
+      phpHandler,
+      studentExams.stuExams[selected].id_student_exam,
+      setScoreChangeLog
+    );
+  }, [selected, studentExams.stuExams, phpHandler]);
+  return (
+    <div className="admin-manage-exam">
+      <div className="admin-manage-exam-exam">
+        <span className="admin-manage-exam-exam-title">
+          List of student exams
+        </span>
+        <div
+          className="admin-manage-exam-exam-buttons"
+          onClick={() => editStudentExams(phpHandler)}
+        >
+          <span className="admin-manage-exam-exam-button">
+            <AiOutlineEdit
+              className="icon"
+              onClick={() => {
+                editStudentExams(phpHandler, "Edit", {
+                  id_student_exam:
+                    studentExams.stuExams[selected].id_student_exam,
+                  idAdmin: uid,
+                });
+              }}
+            />
+          </span>
+          <span
+            className="admin-manage-exam-exam-button"
+            onClick={() =>
+              editStudentExams(phpHandler, "Delete", {
+                id_student_exam:
+                  studentExams.stuExams[selected].id_student_exam,
+              })
+            }
+          >
+            <AiOutlineDelete className="icon" />
+          </span>
+        </div>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearch(studentExams, searchStudentExams, setStudentExams);
+          }}
+          className="admin-manage-exam-exam-search"
+        >
+          <input
+            type="text"
+            value={searchStudentExams}
+            onChange={(e) => setSearchStudentExams(e.target.value)}
+            className="admin-manage-exam-exam-search-input"
+          />
+          <button type="submit" className="admin-manage-exam-exam-search-icon">
+            <AiOutlineSearch className="icon" />
+          </button>
+        </form>
+        <div className="admin-manage-exam-exam-header">
+          {["ID", "S.ID", "Student", "C.ID", "Class", "Score"].map(
+            (n, index) => {
+              return (
+                <span
+                  className="admin-manage-exam-exam-header-single"
+                  key={index}
+                >
+                  {n}
+                </span>
+              );
+            }
+          )}
+        </div>
+        <div className="admin-manage-exam-list">
+          {studentExams.stuExams.map((n, index) => {
+            return (
+              <div key={index} className="admin-manage-exam-list-single">
+                {Object.values(n).map((n2, index2) => {
+                  return (
+                    <span
+                      className="admin-manage-exam-list-single-value"
+                      key={index2}
+                    >
+                      {n2}
+                    </span>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AdminManageExam;

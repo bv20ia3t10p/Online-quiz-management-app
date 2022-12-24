@@ -33,6 +33,7 @@ import AdminPage from "./Admin/AdminPage";
 import AdminManageUser from "./Admin/AdminManageUser/AdminManageUser";
 import LecInfo from "./Lecturer/LecInfo";
 import AdminInfo from "./Admin/AdminInfo";
+import AdminManageExam from "./Admin/AdminManageExam/AdminManageExam";
 
 const app = () => {
   return (
@@ -163,6 +164,14 @@ const app = () => {
               element={
                 <AdminPage>
                   <LecInfo />
+                </AdminPage>
+              }
+            />
+            <Route
+              path="Exams"
+              element={
+                <AdminPage>
+                  <AdminManageExam />
                 </AdminPage>
               }
             />
