@@ -42,17 +42,19 @@ export const editAnswer = async (phpHandler, type, payload) => {
   let url = phpHandler;
   switch (type) {
     case "Edit": {
-      const { idStudentExam, field } = payload;
-      if (!idStudentExam || !field) return;
-      const newVal = prompt("Enter new value or leave blank to cancel");
+      const { idStudentAnswer } = payload;
+      if (!idStudentAnswer) return;
+      const newVal = prompt(
+        "Enter new selection value or leave blank to cancel"
+      );
       if (!newVal) return;
-      url += `?editStudentAnswer=${idStudentExam}&field=${field}&newVal=${newVal}`;
+      url += `?editStudentAnswer=${idStudentAnswer}&newVal=${newVal}`;
       break;
     }
     case "Delete": {
-      const { selectedAnswerID } = payload;
-      if (!selectedAnswerID) return;
-      url += `?deleteStudentAnswer=${payload.idStudentExam}&ida=${selectedAnswerID}`;
+      const { idStudentAnswer } = payload;
+      if (!idStudentAnswer) return;
+      url += `?deleteStudentAnswer=${idStudentAnswer}`;
       break;
     }
     case "Insert": {
@@ -143,32 +145,27 @@ export const handleSearch = (state, searchValue, setState) => {
 export const editScoreChangeLog = async (phpHandler, { type, payload }) => {
   let url = phpHandler;
   switch (type) {
-    case "upd": {
-      const newVal = prompt("Enter new value or leave blank to cancel");
+    case "Edit": {
+      const newVal = prompt("Enter new reason or leave blank to cancel");
       if (!newVal) return;
       url += `?editScoreChangeLogFor=${payload.id}&newVal=${newVal}`;
       break;
     }
-    case "delete": {
+    case "Delete": {
       if (!payload.idScoreChangeLog) return;
       url += `?deleteScoreChangeLogFor=${payload.id}&toDelete=${payload.idScoreChangeLog}`;
-      break;
-    }
-    case "insert": {
-      const { idStudentExam } = payload;
-      if (!idStudentExam || !payload.idAdmin) return;
-      const newScore = prompt("Enter new score");
-      const reason = prompt("Enter reason to change");
-      url += `?adjustExamScoreFor=${idStudentExam}&$newScore=${newScore}&reson=${reason}&by=${payload.idAdmin}`;
       break;
     }
     default:
       return;
   }
+  console.log(url);
   try {
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed");
+    alert("Success");
+    window.location.reload();
   } catch (e) {
     alert(e);
   }

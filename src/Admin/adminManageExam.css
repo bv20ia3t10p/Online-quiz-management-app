@@ -1,0 +1,300 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  .admin-manage-insert-new-exam {
+    @apply absolute;
+    @apply bg-rose-200;
+    @apply w-1/2;
+    @apply h-1/2;
+    @apply right-[15vw];
+    @apply top-[25vh];
+    @apply z-20;
+    @apply border-2;
+    @apply border-rose-500;
+    @apply shadow-xl;
+    @apply rounded-3xl;
+    @apply duration-700;
+  }
+  .admin-manage-insert-new-exam-student,
+  .admin-manage-insert-new-exam-class,
+  .admin-manage-insert-new-exam-exam {
+    @apply w-full;
+    @apply m-4;
+    @apply h-[35vh];
+    @apply fixed;
+    @apply duration-1000;
+  }
+  .admin-manage-insert-new-exam-student-search,
+  .admin-manage-insert-new-exam-class-search,
+  .admin-manage-insert-new-exam-exam-search {
+    @apply w-[47vw];
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+    @apply bg-rose-500;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-insert-new-exam-student-headers,
+  .admin-manage-insert-new-exam-class-headers,
+  .admin-manage-insert-new-exam-exam-headers {
+    @apply bg-rose-500;
+    @apply text-rose-50;
+    @apply w-[47vw];
+    @apply px-2;
+  }
+  .admin-manage-insert-new-exam-student-list,
+  .admin-manage-insert-new-exam-class-list,
+  .admin-manage-insert-new-exam-exam-list {
+    @apply bg-rose-50;
+    @apply w-[47vw];
+    @apply border-2;
+    @apply border-rose-500;
+    @apply overflow-y-scroll;
+    @apply h-[26vh];
+    @apply rounded-b-xl;
+    @apply px-2;
+  }
+  .admin-manage-insert-new-exam-student-title,
+  .admin-manage-insert-new-exam-class-title,
+  .admin-manage-insert-new-exam-exam-title {
+    @apply text-center;
+    @apply w-[47vw];
+    @apply block;
+    @apply bg-rose-500;
+    @apply text-rose-50;
+    @apply rounded-t-xl;
+    @apply tracking-widest;
+  }
+  .admin-manage-insert-new-exam-btns {
+    @apply grid;
+    @apply grid-cols-4;
+    @apply px-10;
+    @apply mt-[43vh];
+    @apply items-center;
+    @apply justify-center;
+    @apply pl-24;
+  }
+  .admin-manage-insert-new-exam-exam-list-single,
+  .admin-manage-insert-new-exam-exam-headers {
+    @apply grid;
+    @apply grid-cols-[10%_1fr_10%_25%];
+    @apply justify-center;
+    @apply items-center;
+    @apply text-center;
+    @apply text-sm;
+  }
+  .admin-manage-insert-new-exam-student-list-single,
+  .admin-manage-insert-new-exam-student-headers {
+    @apply grid;
+    @apply grid-cols-[20%_1fr];
+    @apply justify-center;
+    @apply items-center;
+    @apply text-center;
+    @apply text-sm;
+  }
+  .admin-manage-insert-new-exam-class-list-single,
+  .admin-manage-insert-new-exam-class-headers {
+    @apply grid;
+    @apply grid-cols-[10%_25%_10%_10%_1fr];
+    @apply justify-center;
+    @apply items-center;
+    @apply text-center;
+    @apply text-sm;
+  }
+  .admin-manage-insert-new-exam-class-list-single:nth-of-type(even),
+  .admin-manage-insert-new-exam-exam-list-single:nth-of-type(even),
+  .admin-manage-insert-new-exam-student-list-single:nth-of-type(even) {
+    @apply bg-rose-100;
+  }
+  .admin-manage-insert-new-exam .isSelected {
+    @apply bg-rose-200;
+  }
+  .admin-manage-insert-new-exam-btns > * {
+    @apply w-[5vw];
+    @apply text-xs;
+    @apply rounded-xl;
+    @apply bg-rose-50;
+    @apply text-rose-500;
+    @apply text-center;
+    @apply h-[2vw];
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-insert-new-exam .isLeft {
+    @apply -translate-x-full;
+    @apply opacity-0;
+  }
+  .admin-manage-insert-new-exam .isRight {
+    @apply translate-x-full;
+    @apply opacity-0;
+  }
+  .admin-manage-insert-new-exam form .icon {
+    @apply text-white;
+    @apply flex;
+    @apply w-full;
+    @apply items-center;
+  }
+  .admin-manage-insert-new-exam.isHidden {
+    @apply -z-20;
+    @apply opacity-0;
+    @apply scale-0;
+  }
+  .admin-manage-exam {
+    @apply rounded-md;
+
+    @apply bg-pink-50;
+    @apply shadow-xl;
+    @apply m-4;
+    @apply mx-5;
+    @apply h-[86vh];
+    @apply grid;
+    @apply grid-cols-2;
+    @apply grid-rows-[1fr_40%];
+    @apply gap-4;
+  }
+  .admin-manage-exam-answers {
+    @apply row-span-2;
+  }
+  .admin-manage-exam-exam-buttons,
+  .admin-manage-exam-answers-btns,
+  .admin-manage-exam-changeLog-btns {
+    @apply grid;
+    @apply grid-cols-3;
+    @apply grid-rows-none;
+    @apply absolute;
+    @apply ml-[28.8vw];
+    @apply mt-[2vh];
+    @apply bg-white;
+    @apply w-[6vw];
+    @apply h-[3vh];
+    @apply text-center;
+    @apply text-white;
+    @apply text-red-500;
+    @apply items-center;
+    @apply justify-center;
+    @apply rounded-t-md;
+    @apply px-2;
+    @apply gap-2;
+  }
+  .admin-manage-exam-exam-title,
+  .admin-manage-exam-answers-title,
+  .admin-manage-exam-changeLog-title {
+    @apply w-full;
+    @apply text-pink-700;
+    @apply text-center;
+  }
+  .admin-manage-exam-exam,
+  .admin-manage-exam-answers,
+  .admin-manage-exam-changeLog {
+    @apply m-4;
+    @apply text-sm;
+    @apply border-2;
+    @apply rounded-xl;
+    @apply overflow-hidden;
+    @apply grid;
+    @apply grid-rows-[repeat(2,5vh)_4vh_1fr];
+  }
+  .admin-manage-exam-exam-search,
+  .admin-manage-exam-answers-search,
+  .admin-manage-exam-changeLog-search {
+    @apply w-full;
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+  }
+  .admin-manage-exam-exam {
+    @apply border-red-500;
+  }
+  .admin-manage-exam-exam-search,
+  .admin-manage-exam-exam-title,
+  .admin-manage-exam-exam-header {
+    @apply bg-red-500;
+    @apply text-red-50;
+    @apply w-full;
+  }
+  .admin-manage-exam-exam-header,
+  .admin-manage-exam-list-single {
+    @apply grid;
+    @apply grid-cols-[8%_10%_20%_10%_1fr_8%_8%];
+    @apply break-words;
+    @apply text-center;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-exam-list {
+    @apply overflow-y-scroll;
+    @apply bg-red-50;
+  }
+  .admin-manage-exam-exam-search-input {
+    @apply bg-red-50;
+  }
+  .admin-manage-exam-exam-buttons {
+    @apply bg-red-50;
+  }
+  .admin-manage-exam-exam-search .icon,
+  .admin-manage-exam-changeLog-search .icon,
+  .admin-manage-exam-answers-search .icon {
+    @apply w-full;
+    @apply text-center;
+  }
+  /* .admin-manage-exam-answers-search, */
+  .admin-manage-exam-answers-search-input,
+  .admin-manage-exam-answers-btns,
+  .admin-manage-exam-answers-list {
+    @apply bg-violet-50;
+  }
+  .admin-manage-exam-answers-btns {
+    @apply ml-[28.85vw];
+    @apply text-violet-600;
+  }
+  .admin-manage-exam-answers-title,
+  .admin-manage-exam-answers-headers,
+  .admin-manage-exam-answers-search {
+    @apply bg-violet-600;
+    @apply text-violet-50;
+  }
+  .admin-manage-exam-answers {
+    @apply border-violet-600;
+  }
+  .admin-manage-exam-answers-headers,
+  .admin-manage-exam-answers-list-single {
+    @apply grid;
+    @apply grid-cols-[14%_1fr_14%_1fr];
+    @apply break-words;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+  }
+  .admin-manage-exam-answers-list {
+    @apply overflow-y-scroll;
+  }
+  .admin-manage-exam-changeLog {
+    @apply border-indigo-500;
+    @apply bg-indigo-50;
+  }
+  .admin-manage-exam-changeLog-title,
+  .admin-manage-exam-changeLog-search,
+  .admin-manage-exam-changeLog-headers {
+    @apply bg-indigo-500;
+    @apply text-indigo-50;
+  }
+  .admin-manage-exam-changeLog-btns {
+    @apply grid-cols-2;
+    @apply text-indigo-500;
+  }
+  .admin-manage-exam-changeLog-headers,
+  .admin-manage-exam-changeLog-list-single {
+    @apply grid;
+    @apply grid-cols-4;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+  }
+  .admin-manage-exam-changeLog-list {
+    @apply overflow-y-scroll;
+  }
+  .admin-manage-exam .isSelected {
+    background: var(--dim);
+  }
+}

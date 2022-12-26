@@ -58,7 +58,7 @@ const adjustExamScoreFor = async (
 ) => {
   const prep =
     phpHandler +
-    `?adjustExamScoreFor=${id_student_exam}&newScore=${newValues.score}&reason="${newValues.reason}"&by=${id}`;
+    `?adjustExamScoreFor=${id_student_exam}&newScore=${newValues.score}&reason=${newValues.reason}&by=${id}`;
   const url = encodeURI(prep);
   try {
     const resp = await fetch(url);

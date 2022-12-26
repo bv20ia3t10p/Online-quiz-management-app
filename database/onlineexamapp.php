@@ -666,8 +666,8 @@ if (isset($_GET['updFieldAdm'])) {
 }
 if (isset($_GET['getAllStudentExams'])) {
     $sql = 'Select se.id_student_exam,
-    se.id_student,s.name, se.id_exam, se.id_class,
-    c.name, score
+    se.id_student,s.name as studentName,  se.id_class,
+    c.name, se.id_exam,round(score,2) as score
     from student_exams se
     inner join classes c on se.id_class=c.id
     inner join students s on s.id = se.id_student;
@@ -702,4 +702,73 @@ if (isset($_GET['deleteStudentExam'])) {
     }
     echo $result;
 }
+
+if (isset($_GET['editStudentAnswer'])) {
+    $sql = 'update student_answer set selection =' . $_GET['newVal'] . ' where id_student_exam = ' . $_GET['editStudentAnswer'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['deleteStudentAnswer'])) {
+    $sql = 'delete from student_answer where id = ' . $_GET['deleteStudentAnswer'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['getAllStudents'])) {
+    $sql = 'select id,name from students';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['getAssignedExamsForClass'])) {
+    $sql = 'select ea.id_exam as id, e.name as examName, created_by, l.name
+    from exam_assign ea
+    inner join exams e on e.id = ea.id_exam
+    inner join lecturers l on l.id = e.created_by
+    where ea.id_class =' . $_GET['getAssignedExamsForClass'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+if (isset($_GET['deleteScoreChangeLogFor'])) {
+    $sql = 'delete from score_adjustment where id_score_adjustment=' . $_GET['toDelete'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['editScoreChangeLogFor'])) {
+    $sql = 'update score_adjustment set reason = "' . $_GET['newVal'] . '" where id_score_adjustment = ' . $_GET['editScoreChangeLogFor'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
 $con->close();

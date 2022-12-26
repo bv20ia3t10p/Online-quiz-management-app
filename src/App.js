@@ -34,6 +34,7 @@ import AdminManageUser from "./Admin/AdminManageUser/AdminManageUser";
 import LecInfo from "./Lecturer/LecInfo";
 import AdminInfo from "./Admin/AdminInfo";
 import AdminManageExam from "./Admin/AdminManageExam/AdminManageExam";
+import "./Admin/adminManageExam.css";
 
 const app = () => {
   return (
