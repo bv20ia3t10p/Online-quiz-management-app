@@ -24,7 +24,7 @@ const insertNewClassToSystem = async (
   }
 };
 
-const InsertClassModal = (isAddingClass, setIsAddingClass) => {
+const InsertClassModal = ({ isAddingClass, setIsAddingClass }) => {
   const [subjects, setSubjects] = useState({ subjects: [], backUp: [] });
   const [searchSubject, setSearchSubject] = useState("");
   const [selectedSubject, setSelectedSubject] = useState(0);
@@ -60,9 +60,9 @@ const InsertClassModal = (isAddingClass, setIsAddingClass) => {
         }`}
       >
         <div className="admin-class-add-subject">
-          <span className="admin-class-add-subject-title">
+          <div className="admin-class-add-subject-title">
             Select a subject from the list
-          </span>
+          </div>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -189,14 +189,12 @@ const InsertClassModal = (isAddingClass, setIsAddingClass) => {
             onChange={(e) => setClassName(e.target.value)}
             className="admin-class-add-className-name"
           />
-          <div className="admin-class-add-className-btns">
-            <button className="cancel" onClick={() => setIsAddingClass(false)}>
-              Cancel
-            </button>
-            <button className="confirm" onClick={() => handleAdd()}>
-              Confirm
-            </button>
-          </div>
+          <button className="cancel" onClick={() => setIsAddingClass(false)}>
+            Cancel
+          </button>
+          <button className="confirm" onClick={() => handleAdd()}>
+            Confirm
+          </button>
         </div>
       </div>
     );

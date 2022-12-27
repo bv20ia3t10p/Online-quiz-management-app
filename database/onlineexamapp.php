@@ -863,7 +863,48 @@ if (isset($_GET['getAllClassesForAdmin'])) {
 
 if (isset($_GET['insertNewClassToSystem'])) {
     $sql = 'insert into classes (name,id_lecturer,id_subject) 
-    values ("' . $_GET['insertNewClassToSystem'] . '",' . $_GET['ids'] . ',' . $_GET['idl'] . ');';
+    values ("' . $_GET['insertNewClassToSystem'] . '",' . $_GET['idl'] . ',' . $_GET['ids'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['getAllResultsForStudent'])) {
+    $sql = 'select se.id_student_exam as id, se.id_class as cid, c.name as class,
+    s.ID as sid, s.name as subjectName,s.description as subject,round(score,2) as score
+    from student_exams se 
+    inner join classes c on se.id_class = c.id
+    inner join subjects s on c.ID_subject = s.id
+    where se.id_student=' . $_GET['getAllResultsForStudent'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['checkExamEntranceForStudent'])) {
+    $sql = 'select exists ( select * from student_exams where id_student
+     =' . $_GET['checkExamEntranceForStudent'] .
+        ' and id_class = ' . $_GET['idc'] . ' ) as entrance; ';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo json_encode(mysqli_fetch_object($result));
+}
+
+if (isset($_GET['deleteClassFromSystem'])) {
+    $sql = 'delete from classes where id = ' . $_GET['deleteClassFromSystem'];
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);

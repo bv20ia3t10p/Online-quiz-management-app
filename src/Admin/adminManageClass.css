@@ -155,11 +155,14 @@
   .admin-class-add-modal {
     /* @apply opacity-0; */
     @apply absolute;
-    @apply -z-30;
+    @apply overflow-hidden;
+    @apply z-30;
     @apply duration-700;
     @apply bg-purple-50;
     @apply grid;
-    @apply grid-cols-3;
+    @apply grid-cols-[40%_1fr];
+    @apply grid-rows-[1fr_20%];
+    @apply break-words;
     @apply gap-4;
     @apply overflow-scroll;
     @apply h-[60vh];
@@ -172,23 +175,104 @@
     @apply ml-[3vw];
     @apply mt-[8vh];
     @apply shadow-xl;
-    @apply text-sm;
+    @apply text-xs;
+    @apply p-4;
   }
   .admin-class-add-subject,
   .admin-class-add-lecturer,
-  .admin-class-add-btn{
+  .admin-class-add-btn {
     @apply h-full;
   }
+  .admin-class-add-className {
+    @apply grid;
+    @apply col-span-full;
+    @apply grid-cols-4;
+    @apply gap-8;
+  }
+  .admin-class-add-className button {
+    @apply bg-purple-500;
+    @apply text-purple-50;
+    @apply rounded-md;
+  }
+  .admin-class-add-modal .isSelected {
+    @apply bg-purple-100;
+  }
   .admin-class-add-subject-headers,
-  .admin-class-add-subject-list-single{
+  .admin-class-add-subject-list-single {
     @apply grid;
     @apply grid-cols-[repeat(2,18%)_1fr];
     @apply break-words;
     @apply items-center;
     @apply justify-center;
   }
-  .admin-class-add-subject{
-
+  .admin-class-add-subject,
+  .admin-class-add-lecturer {
+    @apply w-full;
+    @apply h-[40vh];
+  }
+  .admin-class-add-subject-list,
+  .admin-class-add-lecturer-list {
+    @apply overflow-y-scroll;
+    @apply h-[30vh];
+  }
+  .admin-class-add-lecturer-list-single,
+  .admin-class-add-lecturer-headers {
+    @apply grid;
+    @apply grid-cols-[12%_30%_20%_1fr];
+    @apply break-words;
+    @apply text-center;
+    @apply justify-center;
+    @apply items-center;
+  }
+  .admin-class-add-lecturer-search,
+  .admin-class-add-subject-search {
+    @apply w-full;
+    @apply grid;
+    @apply grid-cols-[1fr_3%];
+  }
+  .admin-class-add-lecturer-title,
+  .admin-class-add-subject-title {
+    @apply text-center;
+  }
+  .admin-class-add-modal.isHidden {
+    @apply opacity-0;
+    @apply scale-0;
+    @apply -z-30;
   }
 
+  .open_email_support {
+    @apply w-[10vh];
+    @apply h-[10vh];
+    @apply z-20;
+    @apply bg-blue-500;
+    @apply text-4xl;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply rounded-full;
+    @apply absolute;
+    @apply mt-[88vh];
+    @apply ml-[95vw];
+  }
+  .email_sp_modal {
+    @apply absolute;
+    @apply bg-blue-500;
+    @apply mt-[22vw];
+    @apply ml-[80vw];
+    @apply rounded-xl;
+    @apply p-4;
+    @apply shadow-xl;
+  }
+  .email_sp_modal input,
+  .email_sp_modal textarea {
+    @apply text-blue-900;
+  }
+  .email_sp_modal .btns {
+    @apply grid;
+    @apply grid-cols-2;
+  }
+  .email_sp_modal .btns > * {
+    @apply cursor-pointer;
+    @apply text-white;
+  }
 }

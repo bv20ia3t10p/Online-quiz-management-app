@@ -14,6 +14,20 @@ import {
   AiOutlineSmile,
   AiOutlineUser,
 } from "react-icons/ai";
+import ContactSupport from "../ContactSupport";
+
+const checkPreviousEntrance = async (phpHandler, classID, stuID) => {
+  const url =
+    phpHandler + `?checkExamEntranceForStudent=${stuID}&idc=${classID}`;
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (!data) throw new Error("Failed to check for entrance");
+    return data;
+  } catch (e) {
+    alert(e);
+  }
+};
 
 const StudentSidebar = () => {
   const {
@@ -24,17 +38,28 @@ const StudentSidebar = () => {
     setIsSelectingClass,
     setIsTakingExam,
   } = useStudentContext();
-  const { uid, isDimmed } = useGlobalContext();
+  const { uid, isDimmed, phpHandler } = useGlobalContext();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const navigateToExam = () => {
+  const navigateToExam = async () => {
     if (currentClass.ID_class) {
+      const check = await checkPreviousEntrance(
+        phpHandler,
+        currentClass.ID_class,
+        uid
+      );
+      console.log(check);
+      if (check.entrance === "1") {
+        alert("You can only attend an exam once per class");
+        return;
+      }
       setIsTakingExam(true);
       navigate("/Student/Exam");
     } else alert("Please first select a class");
   };
   return (
     <aside className={`${isDimmed ? "stu-sideBar dimmed" : "stu-sideBar"}`}>
+      <ContactSupport name={name} email={email} />
       <div className="stu-sideBar-info">
         <div className="stu-sideBar-info-singlet">
           <AiOutlineUser className="ico" />
@@ -99,13 +124,13 @@ const StudentSidebar = () => {
           {/* <AiOutlineMonitor className="ico" /> */}
           <h3 className="text">Information page</h3>
         </Link>
-        <div
-          onClick={() => setIsSelectingClass(true)}
+        <Link
+          to={`/Student/Review/`}
           className="stu-sideBar-function-container"
         >
           {/* <AiOutlinePieChart className="ico" /> */}
           <h3 className="text">Review past exams</h3>
-        </div>
+        </Link>
       </div>
     </aside>
   );

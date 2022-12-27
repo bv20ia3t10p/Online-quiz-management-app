@@ -11,6 +11,20 @@ export const fetchLecturers = async (phpHandler, setLecturers) => {
   }
 };
 
+export const deleteClassFromSystem = async (phpHandler, idClass) => {
+  const url = phpHandler + `?deleteClassFromSystem=${idClass}`;
+  console.log("del", url);
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (!data) throw new Error("Failed to delete");
+    alert("Success");
+    window.location.reload();
+  } catch (e) {
+    alert(e);
+  }
+};
+
 export const editLecturer = async (phpHandler, idClass) => {
   if (!idClass) return;
   const idl = prompt("Enter new lecturer ID for this class");

@@ -8,6 +8,7 @@ import {
 } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../setup/Context";
+import ContactSupport from "../ContactSupport";
 
 const LecSidebar = () => {
   const { isDimmed } = useGlobalContext();
@@ -18,6 +19,7 @@ const LecSidebar = () => {
   };
   return (
     <div className={`${isDimmed ? "lec-sideBar dimmed" : "lec-sideBar"}`}>
+      <ContactSupport name={name} email={email} />
       <div className="info-cards">
         <LecSideInfoCards ico={<AiOutlineUser />} text={"ID"} value={id} />
         <LecSideInfoCards ico={<AiOutlineSmile />} text={"Name"} value={name} />

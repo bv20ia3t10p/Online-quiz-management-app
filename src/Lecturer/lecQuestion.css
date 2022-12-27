@@ -301,4 +301,81 @@
     @apply duration-700;
     @apply opacity-100;
   }
+  .lec-question-manage-created-list {
+    @apply h-full;
+    @apply overflow-y-scroll;
+  }
+  .lec-question-manage-subject-description > button {
+    @apply absolute;
+    @apply mt-[4.4vh];
+    @apply text-xs;
+    @apply bg-pink-700;
+    @apply text-pink-50;
+    @apply h-[5.7vh];
+    @apply px-4;
+    @apply rounded-tl-2xl;
+    @apply ml-[8vw];
+  }
+  .lec-question-insert-file {
+    @apply duration-700;
+    @apply absolute;
+    @apply bg-purple-700;
+    @apply text-purple-50;
+    @apply w-[60vw];
+    @apply h-[60vh];
+    @apply z-20;
+    @apply ml-[12vw];
+    @apply mt-[13vh];
+    @apply overflow-y-scroll;
+    @apply p-4;
+    @apply border-purple-300;
+    @apply border-4;
+    @apply rounded-xl;
+    @apply shadow-xl;
+    @apply grid;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-sm;
+  }
+  .lec-question-insert-file > input {
+    @apply w-full;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+  }
+  .lec-question-inserted-single:first-of-type {
+    @apply mt-10;
+    @apply bg-purple-50;
+    @apply text-purple-700;
+  }
+  .lec-question-inserted-single {
+    @apply grid;
+    @apply grid-cols-5;
+    @apply w-[60vw];
+    @apply text-center;
+    @apply justify-center;
+    @apply items-center;
+    @apply break-words;
+  }
+  .lec-question-inserted-single:nth-of-type(even) {
+    @apply bg-purple-600;
+  }
+  .lec-question-insert-file .btns {
+    @apply w-full;
+    @apply grid;
+    @apply grid-cols-2;
+    @apply gap-8;
+    @apply px-24;
+  }
+  .lec-question-insert-file .btns > * {
+    @apply bg-purple-50;
+    @apply rounded-3xl;
+    @apply text-purple-700;
+  }
+  .lec-question-insert-file.isHidden {
+    @apply opacity-0;
+    @apply scale-0;
+    @apply -z-30;
+  }
 }

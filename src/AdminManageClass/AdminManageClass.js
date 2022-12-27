@@ -7,6 +7,7 @@ import {
   enrollStudent,
   unEnrollStudent,
   editLecturer,
+  deleteClassFromSystem,
 } from "./adminManageClassActions";
 import { handleSearch } from "../Admin/AdminManageExam/AdminManageExamActions";
 import {
@@ -73,12 +74,23 @@ const AdminManageClass = () => {
             <button
               className="admin-class-class-btn"
               onClick={() => {
-                editLecturer(phpHandler, classes.classes[selectedClass].id);
+                editLecturer(
+                  phpHandler,
+                  classes.classes[selectedClass].classID
+                );
               }}
             >
               <AiOutlineEdit className="icon" />
             </button>
-            <button className="admin-class-class-btn">
+            <button
+              className="admin-class-class-btn"
+              onClick={() =>
+                deleteClassFromSystem(
+                  phpHandler,
+                  classes.classes[selectedClass].classID
+                )
+              }
+            >
               <AiOutlineDelete className="icon" />
             </button>
           </div>

@@ -8,6 +8,7 @@ import {
 import { useGlobalContext } from "../../setup/Context";
 import { useLecContext } from "../LecContext";
 import LecQuestionEditModal from "./LecQuestionEditModal";
+import LecInsertQuestionThroughFile from "./LecInsertQuestionThroughFile";
 
 const getAvailableQuestionsInDb = async (
   phpHandler,
@@ -64,7 +65,7 @@ const deleteCreatedQuestions = async (
   }
 };
 
-const addNewQuestionToDB = async (
+export const addNewQuestionToDB = async (
   phpHandler,
   content,
   opt1,
@@ -110,6 +111,7 @@ const LecQuestion = () => {
   const [searchAvailable, setSearchAvailable] = useState("");
   const [searchCreated, setSearchCreated] = useState("");
   const [currentSubject, setCurrentSubject] = useState({});
+  const [isAddingThroughFile, setIsAddingThroughFile] = useState(false);
   const listSubjects = classes.map((n) => {
     return {
       subjectID: n.subjectID,
@@ -222,6 +224,13 @@ const LecQuestion = () => {
   };
   return (
     <>
+      <LecInsertQuestionThroughFile
+        lecInfo={{ id: id, subjectID: currentSubject.subjectID }}
+        isAddingThroughFile={isAddingThroughFile}
+        setIsAddingThroughFile={setIsAddingThroughFile}
+        created={created}
+        setCreated={setCreated}
+      />
       {created[0] && (
         <LecQuestionEditModal
           question={created[selected]}
@@ -252,6 +261,9 @@ const LecQuestion = () => {
             <span className="lec-question-manage-subject-description-description">
               {currentSubject.description}
             </span>
+            <button onClick={() => setIsAddingThroughFile(true)}>
+              Insert through file
+            </button>
           </div>
         </div>
         <div className="lec-question-manage-created-btns">
