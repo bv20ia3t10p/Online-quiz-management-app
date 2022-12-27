@@ -52,9 +52,9 @@ export const editAnswer = async (phpHandler, type, payload) => {
       break;
     }
     case "Delete": {
-      const { idStudentAnswer } = payload;
-      if (!idStudentAnswer) return;
-      url += `?deleteStudentAnswer=${idStudentAnswer}`;
+      const { idStudentExam, idQuestion } = payload;
+      if (!idStudentExam || !idQuestion) return;
+      url += `?deleteStudentAnswer=${idStudentExam}&idq=${idQuestion}`;
       break;
     }
     case "Insert": {

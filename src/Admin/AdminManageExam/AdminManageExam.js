@@ -16,6 +16,7 @@ import {
   editScoreChangeLog,
 } from "./AdminManageExamActions";
 import InsertNewExamModal from "./InsertNewExamModal";
+import AdminInsertNewAnswer from "./AdminInsertNewAnswer";
 
 const AdminManageExam = () => {
   const [isInsertingExam, setIsInsertingExam] = useState(false);
@@ -36,6 +37,7 @@ const AdminManageExam = () => {
   const [searchStudentAnswer, setSearchStudentAnswer] = useState("");
   const [selectedAnswer, setSelectedAnswer] = useState(0);
   const [selectedChange, setSelectedChange] = useState(0);
+  const [isInsertingAnswer, setIsInsertingAnswer] = useState(false);
   useEffect(() => {
     if (isLoading) {
       getAllStudentExams(phpHandler, setStudentExams);
@@ -62,6 +64,18 @@ const AdminManageExam = () => {
         isInsertingExam={isInsertingExam}
         setIsInsertingExam={setIsInsertingExam}
       />
+      {studentExams.stuExams[selected] && (
+        <AdminInsertNewAnswer
+          isAddingAnswer={isInsertingAnswer}
+          setIsAddingAnswer={setIsInsertingAnswer}
+          answers={answers}
+          setAnswers={setAnswers}
+          idExam={studentExams.stuExams[selected].id_exam}
+          idClass={studentExams.stuExams[selected].id_class}
+          idStudent={studentExams.stuExams[selected].id_student}
+          idStudentExam={studentExams.stuExams[selected].id_student_exam}
+        />
+      )}
       <div className="admin-manage-exam">
         <div className="admin-manage-exam-exam">
           <span className="admin-manage-exam-exam-title">
@@ -167,7 +181,10 @@ const AdminManageExam = () => {
             List of answers for current exam
           </span>
           <div className="admin-manage-exam-answers-btns">
-            <span className="admin-manage-exam-answers-btn">
+            <span
+              className="admin-manage-exam-answers-btn"
+              onClick={() => setIsInsertingAnswer(true)}
+            >
               <AiOutlinePlus className="icon" />
             </span>
             <span
@@ -184,7 +201,9 @@ const AdminManageExam = () => {
               className="admin-manage-exam-answers-btn"
               onClick={() =>
                 editAnswer(phpHandler, "Delete", {
-                  idStudentAnswer: answers.stuAnswers[selectedAnswer],
+                  idStudentExam:
+                    studentExams.stuExams[selected].id_student_exam,
+                  idQuestion: answers.stuAnswers[selectedAnswer].id,
                 })
               }
             >

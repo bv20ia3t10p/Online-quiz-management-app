@@ -152,7 +152,7 @@
     @apply grid;
     @apply grid-cols-2;
     @apply grid-rows-[1fr_40%];
-    @apply gap-4;
+    @apply gap-x-4;
   }
   .admin-manage-exam-answers {
     @apply row-span-2;
@@ -296,5 +296,86 @@
   }
   .admin-manage-exam .isSelected {
     background: var(--dim);
+  }
+  .admin-manage-exam-insert-new-answer {
+    @apply duration-700;
+    @apply z-10;
+    @apply absolute;
+    @apply w-[70vw];
+    @apply h-[70vh];
+    @apply bg-purple-50;
+    @apply ml-[6vw];
+    @apply mt-[10vh];
+    /* @apply p-2; */
+    @apply grid;
+    @apply grid-rows-[1fr_20%];
+    /* @apply gap-4; */
+    @apply border-purple-700;
+    @apply border-2;
+    @apply shadow-xl;
+    @apply rounded-xl;
+  }
+  .admin-manage-exam-insert-new-answer-questions-title {
+    @apply text-center;
+    @apply tracking-wider;
+    @apply font-semibold;
+    @apply text-purple-800;
+  }
+  .admin-manage-exam-insert-new-answer-questions {
+    @apply grid;
+    @apply grid-rows-[repeat(2,8%)_1fr];
+  }
+  .admin-manage-exam-insert-new-answer-questions-headers {
+    @apply px-4;
+    @apply bg-purple-800;
+    @apply text-purple-50;
+  }
+  .admin-manage-exam-insert-new-answer-questions-list-single,
+  .admin-manage-exam-insert-new-answer-questions-headers {
+    @apply grid;
+    @apply text-center;
+    @apply grid-cols-[10%_1fr_repeat(4,12%)_repeat(2,4%)];
+    @apply text-xs;
+    @apply items-center;
+    @apply justify-center;
+    @apply px-4;
+    @apply break-words;
+  }
+  .admin-manage-exam-insert-new-answer-questions-list {
+    @apply h-[50vh];
+    @apply overflow-y-scroll;
+    @apply border-b-2;
+    @apply border-purple-700;
+  }
+  .admin-manage-exam-insert-new-answer-btns {
+    @apply grid;
+    @apply grid-cols-4;
+    @apply gap-4;
+    @apply px-4;
+    @apply items-center;
+    @apply text-sm;
+    @apply justify-center;
+    @apply text-center;
+    @apply h-full;
+  }
+  .admin-manage-exam-insert-new-answer-btns > * {
+    @apply bg-purple-800;
+    @apply text-purple-50;
+    @apply rounded-md;
+    @apply mx-4;
+    @apply overflow-hidden;
+    @apply text-center;
+  }
+  .admin-manage-exam-insert-new-answer-btns label {
+    @apply bg-purple-50;
+    @apply text-purple-800;
+  }
+  .admin-manage-exam-insert-new-answer .isSelected {
+    @apply bg-purple-100;
+  }
+  .admin-manage-exam-insert-new-answer.isHidden {
+    @apply opacity-0;
+    @apply -z-10;
+    @apply scale-0;
   }
 }

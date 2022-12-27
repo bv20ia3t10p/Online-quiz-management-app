@@ -527,8 +527,7 @@ if (isset($_GET['adjustExamScoreFor'])) {
     echo $result;
 }
 if (isset($_GET['getAdminInfo'])) {
-    $sql = 'select * from admins where id = ' . $_GET{
-        'getAdminInfo'};
+    $sql = 'select * from admins where id = ' . $_GET['getAdminInfo'];
     $result = mysqli_query($con, $sql);
     if (!$result) {
         http_response_code(404);
@@ -769,6 +768,97 @@ if (isset($_GET['editScoreChangeLogFor'])) {
         die(mysqli_error($con));
     }
     echo $result;
+}
+
+if (isset($_GET['deleteStudentAnswer'])) {
+    $sql = 'delete from student_answer where id_student_exam=' . $_GET['deleteStudentAnswer'] . ' and id_question =' . $_GET['idq'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['getAllLecturers'])) {
+    $sql = 'select id,name,phone,email from lecturers';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getAllSubjects'])) {
+    $sql = 'select id,name,description from subjects';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getAllStudentsInClass'])) {
+    $sql = 'select s.id,s.name,phone,email 
+    from enrollment e 
+    inner join students s on s.id = e.id_student 
+    where id_class=' . $_GET['getAllStudentsInClass'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getAllStudentsNotInClass'])) {
+    $sql = 'select s.id,s.name,phone,email 
+    from students s
+    where s.id not in (
+    select id_student from enrollment e2 
+    where e2.id_class =' . $_GET['getAllStudentsNotInClass'] . ')';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
+if (isset($_GET['getAllClassesForAdmin'])) {
+    $sql = 'select c.id as classID, c.name as className, 
+    id_lecturer as lecID,l.name as lecName, 
+    id_subject as subID, s.name as subName, 
+    s.description as subDesc
+    from classes c left join lecturers l on l.id = c.ID_lecturer
+    left join subjects s on s.id = c.ID_subject;';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
 }
 
 $con->close();
