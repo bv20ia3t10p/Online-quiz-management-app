@@ -793,7 +793,7 @@ if (isset($_GET['getAllLecturers'])) {
     if (!$id) echo ']';
 }
 
-if (isset($_GET['getAllSubjects'])) {
+if (isset($_GET['getAllSubjectsForAdmin'])) {
     $sql = 'select id,name,description from subjects';
     $result = mysqli_query($con, $sql);
     if (!$result) {
@@ -859,6 +859,17 @@ if (isset($_GET['getAllClassesForAdmin'])) {
         echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
     }
     if (!$id) echo ']';
+}
+
+if (isset($_GET['insertNewClassToSystem'])) {
+    $sql = 'insert into classes (name,id_lecturer,id_subject) 
+    values ("' . $_GET['insertNewClassToSystem'] . '",' . $_GET['ids'] . ',' . $_GET['idl'] . ');';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
 }
 
 $con->close();

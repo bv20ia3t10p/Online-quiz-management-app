@@ -46,7 +46,7 @@
   .admin-class-class-headers {
     @apply grid;
     @apply text-xs;
-    @apply grid-cols-[10%_20%_8%_15%_5%_10%_1fr];
+    @apply grid-cols-[10%_20%_8%_15%_8%_10%_1fr];
     @apply break-words;
     @apply px-2;
     @apply text-center;
@@ -149,6 +149,18 @@
   .admin-class-remove {
     @apply text-center;
     @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-class-add-modal {
+    @apply absolute;
+    @apply z-30;
+    @apply duration-700;
+    @apply bg-rose-50;
+    @apply grid;
+    @apply grid-cols-3;
+    @apply overflow-scroll;
+    @apply h-[60vh];
     @apply items-center;
     @apply justify-center;
   }

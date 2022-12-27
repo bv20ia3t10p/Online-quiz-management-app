@@ -6,6 +6,7 @@ import {
   fetchStudentsNotInClass,
   enrollStudent,
   unEnrollStudent,
+  editLecturer,
 } from "./adminManageClassActions";
 import { handleSearch } from "../Admin/AdminManageExam/AdminManageExamActions";
 import {
@@ -16,6 +17,7 @@ import {
   AiOutlineSearch,
   AiOutlineUp,
 } from "react-icons/ai";
+import InsertClassModal from "./InsertClassModal";
 
 const AdminManageClass = () => {
   const [classes, setClasses] = useState({ classes: [], backUp: [] });
@@ -27,7 +29,6 @@ const AdminManageClass = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedClass, setSelectedClass] = useState(0);
   const [isAddingClass, setIsAddingClass] = useState(false);
-  const [isEditingClass, setIsEditingClass] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(0);
   const [selectedNotInStudent, setSelectedNotInStudent] = useState(0);
   const [searchClass, setSearchClass] = useState("");
@@ -58,11 +59,23 @@ const AdminManageClass = () => {
     return (
       <div className="admin-class">
         <div className="admin-class-class">
+          <InsertClassModal
+            isAddingClass={isAddingClass}
+            setIsAddingClass={setIsAddingClass}
+          />
           <div className="admin-class-class-btns">
-            <button className="admin-class-class-btn">
+            <button
+              className="admin-class-class-btn"
+              onClick={() => setIsAddingClass(true)}
+            >
               <AiOutlinePlus className="icon" />
             </button>
-            <button className="admin-class-class-btn">
+            <button
+              className="admin-class-class-btn"
+              onClick={() => {
+                editLecturer(phpHandler, classes.classes[selectedClass].id);
+              }}
+            >
               <AiOutlineEdit className="icon" />
             </button>
             <button className="admin-class-class-btn">

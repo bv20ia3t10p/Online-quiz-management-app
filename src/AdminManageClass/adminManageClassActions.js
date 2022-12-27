@@ -11,8 +11,23 @@ export const fetchLecturers = async (phpHandler, setLecturers) => {
   }
 };
 
+export const editLecturer = async (phpHandler, idClass) => {
+  if (!idClass) return;
+  const idl = prompt("Enter new lecturer ID for this class");
+  const url = phpHandler + `?editLecturerForClass=${idClass}&idl=${idl}`;
+  try {
+    const resp = await fetch(url);
+    const data = await resp.json();
+    if (!data) throw new Error("Failed to edit");
+    alert("Success");
+    window.location.reload();
+  } catch (e) {
+    alert(e);
+  }
+};
+
 export const fetchSubjects = async (phpHandler, setSubjects) => {
-  const url = phpHandler + `?getAllSubjects`;
+  const url = phpHandler + `?getAllSubjectsForAdmin`;
   console.log("sub", url);
   try {
     const resp = await fetch(url);
