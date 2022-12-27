@@ -83,7 +83,15 @@ const InsertClassModal = (isAddingClass, setIsAddingClass) => {
               <AiOutlineSearch className="icon" />
             </button>
           </form>
-          <div className="admin-class-add-subject-headers"></div>
+          <div className="admin-class-add-subject-headers">
+            {["ID", "Name", "Description"].map((n, index) => {
+              return (
+                <span className="admin-class-add-subject-header" key={index}>
+                  {n}
+                </span>
+              );
+            })}
+          </div>
           <div className="admin-class-add-subject-list">
             {subjects.subjects.map((n, index) => {
               return (
@@ -135,7 +143,15 @@ const InsertClassModal = (isAddingClass, setIsAddingClass) => {
               <AiOutlineSearch className="icon" />
             </button>
           </form>
-          <div className="admin-class-add-lecturer-headers"></div>
+          <div className="admin-class-add-lecturer-headers">
+            {["ID", "Name", "Phone", "Email"].map((n, index) => {
+              return (
+                <span key={index} className="admin-class-add-lecturer-header">
+                  {n}
+                </span>
+              );
+            })}
+          </div>
           <div className="admin-class-add-lecturer-list">
             {lecturers.lecturers.map((n, index) => {
               return (

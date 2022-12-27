@@ -153,15 +153,42 @@
     @apply justify-center;
   }
   .admin-class-add-modal {
+    /* @apply opacity-0; */
     @apply absolute;
-    @apply z-30;
+    @apply -z-30;
     @apply duration-700;
-    @apply bg-rose-50;
+    @apply bg-purple-50;
     @apply grid;
     @apply grid-cols-3;
+    @apply gap-4;
     @apply overflow-scroll;
     @apply h-[60vh];
     @apply items-center;
     @apply justify-center;
+    @apply border-purple-800;
+    @apply border-2;
+    @apply rounded-md;
+    @apply w-[70vw];
+    @apply ml-[3vw];
+    @apply mt-[8vh];
+    @apply shadow-xl;
+    @apply text-sm;
   }
+  .admin-class-add-subject,
+  .admin-class-add-lecturer,
+  .admin-class-add-btn{
+    @apply h-full;
+  }
+  .admin-class-add-subject-headers,
+  .admin-class-add-subject-list-single{
+    @apply grid;
+    @apply grid-cols-[repeat(2,18%)_1fr];
+    @apply break-words;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-class-add-subject{
+
+  }
+
 }
