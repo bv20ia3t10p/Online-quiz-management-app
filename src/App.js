@@ -38,6 +38,7 @@ import "./Admin/adminManageExam.css";
 import AdminManageClass from "./AdminManageClass/AdminManageClass";
 import "./Admin/adminManageClass.css";
 import StuReview from "./Student/StuReview.js";
+import AdminManageSubject from "./Admin/AdminManageSubject";
 
 const app = () => {
   return (
@@ -192,6 +193,14 @@ const app = () => {
               element={
                 <AdminPage>
                   <AdminManageClass />
+                </AdminPage>
+              }
+            />
+            <Route
+              path="Subjects"
+              element={
+                <AdminPage>
+                  <AdminManageSubject />
                 </AdminPage>
               }
             />

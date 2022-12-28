@@ -913,4 +913,52 @@ if (isset($_GET['deleteClassFromSystem'])) {
     echo $result;
 }
 
+if (isset($_GET['insertNewSubjectToDB'])) {
+    $sql = 'insert into subjects (name,description) 
+    values("' . $_GET['insertNewSubjectToDB'] . '","' . $_GET['des'] . '")';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['editSubjectValues'])) {
+    $sql = 'update subjects 
+    set description = "' . $_GET['desc'] . '" , name ="' . $_GET['name'] . '" where id =' . $_GET['editSubjectValues'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+
+if (isset($_GET['editSubjectDescription'])) {
+    $sql = 'update subjects set description = "' . $_GET['editSubjectDescription'] . '" where id =' . $_GET['ids'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['editSubjectName'])) {
+    $sql = 'update subjects set name = "' . $_GET['editSubjectName'] . '" where id =' . $_GET['ids'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
+if (isset($_GET['deleteSubjectFromDB'])) {
+    $sql = 'delete from subjects where id=' . $_GET['deleteSubjectFromDB'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo $result;
+}
 $con->close();

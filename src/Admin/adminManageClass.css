@@ -275,4 +275,72 @@
     @apply cursor-pointer;
     @apply text-white;
   }
+  .admin-manage-subject-btns{
+    @apply absolute;
+  }
+  .admin-manage-subject-title{
+    @apply text-center;
+    @apply text-2xl;
+    @apply font-semibold;
+    @apply tracking-widest;
+    @apply text-rose-700;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+
+  }
+  .admin-manage-subject-search{
+    @apply w-full;
+    @apply grid;
+    @apply grid-cols-[1fr_5%];
+  }
+  .admin-manage-subject-search-btn{
+    @apply text-3xl;
+    @apply flex;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .admin-manage-subject-search,.admin-manage-subject-headers{
+
+  }
+  .admin-manage-subject{
+    @apply m-4;
+    @apply bg-rose-50;
+    @apply rounded-md;
+    @apply grid;
+    @apply grid-rows-[repeat(3,10%)_1fr];
+    @apply h-[85vh];
+  }
+  .admin-manage-subject-headers,.admin-manage-subject-search{
+    @apply bg-rose-700;
+    @apply text-rose-50;
+    @apply text-lg;
+  }
+  .admin-manage-subject .isSelected{
+    @apply bg-rose-300;
+  }
+  .admin-manage-subject-btns{
+    @apply bg-rose-700;
+    @apply ml-[70.8vw];
+    @apply h-[8.6vh];
+    @apply flex;
+    @apply w-[10vw];
+    @apply text-3xl;
+    @apply text-rose-50;
+    @apply grid;
+    @apply grid-cols-3;
+    @apply justify-center;
+    @apply items-center;
+    @apply rounded-tr-md;
+
+  }
+  .admin-manage-subject-headers,
+  .admin-manage-subject-single{
+    @apply grid;
+    @apply grid-cols-4;
+    @apply items-center;
+    @apply justify-center;
+    @apply text-center;
+    @apply break-words;
+  }
 }
