@@ -961,4 +961,13 @@ if (isset($_GET['deleteSubjectFromDB'])) {
     }
     echo $result;
 }
+if (isset($_GET['getOldPasswordForUser'])){
+    $sql = 'select password from users where id = '.$_GET['getOldPasswordForUser'];
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo json_encode(mysqli_fetch_object($result));
+}
 $con->close();

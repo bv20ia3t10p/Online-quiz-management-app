@@ -61,6 +61,9 @@ const editSubject = async (phpHandler, idSubject) => {
 const deleteSubject = async (phpHandler, idSubject) => {
   const url = phpHandler + `?deleteSubjectFromDB=${idSubject}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete");
@@ -144,11 +147,10 @@ const AdminManageSubject = () => {
               <div
                 onClick={() => setSelected(index)}
                 key={index}
-                className={`${
-                  index === selected
-                    ? "admin-manage-subject-single isSelected"
-                    : "admin-manage-subject-single"
-                }`}
+                className={`${index === selected
+                  ? "admin-manage-subject-single isSelected"
+                  : "admin-manage-subject-single"
+                  }`}
               >
                 {Object.values(n).map((n2, index2) => {
                   return (

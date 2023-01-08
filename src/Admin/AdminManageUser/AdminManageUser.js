@@ -36,10 +36,14 @@ const deleteUserOffDB = async (
 ) => {
   const url = phpHandler + `?deleteUserOffDB=${userToDelete}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete user");
     const newUsers = users.filter((n) => n.id !== userToDelete);
+    alert('Delete success')
     setUsers(newUsers);
     setBackUp({ isBackedUp: true, users: newUsers });
   } catch (e) {
@@ -170,11 +174,10 @@ const AdminManageUser = () => {
               return (
                 <div
                   key={index}
-                  className={`${
-                    index === selected
-                      ? "admin-manage-user-list-singlet isSelected"
-                      : "admin-manage-user-list-singlet"
-                  }`}
+                  className={`${index === selected
+                    ? "admin-manage-user-list-singlet isSelected"
+                    : "admin-manage-user-list-singlet"
+                    }`}
                   onClick={() => setSelected(index)}
                 >
                   {Object.values(n).map((n2, index2) => {

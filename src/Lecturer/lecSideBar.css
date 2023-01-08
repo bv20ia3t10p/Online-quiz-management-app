@@ -50,7 +50,7 @@
   }
   .lec-sideBar .functions {
     @apply grid;
-    @apply grid-rows-5;
+    @apply grid-rows-4;
     @apply h-full;
     @apply text-center;
   }

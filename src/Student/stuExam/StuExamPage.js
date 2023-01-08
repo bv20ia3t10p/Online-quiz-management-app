@@ -57,13 +57,12 @@ const StuExamPage = () => {
             {examContent.map((n, index) => {
               return (
                 <span
-                  className={`${
-                    answers.find(
-                      (n) => n.idQuestion === examContent[index].id_question
-                    )
-                      ? "answered"
-                      : ""
-                  } ${index === currentQuestion ? "isActive" : ""}`}
+                  className={`${answers.find(
+                    (n) => n.idQuestion === examContent[index].id_question
+                  )
+                    ? "answered"
+                    : ""
+                    } ${index === currentQuestion ? "isActive" : ""}`}
                   key={index}
                   onClick={() => {
                     setCurrentQuestion(index);
@@ -77,12 +76,21 @@ const StuExamPage = () => {
           </div>
           <button
             onClick={() => {
+              if (answers.length < examContent.length) {
+                const conf = window.confirm('There are still unanswered questions, are you sure to submit all?');
+                if (!conf) return;
+              }
+              else {
+                const conf = window.confirm('Are you sure to submit all answers and finish?');
+                if (!conf) return;
+              }
               handleSubmit(
                 answers,
                 examContent[0].id_exam,
                 currentClass.ID_class,
                 ID,
                 phpHandler
+                // examContent
               );
               setIsTakingExam(false);
               setExamContent([]);
@@ -95,15 +103,13 @@ const StuExamPage = () => {
         {examContent.map((n, index) => {
           return (
             <div
-              className={`${
-                index === currentQuestion
-                  ? "exam-question"
-                  : "exam-question isHidden"
-              } ${
-                index < currentQuestion
+              className={`${index === currentQuestion
+                ? "exam-question"
+                : "exam-question isHidden"
+                } ${index < currentQuestion
                   ? "left"
                   : `${index !== currentQuestion ? "right" : ""}`
-              }`}
+                }`}
               key={index}
             >
               {Object.values(n).map((n, index) => {
@@ -117,9 +123,8 @@ const StuExamPage = () => {
                 else
                   return (
                     <div
-                      className={`${
-                        index === selected ? `answer selected-answer` : "answer"
-                      }`}
+                      className={`${index === selected ? `answer selected-answer` : "answer"
+                        }`}
                       key={index}
                       onClick={() => {
                         setSelected(index);

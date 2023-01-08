@@ -55,11 +55,6 @@ const LecSidebar = () => {
           action={toFunction}
           params={`/Lecturer/Results`}
         />
-        <LecSideFunc
-          text={"Analyse data"}
-          action={toFunction}
-          params={`/Lecturer/Analysis`}
-        />
       </div>
     </div>
   );

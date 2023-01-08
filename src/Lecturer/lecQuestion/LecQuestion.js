@@ -56,10 +56,14 @@ const deleteCreatedQuestions = async (
 ) => {
   const url = phpHandler + `?deleteQuestionCreatedByLecturer=${questionID}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete question");
     setCreated(created.filter((n) => n.questionID !== questionID));
+    alert('Delete success')
   } catch (e) {
     alert(e);
   }
@@ -312,11 +316,10 @@ const LecQuestion = () => {
               return (
                 <div
                   key={index}
-                  className={`${
-                    index === selected
-                      ? "lec-question-manage-created-singlet isSelected"
-                      : "lec-question-manage-created-singlet"
-                  }`}
+                  className={`${index === selected
+                    ? "lec-question-manage-created-singlet isSelected"
+                    : "lec-question-manage-created-singlet"
+                    }`}
                   onClick={() => setSelected(index)}
                 >
                   {Object.values(n).map((n2, index2) => {
@@ -401,11 +404,10 @@ const LecQuestion = () => {
           (This can be changed later in the top right panel)"
           />
           <div
-            className={`${
-              newQuestion.correct === 1
-                ? "lec-question-manage-create-option isCorrect"
-                : "lec-question-manage-create-option"
-            }`}
+            className={`${newQuestion.correct === 1
+              ? "lec-question-manage-create-option isCorrect"
+              : "lec-question-manage-create-option"
+              }`}
           >
             <textarea
               className="lec-question-manage-create-option-input"
@@ -421,11 +423,10 @@ const LecQuestion = () => {
           </div>
           <div className="lec-question-manage-create-option">
             <textarea
-              className={`${
-                newQuestion.correct === 2
-                  ? "lec-question-manage-create-option isCorrect"
-                  : "lec-question-manage-create-option"
-              }`}
+              className={`${newQuestion.correct === 2
+                ? "lec-question-manage-create-option isCorrect"
+                : "lec-question-manage-create-option"
+                }`}
               value={newQuestion.opt2}
               onChange={(e) =>
                 setNewQuestion({ ...newQuestion, opt2: e.target.value })
@@ -438,11 +439,10 @@ const LecQuestion = () => {
           </div>
           <div className="lec-question-manage-create-option">
             <textarea
-              className={`${
-                newQuestion.correct === 3
-                  ? "lec-question-manage-create-option isCorrect"
-                  : "lec-question-manage-create-option"
-              }`}
+              className={`${newQuestion.correct === 3
+                ? "lec-question-manage-create-option isCorrect"
+                : "lec-question-manage-create-option"
+                }`}
               value={newQuestion.opt3}
               onChange={(e) =>
                 setNewQuestion({ ...newQuestion, opt3: e.target.value })
@@ -455,11 +455,10 @@ const LecQuestion = () => {
           </div>
           <div className="lec-question-manage-create-option">
             <textarea
-              className={`${
-                newQuestion.correct === 4
-                  ? "lec-question-manage-create-option isCorrect"
-                  : "lec-question-manage-create-option"
-              }`}
+              className={`${newQuestion.correct === 4
+                ? "lec-question-manage-create-option isCorrect"
+                : "lec-question-manage-create-option"
+                }`}
               value={newQuestion.opt4}
               onChange={(e) =>
                 setNewQuestion({ ...newQuestion, opt4: e.target.value })

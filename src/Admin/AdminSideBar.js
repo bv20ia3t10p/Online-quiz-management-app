@@ -51,10 +51,6 @@ const AdminSideBar = () => {
           label="Manage subjects"
           action={() => navigateToFunc("/Admin/Subjects")}
         />
-        <AdminSideBarFunction
-          label="Analyse data"
-          action={() => navigateToFunc("/Admin/Stats")}
-        />
       </div>
     </div>
   );

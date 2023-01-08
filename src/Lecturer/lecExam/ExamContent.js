@@ -50,6 +50,9 @@ const deleteQuestionsFromExam = async (
     phpHandler +
     `?deleteQuestionFromExam=${idExam}&questionToDelete=${assignedQuestions[selectedAssign].id}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete this question from the exam");
@@ -234,11 +237,10 @@ const ExamContent = () => {
             {assignedQuestions.map((n, index) => {
               return (
                 <div
-                  className={`${
-                    index === selectedAssign
-                      ? "lec-exam-content-list-value isSelected"
-                      : "lec-exam-content-list-value"
-                  }`}
+                  className={`${index === selectedAssign
+                    ? "lec-exam-content-list-value isSelected"
+                    : "lec-exam-content-list-value"
+                    }`}
                   key={index}
                   onClick={() => setSelectedAssign(index)}
                 >
@@ -298,11 +300,10 @@ const ExamContent = () => {
             {questions.map((n, index) => {
               return (
                 <div
-                  className={`${
-                    index === selectedAvailable
-                      ? "lec-exam-content-list-value isSelected"
-                      : "lec-exam-content-list-value"
-                  }`}
+                  className={`${index === selectedAvailable
+                    ? "lec-exam-content-list-value isSelected"
+                    : "lec-exam-content-list-value"
+                    }`}
                   key={index}
                   onClick={() => setSelectedAvailable(index)}
                 >

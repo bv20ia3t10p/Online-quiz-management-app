@@ -8,6 +8,9 @@ import { useParams } from "react-router-dom";
 const deleteFromEnrollment = async (url) => {
   try {
     console.log(url);
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Delete failed");

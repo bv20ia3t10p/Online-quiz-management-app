@@ -26,21 +26,26 @@ const deleteExamAssign = async (
   phpHandler,
   idClass,
   idExam,
-  setExamAssigns,
+  // setExamAssigns,
   examAssigns,
-  setBackUp,
-  backUp
+  // setBackUp,
+  // backUp
 ) => {
   const url = phpHandler + `?deleteExamAssign=${idClass}&idexam=${idExam}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (data) {
-      const newAssigns = examAssigns.filter(
-        (n) => n.classID !== idClass && n.id_exam !== idExam
-      );
-      setExamAssigns(newAssigns);
-      setBackUp({ ...backUp, examAssigns: newAssigns });
+      // const newAssigns = examAssigns.filter(
+      //   (n) => n.classID !== idClass && n.id_exam !== idExam
+      // );
+      // setExamAssigns(newAssigns);
+      // setBackUp({ ...backUp, examAssigns: newAssigns });
+      alert('Delete successfully');
+      window.location.reload();
     } else throw new Error("Delete failed");
   } catch (e) {
     alert(e);
@@ -57,12 +62,16 @@ const deleteCreatedExams = async (
 ) => {
   const url = phpHandler + `?deleteCreatedExam=${idExam}`;
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (data) {
       const newCreateds = createdExams.filter((n) => n.ID !== idExam);
       setCreatedExams(newCreateds);
       setBackUp({ ...backUp, createdExams: newCreateds });
+      alert('Delete successfully')
       window.location.reload(true);
     } else throw new Error("Delete failed");
   } catch (e) {
@@ -228,11 +237,10 @@ const LecExamList = ({ phpHandler, classes }) => {
             {examAssigns.map((n, index) => (
               <div
                 key={index}
-                className={`${
-                  index === selectedAssign
-                    ? "exam-assign-item isSelected"
-                    : "exam-assign-item"
-                }`}
+                className={`${index === selectedAssign
+                  ? "exam-assign-item isSelected"
+                  : "exam-assign-item"
+                  }`}
                 onClick={() => setSelectedAssign(index)}
               >
                 {Object.values(n).map((n2, index2) => (
@@ -286,11 +294,10 @@ const LecExamList = ({ phpHandler, classes }) => {
             {createdExams.map((n, index) => (
               <div
                 key={index}
-                className={`${
-                  index === selectedCreated
-                    ? "created-exam isSelected"
-                    : "created-exam"
-                }`}
+                className={`${index === selectedCreated
+                  ? "created-exam isSelected"
+                  : "created-exam"
+                  }`}
                 onClick={() => setSelectedCreated(index)}
                 onDoubleClick={() => navigateToContent(n.examId)}
               >

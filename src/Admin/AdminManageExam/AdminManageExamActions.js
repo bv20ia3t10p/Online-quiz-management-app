@@ -21,6 +21,8 @@ export const editStudentExams = async (phpHandler, type, payload) => {
       break;
     }
     case "Delete": {
+      const conf = window.confirm('Are you sure to delete?');
+      if (!conf) return;
       url += `?deleteStudentExam=${payload.id_student_exam}`;
       break;
     }
@@ -52,6 +54,9 @@ export const editAnswer = async (phpHandler, type, payload) => {
       break;
     }
     case "Delete": {
+      const conf = window.confirm('Are you sure to delete?');
+      if (!conf) return;
+      // if (!conf) throw new Error('Delete canceled');
       const { idStudentExam, idQuestion } = payload;
       if (!idStudentExam || !idQuestion) return;
       url += `?deleteStudentAnswer=${idStudentExam}&idq=${idQuestion}`;
@@ -152,6 +157,9 @@ export const editScoreChangeLog = async (phpHandler, { type, payload }) => {
       break;
     }
     case "Delete": {
+      const conf = window.confirm('Are you sure to delete?');
+      if (!conf) return;
+      // if (!conf) throw new Error('Delete canceled');
       if (!payload.idScoreChangeLog) return;
       url += `?deleteScoreChangeLogFor=${payload.id}&toDelete=${payload.idScoreChangeLog}`;
       break;

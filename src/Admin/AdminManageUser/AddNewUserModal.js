@@ -27,6 +27,17 @@ const addNewUserToDB = async (
   }
   prep += `password="${fields.password}"&phone="${fields.phone}"&email="${fields.email}"`;
   const url = encodeURI(prep);
+  if (!fields.email.match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  )) {
+    alert('Invalid email address');
+    return;
+  }
+  if (!/^\d+$/.test(fields.phone)) {
+    alert('Invalid phone number');
+    return;
+  }
+
   try {
     const resp = await fetch(url);
     const data = await resp.json();
@@ -53,11 +64,10 @@ const AddNewUserModal = ({ isAdding, setIsAdding }) => {
   };
   return (
     <div
-      className={`${
-        isAdding
-          ? "admin-manage-user-add-new"
-          : "admin-manage-user-add-new isHidden"
-      }`}
+      className={`${isAdding
+        ? "admin-manage-user-add-new"
+        : "admin-manage-user-add-new isHidden"
+        }`}
     >
       <div className="admin-manage-user-add-new-field">
         <label htmlFor="role">Role</label>

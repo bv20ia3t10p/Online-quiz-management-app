@@ -5,6 +5,20 @@ import { useGlobalContext } from "../setup/Context";
 import { fetchAdminInfo } from "./AdminContext";
 const handleInfoChange = async (field, phpHandler, aid) => {
   const newVal = prompt("Enter new value");
+  if (field === 'email') {
+    if (!newVal.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )) {
+      alert('Invalid email address');
+      return;
+    }
+  }
+  if (field === 'phone') {
+    if (!/^\d+$/.test(newVal)) {
+      alert('Invalid phone number');
+      return;
+    }
+  }
   const encoded = encodeURI(newVal);
   const url = phpHandler + `?updFieldAdm=${field}&newVal=${encoded}&aid=${aid}`;
   console.log(url);

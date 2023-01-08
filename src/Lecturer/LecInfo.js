@@ -6,7 +6,21 @@ import { fetchLecInfo } from "./LecContext";
 import AdminEditPasswordModal from "../Admin/AdminManageUser/AdminEditPasswordModal";
 
 const handleInfoChange = async (field, phpHandler, lid) => {
-  const newVal = prompt("Enter new value");
+  const newVal = prompt("Enter new value").toString();
+  if (field === 'email') {
+    if (!newVal.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )) {
+      alert('Invalid email address');
+      return;
+    }
+  }
+  if (field === 'phone') {
+    if (!/^\d+$/.test(newVal)) {
+      alert('Invalid phone number');
+      return;
+    }
+  }
   const encoded = encodeURI(newVal);
   const url = phpHandler + `?updFieldLec=${field}&newVal=${encoded}&lid=${lid}`;
   console.log(url);

@@ -21,7 +21,8 @@ export const handleSubmit = async (
   idExam,
   idClass,
   idStudent,
-  phpHandler
+  phpHandler,
+  // questions
 ) => {
   localStorage.removeItem("questionList");
   const url =

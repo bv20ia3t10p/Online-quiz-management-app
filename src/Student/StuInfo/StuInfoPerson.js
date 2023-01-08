@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGlobalContext } from "../../setup/Context";
 
-const commitUpdate = async (phpHandler, sid, field, newVal) => {
+const commitUpdate = async (phpHandler, sid, field, newVal, setState, state) => {
+  if (field === 'email') {
+    if (!newVal.match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )) {
+      alert('Invalid email address');
+      return;
+    }
+  }
+  if (field === 'phone') {
+    if (!/^\d+$/.test(newVal)) {
+      alert('Invalid phone number');
+      return;
+    }
+  }
   const encoded = encodeURI(newVal);
   const url = phpHandler + `?updFieldStu=${field}&newVal=${encoded}&sid=${sid}`;
+  console.log(field);
   const data = await fetch(url);
   await data.json();
+  setState({ ...state, [`${field}`]: newVal })
 };
 
 const StuInfoPersonDetail = (props) => {
@@ -26,6 +42,7 @@ const EditingField = (props) => {
     setState,
   } = props;
   const { phpHandler } = useGlobalContext();
+  const [newVal, setNewVal] = useState(value);
   const name = Object.keys(state)[index];
   const handleEdit = () => {
     isEditable[index] &&
@@ -35,7 +52,7 @@ const EditingField = (props) => {
           return n;
         })
       );
-    commitUpdate(phpHandler, state[`ID`], name, state[`${name}`]);
+    commitUpdate(phpHandler, state[`ID`], name, newVal, setState, state);
   };
   return (
     <div key={index} className="StuInfo-Basic-Cards">
@@ -43,9 +60,10 @@ const EditingField = (props) => {
       <input
         className="value"
         type="text"
-        value={value}
+        value={newVal}
         onChange={(e) => {
-          setState({ ...state, [`${name}`]: e.target.value });
+          // setState({ ...state, [`${name}`]: e.target.value });
+          setNewVal(e.target.value);
         }}
       />
       <button onClick={handleEdit}>Ok</button>
@@ -64,11 +82,11 @@ const NonEditingFields = (props) => {
           onClick={() =>
             isEditable[index]
               ? setIsEditing(
-                  isEditing.map((n, index2) => {
-                    if (index === index2) return true;
-                    return n;
-                  })
-                )
+                isEditing.map((n, index2) => {
+                  if (index === index2) return true;
+                  return n;
+                })
+              )
               : ""
           }
         >

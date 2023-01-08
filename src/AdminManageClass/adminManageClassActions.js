@@ -15,6 +15,9 @@ export const deleteClassFromSystem = async (phpHandler, idClass) => {
   const url = phpHandler + `?deleteClassFromSystem=${idClass}`;
   console.log("del", url);
   try {
+    const conf = window.confirm('Are you sure to delete?');
+    // if (!conf) return;
+    if (!conf) throw new Error('Delete canceled');
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete");
