@@ -154,8 +154,8 @@
   .lec-question-manage-created-btns {
     @apply rounded-t-xl;
     @apply bg-pink-700;
-    @apply mt-8;
-    @apply h-8;
+    @apply mt-[5.3vh];
+    @apply h-[5.7vh];
     @apply w-[5.7vw];
     @apply items-center;
     @apply justify-center;
@@ -307,7 +307,7 @@
   }
   .lec-question-manage-subject-description > button {
     @apply absolute;
-    @apply mt-[4.4vh];
+    @apply mt-[3.6vh];
     @apply text-xs;
     @apply bg-pink-700;
     @apply text-pink-50;
