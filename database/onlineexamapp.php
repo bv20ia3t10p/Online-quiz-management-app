@@ -208,7 +208,10 @@ if (isset($_GET['getAllScore'])) {
 }
 
 if (isset($_GET['getLecInfo'])) {
-    $sql = 'select l.name as name, l.id as id, phone, email, c.id as classID, c.name as className, s.description as subject, avg(score) as classAvg, count(id_student_exam) as examNumbers
+    $sql = 'select l.name as name, l.id as id, phone, email, c.id as classID, 
+    c.name as className, s.description as subject, avg(score) as classAvg, 
+    count(id_student_exam) as examNumbers,
+    max(score) as maxScore, min(score) as minScore
     , s.id as subjectID,s.name as subjectName from lecturers l 
     inner join classes c on l.id = c.ID_lecturer
     inner join subjects s on c.ID_subject = s.ID
@@ -970,4 +973,41 @@ if (isset($_GET['getOldPasswordForUser'])){
     }
     echo json_encode(mysqli_fetch_object($result));
 }
+
+if(isset($_GET['getDashboardDataForAdmin'])){
+    $sql='select count(id) as usersCount,
+    (select count(id) from students ) as studentsCount,
+    (select count(id) from lecturers ) as lecturersCount,
+    (select count(id_student_exam) from student_exams) as studentExamCount,
+    (select count(id) from exams ) as examCounts
+    from users';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    echo json_encode(mysqli_fetch_object($result));
+}
+if (isset($_GET['getAllClassStatForAdmin'])){
+    $sql='select c.id as classID, 
+    c.name as className, avg(score) as classAvg, 
+    count(id_student_exam) as examNumbers,
+    max(score) as maxScore, min(score) as minScore
+    , s.id as subjectID,s.name as subjectName from lecturers l 
+    inner join classes c on l.id = c.ID_lecturer
+    inner join subjects s on c.ID_subject = s.ID
+    inner join student_exams se on c.id = se.id_class 
+    group by c.id, c.name, s.description,s.id;';
+    $result = mysqli_query($con, $sql);
+    if (!$result) {
+        http_response_code(404);
+        die(mysqli_error($con));
+    }
+    if (!$id) echo '[';
+    for ($i = 0; $i < mysqli_num_rows($result); $i++) {
+        echo ($i > 0 ? ',' : '') . json_encode(mysqli_fetch_object($result));
+    }
+    if (!$id) echo ']';
+}
+
 $con->close();

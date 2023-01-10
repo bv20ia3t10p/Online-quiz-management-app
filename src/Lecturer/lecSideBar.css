@@ -160,4 +160,12 @@
     @apply text-rose-50;
     @apply h-12;
   }
+  .lec.stu-stat-page{
+    @apply h-[78vh];
+    @apply w-[83.5vw];
+  }
+  .lec.stu-stat-page.adm{
+    @apply h-[68vh];
+    @apply w-[83.5vw];
+  }
 }

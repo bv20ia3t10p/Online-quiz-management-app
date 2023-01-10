@@ -31,6 +31,8 @@ export const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
       examNumbers,
       subjectID,
       subjectName,
+      maxScore,
+      minScore
     }) => ({
       classID,
       className,
@@ -39,6 +41,8 @@ export const fetchLecInfo = async (phpHandler, uid, setLecInfo) => {
       subjectID,
       examNumbers,
       subjectName,
+      maxScore,
+      minScore
     }))(n);
   });
   const newLecInfo = { ...lecInfo, classes };
