@@ -148,7 +148,7 @@ const AdminHome = () => {
     if (!data) getDashboardData(phpHandler, setData);
     if (!classes) getClassesStatForAdmin(phpHandler, setClasses)
   }, [data, phpHandler])
-  if (!data) return <div className="">Loading</div>
+  if (!data || !classes) return <div className="">Loading</div>
   return <div>
     <div className="stu-stat-page lec adm">
       <div className="stu-stat-lineChart-container">
