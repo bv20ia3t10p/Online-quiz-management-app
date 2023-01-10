@@ -71,17 +71,19 @@ const deleteCreatedQuestions = async (
 
 export const addNewQuestionToDB = async (
   phpHandler,
-  content,
-  opt1,
-  opt2,
-  opt3,
-  opt4,
-  correct,
+  content = 'content',
+  opt1 = 'opt1',
+  opt2 = 'opt2',
+  opt3 = 'opt3',
+  opt4 = 'opt4',
+  correct = 1,
   idSubject,
   idLecturer,
   created,
   setCreated
 ) => {
+  if (parseInt(correct) < 1 || parseInt(correct) > 4) correct = 1;
+  console.log(correct);
   const prep =
     phpHandler +
     `?addNewQuestionCreatedByLec="${content}"&opt1="${opt1}"&opt2="${opt2}"&opt3="${opt3}"&opt4="${opt4}"&correct=${correct}&idSubject=${idSubject}&idLecturer=${idLecturer}`;
@@ -90,7 +92,8 @@ export const addNewQuestionToDB = async (
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete question");
-    setCreated([...created, { content, opt1, opt2, opt3, opt4, correct }]);
+    alert('Insert success');
+    window.location.reload();
   } catch (e) {
     alert(e);
   }
@@ -129,7 +132,7 @@ const LecQuestion = () => {
     opt2: "",
     opt3: "",
     opt4: "",
-    correct: 0,
+    correct: 1,
   });
   useEffect(() => {
     if (currentSubject.subjectID || !classes[0]) return;

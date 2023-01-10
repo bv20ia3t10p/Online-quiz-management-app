@@ -43,7 +43,7 @@ const LecInsertQuestionThroughFile = ({
           n[2],
           n[3],
           n[4],
-          n[5],
+          isNaN(n[5]) ? 1 : n[5],
           lecInfo.subjectID,
           //   currentSubject.subjectID,
           lecInfo.id,
@@ -56,11 +56,10 @@ const LecInsertQuestionThroughFile = ({
   };
   return (
     <div
-      className={`${
-        isAddingThroughFile
+      className={`${isAddingThroughFile
           ? "lec-question-insert-file"
           : "lec-question-insert-file isHidden"
-      }`}
+        }`}
     >
       <input type="file" onChange={handleFileImport} />
       {imported.map((n, index) => {
