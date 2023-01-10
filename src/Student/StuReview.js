@@ -60,7 +60,7 @@ const StuReview = () => {
         </button>
       </form>
       <div className="headings">
-        {["ID", "C.ID", "Class", "S.ID", "Subject", "Score"].map((n, index) => {
+        {["ID", "C.ID", "Class", "S.ID", "Subject", "Description", "Score"].map((n, index) => {
           return (
             <span key={index} className="heading">
               {n}

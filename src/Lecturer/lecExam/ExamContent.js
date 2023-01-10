@@ -143,6 +143,10 @@ const ExamContent = () => {
       )
         newAssigned.push(n);
     });
+    if (!newAssigned.length) {
+      alert('No result found');
+      return;
+    }
     setAssignedQuestions(newAssigned);
   };
   const handleSearchAvailable = (e) => {
@@ -167,6 +171,11 @@ const ExamContent = () => {
       )
         newQuestions.push(n);
     });
+    if (!newQuestions.length) {
+      alert('No result found');
+      return;
+
+    }
     setQuestions(newQuestions);
   };
   const handleAdd = () => {

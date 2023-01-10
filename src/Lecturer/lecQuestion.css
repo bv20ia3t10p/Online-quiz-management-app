@@ -314,7 +314,7 @@
     @apply h-[5.7vh];
     @apply px-4;
     @apply rounded-tl-2xl;
-    @apply ml-[8vw];
+    @apply ml-[3.2vw];
   }
   .lec-question-insert-file {
     @apply duration-700;

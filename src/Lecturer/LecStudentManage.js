@@ -148,6 +148,10 @@ const LecStudentManage = () => {
         )
           newList.push(n);
       });
+      if (!newList.length) {
+        alert('No result found');
+        return;
+      }
       setList(newList);
     }
   };
@@ -172,6 +176,10 @@ const LecStudentManage = () => {
         )
           newListAnswer.push(n);
       });
+      if (!newListAnswer.length) {
+        alert('No result found');
+        return;
+      }
       setListAnswer(newListAnswer);
     }
   };
@@ -192,11 +200,10 @@ const LecStudentManage = () => {
     return (
       <>
         <div
-          className={`${
-            isEditing
+          className={`${isEditing
               ? "lec-student-adjust-score-modal"
               : "lec-student-adjust-score-modal isHidden"
-          }`}
+            }`}
         >
           <label htmlFor="lec-student-score-adjust-score">New score</label>
           <input
@@ -293,11 +300,10 @@ const LecStudentManage = () => {
                   <div
                     key={index}
                     onClick={() => setSelected(index)}
-                    className={`${
-                      index === selected
+                    className={`${index === selected
                         ? "lec-student-manage-list-single isSelected"
                         : "lec-student-manage-list-single"
-                    }`}
+                      }`}
                   >
                     {Object.values(n).map((n2, index2) => {
                       return (

@@ -124,6 +124,10 @@ const LecExamList = ({ phpHandler, classes }) => {
         )
           newAssigns.push(n);
       });
+      if (!newAssigns.length) {
+        alert('No result found');
+        return;
+      }
       setExamAssigns(newAssigns);
     }
     return false;
@@ -144,6 +148,10 @@ const LecExamList = ({ phpHandler, classes }) => {
         )
           newCreated.push(n);
       });
+      if (!newCreated.length) {
+        alert('No search result found');
+        return;
+      }
       setCreatedExams(newCreated);
     }
     return false;

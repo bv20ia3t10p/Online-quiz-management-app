@@ -10,18 +10,15 @@ import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../../setup/Context";
 import AddNewUserModal from "./AddNewUserModal";
 import AdminEditPasswordModal from "./AdminEditPasswordModal";
+import { handleSearch } from "../AdminManageExam/AdminManageExamActions";
 
-const getListOfUsers = async (phpHandler, setUsers, setBackUp) => {
+const getListOfUsers = async (phpHandler, setUsers) => {
   const url = phpHandler + `?getListOfUsersForAdmin`;
   try {
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to get list of student");
-    setUsers(data);
-    setBackUp({
-      isBackedUp: true,
-      users: data,
-    });
+    setUsers({ users: data, backUp: data });
   } catch (e) {
     alert(e);
   }
@@ -30,9 +27,6 @@ const getListOfUsers = async (phpHandler, setUsers, setBackUp) => {
 const deleteUserOffDB = async (
   phpHandler,
   userToDelete,
-  setUsers,
-  users,
-  setBackUp
 ) => {
   const url = phpHandler + `?deleteUserOffDB=${userToDelete}`;
   try {
@@ -42,10 +36,8 @@ const deleteUserOffDB = async (
     const resp = await fetch(url);
     const data = await resp.json();
     if (!data) throw new Error("Failed to delete user");
-    const newUsers = users.filter((n) => n.id !== userToDelete);
     alert('Delete success')
-    setUsers(newUsers);
-    setBackUp({ isBackedUp: true, users: newUsers });
+    window.location.reload();
   } catch (e) {
     alert(e);
   }
@@ -54,57 +46,39 @@ const deleteUserOffDB = async (
 const AdminManageUser = () => {
   const { phpHandler } = useGlobalContext();
   const [isLoading, setIsLoading] = useState(true);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState({ users: [], backUp: {} });
   const [selected, setSelected] = useState(0);
   const [search, setSearch] = useState("");
   const [isAdding, setIsAdding] = useState(false);
-  const [backUp, setBackUp] = useState({ isBackedUp: false, users: [] });
   const [isChangingPW, setIsChangingPW] = useState(false);
   const navi = useNavigate();
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (!search) {
-      setUsers(backUp.users);
-    } else {
-      const newUsers = [];
-      users.forEach((n) => {
-        if (
-          Object.values(n).find(
-            (n2) => n2 && n2.toUpperCase().includes(search.toUpperCase())
-          )
-        )
-          newUsers.push(n);
-      });
-      setUsers(newUsers);
-    }
-  };
   const handleEdit = () => {
-    if (users[selected].id[0] === "2") {
-      navi(`/Admin/Student/${users[selected].id}`);
-    } else if (users[selected].id[0] === "8") {
-      navi(`/Admin/Lecturer/${users[selected].id}`);
-    } else if (users[selected].id[0] === "9") {
-      navi(`/Admin/About/${users[selected].id}`);
+    if (users.users[selected].id[0] === "2") {
+      navi(`/Admin/Student/${users.users[selected].id}`);
+    } else if (users.users[selected].id[0] === "8") {
+      navi(`/Admin/Lecturer/${users.users[selected].id}`);
+    } else if (users.users[selected].id[0] === "9") {
+      navi(`/Admin/About/${users.users[selected].id}`);
     } else alert("Invalid selection");
   };
   const handleChangePW = () => {
     setIsChangingPW(true);
   };
   const handleDelete = () => {
-    deleteUserOffDB(phpHandler, users[selected].id, setUsers, users, setBackUp);
+    deleteUserOffDB(phpHandler, users.users[selected].id, setUsers, users);
   };
   useEffect(() => {
-    if (!users.length) {
-      getListOfUsers(phpHandler, setUsers, setBackUp);
+    if (isLoading) {
+      getListOfUsers(phpHandler, setUsers);
       setIsLoading(false);
     } else return;
   }, [users, isLoading, phpHandler]);
   if (isLoading) return <div className="admin-manage-user">Is loading</div>;
   return (
     <>
-      {users[selected] && (
+      {users.users[selected] && (
         <AdminEditPasswordModal
-          userToEditPassWord={users[selected].id}
+          userToEditPassWord={users.users[selected].id}
           isChangingPW={isChangingPW}
           setIsChangingPW={setIsChangingPW}
         />
@@ -144,7 +118,11 @@ const AdminManageUser = () => {
         <div className="admin-manage-user-list">
           <form
             className="admin-manage-user-list-search"
-            onSubmit={handleSearch}
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSearch(users, search, setUsers);
+              console.log('Got');
+            }}
           >
             <input
               type="text"
@@ -170,7 +148,7 @@ const AdminManageUser = () => {
             })}
           </div>
           <div className="admin-manage-user-list-values">
-            {users.map((n, index) => {
+            {users.users.map((n, index) => {
               return (
                 <div
                   key={index}

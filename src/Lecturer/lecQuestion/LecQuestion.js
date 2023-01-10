@@ -170,6 +170,10 @@ const LecQuestion = () => {
         )
           newAvailable.push(n);
       });
+      if (!newAvailable.length) {
+        alert('No result found');
+        return;
+      }
       setAvailable(newAvailable);
     }
   };
@@ -191,6 +195,10 @@ const LecQuestion = () => {
         )
           newCreated.push(n);
       });
+      if (!newCreated.length) {
+        alert('No result found');
+        return;
+      }
       setCreated(newCreated);
     }
   };

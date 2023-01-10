@@ -102,7 +102,7 @@
   .lec-student-manage-edit {
     @apply absolute;
     @apply ml-[46vw];
-    @apply mt-[10vh];
+    @apply mt-[9.5vh];
     @apply bg-pink-700;
     @apply h-[4vh];
     @apply w-[4vh];

@@ -140,6 +140,10 @@ export const handleSearch = (state, searchValue, setState) => {
       )
         newStateArray.push(n);
     });
+    if (!newStateArray.length) {
+      alert('No search result found');
+      return;
+    }
     setState({
       [`${Object.keys(state)[0]}`]: newStateArray,
       backUp: state.backUp,
