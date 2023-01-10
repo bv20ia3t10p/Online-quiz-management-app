@@ -130,13 +130,14 @@ const LecHomeLineChart = () => {
     const { uid } = useGlobalContext();
     const [analysedData, setAnalysedData] = useState({ numExams: 0, avgScore: 0, numClasses: 0 })
     useEffect(() => {
+        if (!classes.length) return;
         setAnalysedData({
             numExams: classes.reduce((sum, n) => sum + parseFloat(n.examNumbers), 0),
             avgScore: classes.reduce((sum, n) => {
                 if (!isNaN(n.classAvg))
-                    return (sum + parseFloat(n.classAvg), 0);
+                    return sum + parseFloat(n.classAvg);
                 return sum;
-            }) / classes.length,
+            }, 0) / classes.length,
             numClasses: classes.length,
             variations: classes.map((n) => n.classAvg)
         });
