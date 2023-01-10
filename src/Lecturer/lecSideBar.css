@@ -168,4 +168,60 @@
     @apply h-[68vh];
     @apply w-[83.5vw];
   }
+  .results{
+    @apply m-12;
+    @apply bg-rose-50;
+    @apply border-2;
+    @apply rounded-xl;
+    @apply h-[75vh];
+    @apply border-rose-500;
+    @apply grid;
+    @apply grid-rows-[repeat(3,8%)_1fr_5%];
+    @apply shadow-xl;
+    @apply p-12;
+  }
+  .results .headings, .results .single{
+    @apply grid;
+    @apply grid-cols-[repeat(2,8%)_20%_repeat(2,8%)_1fr_8%];
+  }
+  .results h1{
+    @apply text-center;
+    @apply flex;
+    @apply text-rose-500;
+    @apply text-xl;
+    @apply uppercase;
+    @apply tracking-widest;
+    @apply items-center;
+    @apply justify-center;
+  }
+  .results .search{
+    @apply w-full;
+    @apply bg-rose-500;
+    @apply rounded-t-xl;
+    @apply grid;
+    @apply grid-cols-[1fr_2%];
+    @apply overflow-hidden;
+  }
+  .results .list{
+    @apply border-rose-500;
+    @apply border-2;
+    @apply overflow-scroll;
+    @apply border-t-[0px];
+    @apply px-8;
+    @apply rounded-b-xl;
+    @apply h-[40vh];
+    }
+  .results .headings{
+    @apply bg-rose-500;
+    @apply text-rose-50;
+    @apply px-8;
+  }
+  .results > button {
+    @apply bg-rose-500;
+    @apply rounded-xl;
+    @apply text-rose-50;
+    @apply mx-[20vw];
+    @apply h-[5vh];
+    @apply mt-[2vh];
+  }
 }
