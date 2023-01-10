@@ -147,7 +147,7 @@ const AdminHome = () => {
   useEffect(() => {
     if (!data) getDashboardData(phpHandler, setData);
     if (!classes) getClassesStatForAdmin(phpHandler, setClasses)
-  }, [data, phpHandler])
+  }, [data, phpHandler, classes])
   if (!data || !classes) return <div className="">Loading</div>
   return <div>
     <div className="stu-stat-page lec adm">

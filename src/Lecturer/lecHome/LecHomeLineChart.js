@@ -132,7 +132,11 @@ const LecHomeLineChart = () => {
     useEffect(() => {
         setAnalysedData({
             numExams: classes.reduce((sum, n) => sum + parseFloat(n.examNumbers), 0),
-            avgScore: classes.reduce((sum, n) => sum + parseFloat(n.classAvg), 0) / classes.length,
+            avgScore: classes.reduce((sum, n) => {
+                if (!isNaN(n.classAvg))
+                    return (sum + parseFloat(n.classAvg), 0);
+                return sum;
+            }) / classes.length,
             numClasses: classes.length,
             variations: classes.map((n) => n.classAvg)
         });
