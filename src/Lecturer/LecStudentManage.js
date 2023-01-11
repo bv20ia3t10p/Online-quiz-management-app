@@ -201,8 +201,8 @@ const LecStudentManage = () => {
       <>
         <div
           className={`${isEditing
-              ? "lec-student-adjust-score-modal"
-              : "lec-student-adjust-score-modal isHidden"
+            ? "lec-student-adjust-score-modal"
+            : "lec-student-adjust-score-modal isHidden"
             }`}
         >
           <label htmlFor="lec-student-score-adjust-score">New score</label>
@@ -301,11 +301,15 @@ const LecStudentManage = () => {
                     key={index}
                     onClick={() => setSelected(index)}
                     className={`${index === selected
-                        ? "lec-student-manage-list-single isSelected"
-                        : "lec-student-manage-list-single"
+                      ? "lec-student-manage-list-single isSelected"
+                      : "lec-student-manage-list-single"
                       }`}
                   >
                     {Object.values(n).map((n2, index2) => {
+                      if (index2 === 5) return (
+                        <span key={index2} className="value">
+                          {Math.round(n2 * 100) / 100.0}
+                        </span>);
                       return (
                         <span className="value" key={index2}>
                           {n2}
