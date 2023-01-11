@@ -161,7 +161,7 @@
     @apply h-12;
   }
   .lec.stu-stat-page{
-    @apply h-[78vh];
+    @apply h-[74vh];
     @apply w-[83.5vw];
   }
   .lec.stu-stat-page.adm{
