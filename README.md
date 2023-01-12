@@ -30,3 +30,4 @@
 
 - Student: 20521/123
 - Lecturer: 8081/456
+- Admin: 9900/admin
