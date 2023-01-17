@@ -2,6 +2,10 @@
 
 - Online quiz app with mysql database using react, xampp and php
 
+# Acessibility
+
+- Best viewed on Firefox at 150% FHD display zoom
+
 # Running on local machine
 
 - Requires Node.js
